@@ -1,0 +1,40 @@
+## Entities
+- transaction
+  - enterprise
+  - transactionItem[]
+    - item
+    - brand
+    - category
+
+## Use cases
+- item
+  - create
+  - update
+  - delete
+  - getAll
+- brand
+  - create
+  - update
+  - delete
+  - getAll
+- category
+  - create
+  - update
+  - delete
+  - getAll
+- enterprise
+  - create
+  - update
+  - delete
+  - getAll
+- transactionItem
+  - create
+  - update
+  - delete
+- transaction
+  - create
+  - update
+  - get
+    - transactionItem -> getAll
+  - delete
+    - transactionItem -> deleteAll
