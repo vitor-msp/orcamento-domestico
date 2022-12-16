@@ -1,7 +1,7 @@
 ## Entities
 - [x] transaction
   - [x] enterprise
-  - [ ] transactionItem[]
+  - [x] transactionItem[]
     - [x] item
     - [x] brand
     - [x] category
