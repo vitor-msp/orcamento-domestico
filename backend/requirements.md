@@ -1,10 +1,10 @@
 ## Entities
-- [ ] transaction
-  - [ ] enterprise
+- [x] transaction
+  - [x] enterprise
   - [ ] transactionItem[]
-    - [ ] item
-    - [ ] brand
-    - [ ] category
+    - [x] item
+    - [x] brand
+    - [x] category
 
 ## Use cases
 - [ ] item
