@@ -7,11 +7,11 @@
     - [x] category
 
 ## Use cases
-- [ ] item
-  - [ ] create
-  - [ ] update
-  - [ ] delete
-  - [ ] getAll
+- [x] item
+  - [x] create
+  - [x] update
+  - [x] delete
+  - [x] getAll
 - [ ] brand
   - [ ] create
   - [ ] update
