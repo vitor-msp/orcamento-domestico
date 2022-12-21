@@ -1,3 +1,4 @@
+import { IRepository } from "../../repositories/IRepository";
 import { IUseCase } from "../IUseCase";
 
 export type deleteItemInput = {
@@ -9,10 +10,10 @@ export type deleteItemOutput = {
 };
 
 export class DeleteItem implements IUseCase {
-  constructor(private readonly itemRepository: any) {}
+  constructor(private readonly itemsRepository: IRepository) {}
 
   async execute(input: deleteItemInput): Promise<deleteItemOutput> {
-    await this.itemRepository.delete(input.id);
+    await this.itemsRepository.delete(input.id);
     return {
       id: input.id,
     };

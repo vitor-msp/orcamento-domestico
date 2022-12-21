@@ -1,3 +1,4 @@
+import { IRepository } from "../../repositories/IRepository";
 import { IUseCase } from "../IUseCase";
 
 type item = {
@@ -10,9 +11,9 @@ export type getAllItemsOutput = {
 };
 
 export class GetAllItems implements IUseCase {
-  constructor(private readonly itemRepository: any) {}
+  constructor(private readonly itemsRepository: IRepository) {}
 
   async execute(): Promise<getAllItemsOutput> {
-    return await this.itemRepository.getAll();
+    return await this.itemsRepository.getAll();
   }
 }
