@@ -15,7 +15,7 @@ export class CreateItemController implements IController {
       const item = await this.useCase.execute(input);
       return res.status(201).json({ id: item.id });
     } catch (error) {
-      return res.status(500).json({ message: "Internal error." });
+      return res.status(500).json({ message: `Internal error - ${error}` });
     }
   }
 }

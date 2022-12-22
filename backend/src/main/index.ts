@@ -17,5 +17,5 @@ if (!process.env.SERVER_PORT || isNaN(+process.env.SERVER_PORT))
 const SERVER_PORT = process.env.SERVER_PORT;
 
 app.listen(SERVER_PORT, () => {
-  console.log(`Api listening on port ${SERVER_PORT}`);
+  console.log(`Api listening on port ${SERVER_PORT}.`);
 });
