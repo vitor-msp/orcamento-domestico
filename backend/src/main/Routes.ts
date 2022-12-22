@@ -4,6 +4,7 @@ import {
   createCategoryController,
   createEnterpriseController,
   createItemController,
+  createTransactionController,
   deleteBrandController,
   deleteCategoryController,
   deleteEnterpriseController,
@@ -70,6 +71,10 @@ router.delete("/enterprises/:id", (req: Request, res: Response) => {
 });
 router.get("/enterprises", (req: Request, res: Response) => {
   getAllEnterprisesController.handle(req, res);
+});
+
+router.post("/transactions", (req: Request, res: Response) => {
+  createTransactionController.handle(req, res);
 });
 
 export { router };

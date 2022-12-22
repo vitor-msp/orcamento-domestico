@@ -1,31 +1,31 @@
-CREATE TABLE IF NOT EXISTS items (
-    pk SERIAL,
+CREATE TABLE IF NOT EXISTS item (
     id VARCHAR(255) NOT NULL,
     description VARCHAR(255) NOT NULL,
-    CONSTRAINT items_pk PRIMARY KEY (pk),
-    CONSTRAINT items_id UNIQUE (id)
+    CONSTRAINT item_pk PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS brands (
-    pk SERIAL,
+CREATE TABLE IF NOT EXISTS brand (
     id VARCHAR(255) NOT NULL,
     description VARCHAR(255) NOT NULL,
-    CONSTRAINT brands_pk PRIMARY KEY (pk),
-    CONSTRAINT brands_id UNIQUE (id)
+    CONSTRAINT brand_pk PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS categories (
-    pk SERIAL,
+CREATE TABLE IF NOT EXISTS category (
     id VARCHAR(255) NOT NULL,
     description VARCHAR(255) NOT NULL,
-    CONSTRAINT categories_pk PRIMARY KEY (pk),
-    CONSTRAINT categories_id UNIQUE (id)
+    CONSTRAINT category_pk PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS enterprises (
-    pk SERIAL,
+CREATE TABLE IF NOT EXISTS enterprise (
     id VARCHAR(255) NOT NULL,
     description VARCHAR(255) NOT NULL,
-    CONSTRAINT enterprises_pk PRIMARY KEY (pk),
-    CONSTRAINT enterprises_id UNIQUE (id)
+    CONSTRAINT enterprise_pk PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS transaction (
+    id VARCHAR(255) NOT NULL,
+    enterprise VARCHAR(255) NOT NULL,
+    date DATE NOT NULL,
+    CONSTRAINT transaction_pk PRIMARY KEY (id),
+    CONSTRAINT transaction_fk_enterprise FOREIGN KEY (enterprise) REFERENCES enterprise(id)
 );

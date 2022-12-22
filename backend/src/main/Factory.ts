@@ -14,11 +14,13 @@ import { CreateItemController } from "../controllers/item/CreateItemController";
 import { DeleteItemController } from "../controllers/item/DeleteItemController";
 import { GetAllItemsController } from "../controllers/item/GetAllItemsController";
 import { UpdateItemController } from "../controllers/item/UpdateItemController";
+import { CreateTransactionController } from "../controllers/transaction/CreateTransactionController";
 import { DB } from "../infra/database/DB";
 import { BrandsRepository } from "../repositories/BrandsRepository";
 import { CategoriesRepository } from "../repositories/CategoriesRepository";
 import { EnterprisesRepository } from "../repositories/EnterprisesRepository";
 import { ItemsRepository } from "../repositories/ItemsRepository";
+import { TransactionsRepository } from "../repositories/TransactionsRepository";
 import { CreateBrand } from "../use-cases/brand/CreateBrand";
 import { DeleteBrand } from "../use-cases/brand/DeleteBrand";
 import { GetAllBrands } from "../use-cases/brand/GetAllBrands";
@@ -35,6 +37,8 @@ import { CreateItem } from "../use-cases/item/CreateItem";
 import { DeleteItem } from "../use-cases/item/DeleteItem";
 import { GetAllItems } from "../use-cases/item/GetAllItems";
 import { UpdateItem } from "../use-cases/item/UpdateItem";
+import { CreateTransaction } from "../use-cases/transaction/CreateTransaction";
+import { TransactionValidator } from "../validators/TransactionValidator";
 
 let createItemController: CreateItemController;
 let updateItemController: UpdateItemController;
@@ -56,9 +60,11 @@ let updateEnterpriseController: UpdateEnterpriseController;
 let deleteEnterpriseController: DeleteEnterpriseController;
 let getAllEnterprisesController: GetAllEnterprisesController;
 
+let createTransactionController: CreateTransactionController;
+
 (async () => {
   const dbClient = await DB.connect();
-  
+
   const itemsRepository = new ItemsRepository(dbClient);
   const createItemUseCase = new CreateItem(itemsRepository);
   createItemController = new CreateItemController(createItemUseCase);
@@ -81,23 +87,50 @@ let getAllEnterprisesController: GetAllEnterprisesController;
 
   const categoriesRepository = new CategoriesRepository(dbClient);
   const createCategoryUseCase = new CreateCategory(categoriesRepository);
-  createCategoryController = new CreateCategoryController(createCategoryUseCase);
+  createCategoryController = new CreateCategoryController(
+    createCategoryUseCase
+  );
   const updateCategoryUseCase = new UpdateCategory(categoriesRepository);
-  updateCategoryController = new UpdateCategoryController(updateCategoryUseCase);
+  updateCategoryController = new UpdateCategoryController(
+    updateCategoryUseCase
+  );
   const deleteCategoryuseCase = new DeleteCategory(categoriesRepository);
-  deleteCategoryController = new DeleteCategoryController(deleteCategoryuseCase);
+  deleteCategoryController = new DeleteCategoryController(
+    deleteCategoryuseCase
+  );
   const getAllCategorysUseCase = new GetAllCategories(categoriesRepository);
-  getAllCategoriesController = new GetAllCategoriesController(getAllCategorysUseCase);
+  getAllCategoriesController = new GetAllCategoriesController(
+    getAllCategorysUseCase
+  );
 
   const enterprisesRepository = new EnterprisesRepository(dbClient);
   const createEnterpriseUseCase = new CreateEnterprise(enterprisesRepository);
-  createEnterpriseController = new CreateEnterpriseController(createEnterpriseUseCase);
+  createEnterpriseController = new CreateEnterpriseController(
+    createEnterpriseUseCase
+  );
   const updateEnterpriseUseCase = new UpdateEnterprise(enterprisesRepository);
-  updateEnterpriseController = new UpdateEnterpriseController(updateEnterpriseUseCase);
+  updateEnterpriseController = new UpdateEnterpriseController(
+    updateEnterpriseUseCase
+  );
   const deleteEnterpriseuseCase = new DeleteEnterprise(enterprisesRepository);
-  deleteEnterpriseController = new DeleteEnterpriseController(deleteEnterpriseuseCase);
+  deleteEnterpriseController = new DeleteEnterpriseController(
+    deleteEnterpriseuseCase
+  );
   const getAllEnterprisesUseCase = new GetAllEnterprises(enterprisesRepository);
-  getAllEnterprisesController = new GetAllEnterprisesController(getAllEnterprisesUseCase);
+  getAllEnterprisesController = new GetAllEnterprisesController(
+    getAllEnterprisesUseCase
+  );
+
+  const transactionsRepository = new TransactionsRepository(dbClient);
+  const createTransactionUseCase = new CreateTransaction(
+    transactionsRepository,
+    enterprisesRepository
+  );
+  const transactionValidator = new TransactionValidator();
+  const createTransactionController = new CreateTransactionController(
+    createTransactionUseCase,
+    transactionValidator
+  );
 })();
 
 export {
@@ -117,4 +150,5 @@ export {
   updateEnterpriseController,
   deleteEnterpriseController,
   getAllEnterprisesController,
+  createTransactionController,
 };

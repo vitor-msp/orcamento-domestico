@@ -22,19 +22,19 @@
   - [x] update
   - [x] delete
   - [x] getAll
-- [ ] enterprise
-  - [ ] create
-  - [ ] update
-  - [ ] delete
-  - [ ] getAll
+- [x] enterprise
+  - [x] create
+  - [x] update
+  - [x] delete
+  - [x] getAll
 - [ ] transactionItem
   - [ ] create
   - [ ] update
   - [ ] delete
 - [ ] transaction
-  - [ ] create
+  - [x] create
   - [ ] update
-  - [ ] get
-    - [ ] transactionItem -> getAll
   - [ ] delete
     - [ ] transactionItem -> deleteAll
+  - [ ] get
+    - [ ] transactionItem -> getAll
