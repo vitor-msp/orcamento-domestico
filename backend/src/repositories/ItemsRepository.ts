@@ -38,14 +38,14 @@ export class ItemsRepository implements IRepository {
     const text: string = `DELETE FROM items WHERE id = $1;`;
     const values: string[] = [id];
     const res = await this.db.query(text, values);
-    if (res.rowCount !== 1)
-      throw new Error("Error to delete item in the database.");
+    if (res.rowCount !== 1) throw new Error("Item not found.");
   }
 
   async get(id: string): Promise<itemDB> {
     const text: string = `SELECT id, description FROM items WHERE id = $1;`;
     const values: string[] = [id];
     const res = await this.db.query<itemDB>(text, values);
+    if (res.rowCount !== 1) throw new Error("Item not found.");
     return res.rows[0];
   }
 

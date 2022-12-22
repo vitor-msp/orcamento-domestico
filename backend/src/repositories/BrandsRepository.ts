@@ -38,14 +38,14 @@ export class BrandsRepository implements IRepository {
     const text: string = `DELETE FROM brands WHERE id = $1;`;
     const values: string[] = [id];
     const res = await this.db.query(text, values);
-    if (res.rowCount !== 1)
-      throw new Error("Error to delete brand in the database.");
+    if (res.rowCount !== 1) throw new Error("Brand not found.");
   }
 
   async get(id: string): Promise<brandDB> {
     const text: string = `SELECT id, description FROM brands WHERE id = $1;`;
     const values: string[] = [id];
     const res = await this.db.query<brandDB>(text, values);
+    if (res.rowCount !== 1) throw new Error("Brand not found.");
     return res.rows[0];
   }
 
