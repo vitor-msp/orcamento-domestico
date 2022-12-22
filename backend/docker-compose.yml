@@ -10,7 +10,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - ./pgdata:/var/lib/postgresql/data
+      - ./data/postgres:/var/lib/postgresql/data
       - ./container-db-scripts:/docker-entrypoint-initdb.d
 
   pgadmin:
@@ -22,3 +22,5 @@ services:
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
     ports:
       - 9002:80
+    volumes:
+      - ./data/pgadmin:/var/lib/pgadmin
