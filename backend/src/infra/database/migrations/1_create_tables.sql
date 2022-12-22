@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS items (
+    pk SERIAL,
+    id VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    CONSTRAINT pk PRIMARY KEY (pk),
+    CONSTRAINT id UNIQUE (id)
+)
