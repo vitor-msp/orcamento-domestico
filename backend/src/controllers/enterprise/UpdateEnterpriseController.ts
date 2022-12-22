@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { UpdateBrand, updateBrandInput } from "../../use-cases/brand/UpdateBrand";
+import { UpdateEnterprise, updateEnterpriseInput } from "../../use-cases/enterprise/UpdateEnterprise";
 import { IController } from "../IController";
 
-export class UpdateBrandController implements IController {
-  constructor(private readonly useCase: UpdateBrand) {}
+export class UpdateEnterpriseController implements IController {
+  constructor(private readonly useCase: UpdateEnterprise) {}
 
   async handle(req: Request, res: Response) {
     try {
@@ -11,12 +11,12 @@ export class UpdateBrandController implements IController {
         return res.status(400).json({ message: "Missing id." });
       if (!req.body.description)
         return res.status(400).json({ message: "Missing description." });
-      const input: updateBrandInput = {
+      const input: updateEnterpriseInput = {
         id: req.params.id,
         description: req.body.description,
       };
-      const brand = await this.useCase.execute(input);
-      return res.status(200).json({ id: brand.id });
+      const enterprise = await this.useCase.execute(input);
+      return res.status(200).json({ id: enterprise.id });
     } catch (error) {
       return res.status(500).json({ message: `Internal error - ${error}` });
     }

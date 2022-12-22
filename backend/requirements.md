@@ -17,11 +17,11 @@
   - [x] update
   - [x] delete
   - [x] getAll
-- [ ] category
-  - [ ] create
-  - [ ] update
-  - [ ] delete
-  - [ ] getAll
+- [x] category
+  - [x] create
+  - [x] update
+  - [x] delete
+  - [x] getAll
 - [ ] enterprise
   - [ ] create
   - [ ] update

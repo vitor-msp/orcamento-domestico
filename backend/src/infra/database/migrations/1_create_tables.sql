@@ -21,3 +21,11 @@ CREATE TABLE IF NOT EXISTS categories (
     CONSTRAINT categories_pk PRIMARY KEY (pk),
     CONSTRAINT categories_id UNIQUE (id)
 );
+
+CREATE TABLE IF NOT EXISTS enterprises (
+    pk SERIAL,
+    id VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    CONSTRAINT enterprises_pk PRIMARY KEY (pk),
+    CONSTRAINT enterprises_id UNIQUE (id)
+);

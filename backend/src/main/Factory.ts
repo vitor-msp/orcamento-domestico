@@ -6,6 +6,10 @@ import { CreateCategoryController } from "../controllers/category/CreateCategory
 import { DeleteCategoryController } from "../controllers/category/DeleteCategoryController";
 import { GetAllCategoriesController } from "../controllers/category/GetAllCategoriesController";
 import { UpdateCategoryController } from "../controllers/category/UpdateCategoryController";
+import { CreateEnterpriseController } from "../controllers/enterprise/CreateEnterpriseController";
+import { DeleteEnterpriseController } from "../controllers/enterprise/DeleteEnterpriseController";
+import { GetAllEnterprisesController } from "../controllers/enterprise/GetAllEnterprisesController";
+import { UpdateEnterpriseController } from "../controllers/enterprise/UpdateEnterpriseController";
 import { CreateItemController } from "../controllers/item/CreateItemController";
 import { DeleteItemController } from "../controllers/item/DeleteItemController";
 import { GetAllItemsController } from "../controllers/item/GetAllItemsController";
@@ -13,6 +17,7 @@ import { UpdateItemController } from "../controllers/item/UpdateItemController";
 import { DB } from "../infra/database/DB";
 import { BrandsRepository } from "../repositories/BrandsRepository";
 import { CategoriesRepository } from "../repositories/CategoriesRepository";
+import { EnterprisesRepository } from "../repositories/EnterprisesRepository";
 import { ItemsRepository } from "../repositories/ItemsRepository";
 import { CreateBrand } from "../use-cases/brand/CreateBrand";
 import { DeleteBrand } from "../use-cases/brand/DeleteBrand";
@@ -22,6 +27,10 @@ import { CreateCategory } from "../use-cases/category/CreateCategory";
 import { DeleteCategory } from "../use-cases/category/DeleteCategory";
 import { GetAllCategories } from "../use-cases/category/GetAllCategories";
 import { UpdateCategory } from "../use-cases/category/UpdateCategory";
+import { CreateEnterprise } from "../use-cases/enterprise/CreateEnterprise";
+import { DeleteEnterprise } from "../use-cases/enterprise/DeleteEnterprise";
+import { GetAllEnterprises } from "../use-cases/enterprise/GetAllEnterprises";
+import { UpdateEnterprise } from "../use-cases/enterprise/UpdateEnterprise";
 import { CreateItem } from "../use-cases/item/CreateItem";
 import { DeleteItem } from "../use-cases/item/DeleteItem";
 import { GetAllItems } from "../use-cases/item/GetAllItems";
@@ -41,6 +50,11 @@ let createCategoryController: CreateCategoryController;
 let updateCategoryController: UpdateCategoryController;
 let deleteCategoryController: DeleteCategoryController;
 let getAllCategoriesController: GetAllCategoriesController;
+
+let createEnterpriseController: CreateEnterpriseController;
+let updateEnterpriseController: UpdateEnterpriseController;
+let deleteEnterpriseController: DeleteEnterpriseController;
+let getAllEnterprisesController: GetAllEnterprisesController;
 
 (async () => {
   const dbClient = await DB.connect();
@@ -74,6 +88,16 @@ let getAllCategoriesController: GetAllCategoriesController;
   deleteCategoryController = new DeleteCategoryController(deleteCategoryuseCase);
   const getAllCategorysUseCase = new GetAllCategories(categoriesRepository);
   getAllCategoriesController = new GetAllCategoriesController(getAllCategorysUseCase);
+
+  const enterprisesRepository = new EnterprisesRepository(dbClient);
+  const createEnterpriseUseCase = new CreateEnterprise(enterprisesRepository);
+  createEnterpriseController = new CreateEnterpriseController(createEnterpriseUseCase);
+  const updateEnterpriseUseCase = new UpdateEnterprise(enterprisesRepository);
+  updateEnterpriseController = new UpdateEnterpriseController(updateEnterpriseUseCase);
+  const deleteEnterpriseuseCase = new DeleteEnterprise(enterprisesRepository);
+  deleteEnterpriseController = new DeleteEnterpriseController(deleteEnterpriseuseCase);
+  const getAllEnterprisesUseCase = new GetAllEnterprises(enterprisesRepository);
+  getAllEnterprisesController = new GetAllEnterprisesController(getAllEnterprisesUseCase);
 })();
 
 export {
@@ -89,4 +113,8 @@ export {
   updateCategoryController,
   deleteCategoryController,
   getAllCategoriesController,
+  createEnterpriseController,
+  updateEnterpriseController,
+  deleteEnterpriseController,
+  getAllEnterprisesController,
 };
