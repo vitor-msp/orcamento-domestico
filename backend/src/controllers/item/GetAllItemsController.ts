@@ -10,7 +10,7 @@ export class GetAllItemsController implements IController {
       const { items } = await this.useCase.execute();
       return res.status(200).json({ items });
     } catch (error) {
-      return res.status(500).json({ message: "Internal error." });
+      return res.status(500).json({ message: `Internal error - ${error}` });
     }
   }
 }
