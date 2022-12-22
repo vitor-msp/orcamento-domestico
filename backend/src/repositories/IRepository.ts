@@ -1,6 +1,6 @@
 export interface IRepository {
-    save(entity: any): void
-    delete(id: string): void
-    get(id: string): any
-    getAll(): any[]
+  save(entity: any): Promise<void>;
+  delete(id: string): Promise<void>;
+  get(id: string): Promise<any>;
+  getAll(): Promise<any[]>;
 }

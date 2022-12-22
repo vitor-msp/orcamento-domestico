@@ -2,27 +2,50 @@ import { Client } from "pg";
 import { Item } from "../domain/Item";
 import { IRepository } from "./IRepository";
 
+export type itemDB = {
+  id: string;
+  description: string;
+};
+
 export class ItemsRepository implements IRepository {
   constructor(private readonly db: Client) {}
 
   async save(entity: Item): Promise<void> {
-    const text: string = `INSERT INTO items(id, description) VALUES ($1, $2);`;
-    const values: string[] = [entity.getId(), entity.getDescription()];
-    try {
-      const res = await this.db.query(text, values);
-      if (res.rowCount !== 1) throw new Error(`Error to insert item in database.`);
-    } catch (error) {
-      throw new Error(`Error to execute query in database - ${error}`);
-    }
+    const wasUpdated: boolean = await this.update(entity);
+    if (wasUpdated) return;
+    const wasInserted: boolean = await this.insert(entity);
+    if (wasInserted) return;
+    throw new Error("Item was not saved in the database.")
   }
 
-  delete(id: string): void {
+  private async insert(entity: Item): Promise<boolean> {
+    const text: string = `INSERT INTO items (id, description) VALUES ($1, $2);`;
+    const values: string[] = [entity.getId(), entity.getDescription()];
+    const res = await this.db.query(text, values);
+    if (res.rowCount === 1) return true;
+    return false;
+  }
+
+  private async update(entity: Item): Promise<boolean> {
+    const text: string = `UPDATE items SET description = $2 WHERE id = $1;`;
+    const values: string[] = [entity.getId(), entity.getDescription()];
+    const res = await this.db.query(text, values);
+    if (res.rowCount === 1) return true;
+    return false;
+  }
+
+  async delete(id: string): Promise<void> {
     throw new Error("Method not implemented.");
   }
-  get(id: string) {
-    throw new Error("Method not implemented.");
+
+  async get(id: string): Promise<itemDB> {
+    const text: string = `SELECT id, description FROM items WHERE id = $1;`;
+    const values: string[] = [id];
+    const res = await this.db.query<itemDB>(text, values);
+    return res.rows[0];
   }
-  getAll(): any[] {
+
+  async getAll(): Promise<Item[]> {
     throw new Error("Method not implemented.");
   }
 }
