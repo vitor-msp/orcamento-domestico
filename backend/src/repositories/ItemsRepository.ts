@@ -19,7 +19,7 @@ export class ItemsRepository implements IRepository {
   }
 
   private async insert(entity: Item): Promise<boolean> {
-    const text: string = `INSERT INTO items (id, description) VALUES ($1, $2);`;
+    const text: string = `INSERT INTO item (id, description) VALUES ($1, $2);`;
     const values: string[] = [entity.getId(), entity.getDescription()];
     const res = await this.db.query(text, values);
     if (res.rowCount === 1) return true;
@@ -27,7 +27,7 @@ export class ItemsRepository implements IRepository {
   }
 
   private async update(entity: Item): Promise<boolean> {
-    const text: string = `UPDATE items SET description = $2 WHERE id = $1;`;
+    const text: string = `UPDATE item SET description = $2 WHERE id = $1;`;
     const values: string[] = [entity.getId(), entity.getDescription()];
     const res = await this.db.query(text, values);
     if (res.rowCount === 1) return true;
@@ -35,14 +35,14 @@ export class ItemsRepository implements IRepository {
   }
 
   async delete(id: string): Promise<void> {
-    const text: string = `DELETE FROM items WHERE id = $1;`;
+    const text: string = `DELETE FROM item WHERE id = $1;`;
     const values: string[] = [id];
     const res = await this.db.query(text, values);
     if (res.rowCount !== 1) throw new Error("Item not found.");
   }
 
   async get(id: string): Promise<itemDB> {
-    const text: string = `SELECT id, description FROM items WHERE id = $1;`;
+    const text: string = `SELECT id, description FROM item WHERE id = $1;`;
     const values: string[] = [id];
     const res = await this.db.query<itemDB>(text, values);
     if (res.rowCount !== 1) throw new Error("Item not found.");
@@ -50,7 +50,7 @@ export class ItemsRepository implements IRepository {
   }
 
   async getAll(): Promise<itemDB[]> {
-    const text: string = `SELECT id, description FROM items;`;
+    const text: string = `SELECT id, description FROM item;`;
     const res = await this.db.query<itemDB[]>(text);
     //@ts-ignore
     return res.rows;

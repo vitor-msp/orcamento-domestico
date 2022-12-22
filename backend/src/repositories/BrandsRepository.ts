@@ -19,7 +19,7 @@ export class BrandsRepository implements IRepository {
   }
 
   private async insert(entity: Brand): Promise<boolean> {
-    const text: string = `INSERT INTO brands (id, description) VALUES ($1, $2);`;
+    const text: string = `INSERT INTO brand (id, description) VALUES ($1, $2);`;
     const values: string[] = [entity.getId(), entity.getDescription()];
     const res = await this.db.query(text, values);
     if (res.rowCount === 1) return true;
@@ -27,7 +27,7 @@ export class BrandsRepository implements IRepository {
   }
 
   private async update(entity: Brand): Promise<boolean> {
-    const text: string = `UPDATE brands SET description = $2 WHERE id = $1;`;
+    const text: string = `UPDATE brand SET description = $2 WHERE id = $1;`;
     const values: string[] = [entity.getId(), entity.getDescription()];
     const res = await this.db.query(text, values);
     if (res.rowCount === 1) return true;
@@ -35,14 +35,14 @@ export class BrandsRepository implements IRepository {
   }
 
   async delete(id: string): Promise<void> {
-    const text: string = `DELETE FROM brands WHERE id = $1;`;
+    const text: string = `DELETE FROM brand WHERE id = $1;`;
     const values: string[] = [id];
     const res = await this.db.query(text, values);
     if (res.rowCount !== 1) throw new Error("Brand not found.");
   }
 
   async get(id: string): Promise<brandDB> {
-    const text: string = `SELECT id, description FROM brands WHERE id = $1;`;
+    const text: string = `SELECT id, description FROM brand WHERE id = $1;`;
     const values: string[] = [id];
     const res = await this.db.query<brandDB>(text, values);
     if (res.rowCount !== 1) throw new Error("Brand not found.");
@@ -50,7 +50,7 @@ export class BrandsRepository implements IRepository {
   }
 
   async getAll(): Promise<brandDB[]> {
-    const text: string = `SELECT id, description FROM brands;`;
+    const text: string = `SELECT id, description FROM brand;`;
     const res = await this.db.query<brandDB[]>(text);
     //@ts-ignore
     return res.rows;

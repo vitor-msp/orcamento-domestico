@@ -19,7 +19,7 @@ export class CategoriesRepository implements IRepository {
   }
 
   private async insert(entity: Category): Promise<boolean> {
-    const text: string = `INSERT INTO categories (id, description) VALUES ($1, $2);`;
+    const text: string = `INSERT INTO category (id, description) VALUES ($1, $2);`;
     const values: string[] = [entity.getId(), entity.getDescription()];
     const res = await this.db.query(text, values);
     if (res.rowCount === 1) return true;
@@ -27,7 +27,7 @@ export class CategoriesRepository implements IRepository {
   }
 
   private async update(entity: Category): Promise<boolean> {
-    const text: string = `UPDATE categories SET description = $2 WHERE id = $1;`;
+    const text: string = `UPDATE category SET description = $2 WHERE id = $1;`;
     const values: string[] = [entity.getId(), entity.getDescription()];
     const res = await this.db.query(text, values);
     if (res.rowCount === 1) return true;
@@ -35,14 +35,14 @@ export class CategoriesRepository implements IRepository {
   }
 
   async delete(id: string): Promise<void> {
-    const text: string = `DELETE FROM categories WHERE id = $1;`;
+    const text: string = `DELETE FROM category WHERE id = $1;`;
     const values: string[] = [id];
     const res = await this.db.query(text, values);
     if (res.rowCount !== 1) throw new Error("Category not found.");
   }
 
   async get(id: string): Promise<categoryDB> {
-    const text: string = `SELECT id, description FROM categories WHERE id = $1;`;
+    const text: string = `SELECT id, description FROM category WHERE id = $1;`;
     const values: string[] = [id];
     const res = await this.db.query<categoryDB>(text, values);
     if (res.rowCount !== 1) throw new Error("Category not found.");
@@ -50,7 +50,7 @@ export class CategoriesRepository implements IRepository {
   }
 
   async getAll(): Promise<categoryDB[]> {
-    const text: string = `SELECT id, description FROM categories;`;
+    const text: string = `SELECT id, description FROM category;`;
     const res = await this.db.query<categoryDB[]>(text);
     //@ts-ignore
     return res.rows;

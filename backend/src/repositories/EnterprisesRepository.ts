@@ -19,7 +19,7 @@ export class EnterprisesRepository implements IRepository {
   }
 
   private async insert(entity: Enterprise): Promise<boolean> {
-    const text: string = `INSERT INTO enterprises (id, description) VALUES ($1, $2);`;
+    const text: string = `INSERT INTO enterprise (id, description) VALUES ($1, $2);`;
     const values: string[] = [entity.getId(), entity.getDescription()];
     const res = await this.db.query(text, values);
     if (res.rowCount === 1) return true;
@@ -27,7 +27,7 @@ export class EnterprisesRepository implements IRepository {
   }
 
   private async update(entity: Enterprise): Promise<boolean> {
-    const text: string = `UPDATE enterprises SET description = $2 WHERE id = $1;`;
+    const text: string = `UPDATE enterprise SET description = $2 WHERE id = $1;`;
     const values: string[] = [entity.getId(), entity.getDescription()];
     const res = await this.db.query(text, values);
     if (res.rowCount === 1) return true;
@@ -35,14 +35,14 @@ export class EnterprisesRepository implements IRepository {
   }
 
   async delete(id: string): Promise<void> {
-    const text: string = `DELETE FROM enterprises WHERE id = $1;`;
+    const text: string = `DELETE FROM enterprise WHERE id = $1;`;
     const values: string[] = [id];
     const res = await this.db.query(text, values);
     if (res.rowCount !== 1) throw new Error("Enterprise not found.");
   }
 
   async get(id: string): Promise<enterpriseDB> {
-    const text: string = `SELECT id, description FROM enterprises WHERE id = $1;`;
+    const text: string = `SELECT id, description FROM enterprise WHERE id = $1;`;
     const values: string[] = [id];
     const res = await this.db.query<enterpriseDB>(text, values);
     if (res.rowCount !== 1) throw new Error("Enterprise not found.");
@@ -50,7 +50,7 @@ export class EnterprisesRepository implements IRepository {
   }
 
   async getAll(): Promise<enterpriseDB[]> {
-    const text: string = `SELECT id, description FROM enterprises;`;
+    const text: string = `SELECT id, description FROM enterprise;`;
     const res = await this.db.query<enterpriseDB[]>(text);
     //@ts-ignore
     return res.rows;
