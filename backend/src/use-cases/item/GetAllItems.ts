@@ -1,19 +1,18 @@
 import { IRepository } from "../../repositories/IRepository";
+import { itemDB } from "../../repositories/ItemsRepository";
 import { IUseCase } from "../IUseCase";
 
-type item = {
-  id: string;
-  description: string;
-};
-
 export type getAllItemsOutput = {
-  items: item[];
+  items: itemDB[];
 };
 
 export class GetAllItems implements IUseCase {
   constructor(private readonly itemsRepository: IRepository) {}
 
   async execute(): Promise<getAllItemsOutput> {
-    return await this.itemsRepository.getAll();
+    const items: itemDB[] = await this.itemsRepository.getAll();
+    return {
+      items,
+    };
   }
 }

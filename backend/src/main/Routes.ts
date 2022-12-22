@@ -1,5 +1,10 @@
 import { Router, Request, Response } from "express";
-import { createItemController, deleteItemController, updateItemController } from "./Factory";
+import {
+  createItemController,
+  deleteItemController,
+  getAllItemsController,
+  updateItemController,
+} from "./Factory";
 
 const router = Router();
 
@@ -11,6 +16,9 @@ router.put("/items/:id", (req: Request, res: Response) => {
 });
 router.delete("/items/:id", (req: Request, res: Response) => {
   deleteItemController.handle(req, res);
+});
+router.get("/items", (req: Request, res: Response) => {
+  getAllItemsController.handle(req, res);
 });
 
 export { router };

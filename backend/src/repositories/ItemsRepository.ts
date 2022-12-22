@@ -49,7 +49,10 @@ export class ItemsRepository implements IRepository {
     return res.rows[0];
   }
 
-  async getAll(): Promise<Item[]> {
-    throw new Error("Method not implemented.");
+  async getAll(): Promise<itemDB[]> {
+    const text: string = `SELECT id, description FROM items;`;
+    const res = await this.db.query<itemDB[]>(text);
+    //@ts-ignore
+    return res.rows;
   }
 }
