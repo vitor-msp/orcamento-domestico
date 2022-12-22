@@ -13,3 +13,11 @@ CREATE TABLE IF NOT EXISTS brands (
     CONSTRAINT brands_pk PRIMARY KEY (pk),
     CONSTRAINT brands_id UNIQUE (id)
 );
+
+CREATE TABLE IF NOT EXISTS categories (
+    pk SERIAL,
+    id VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    CONSTRAINT categories_pk PRIMARY KEY (pk),
+    CONSTRAINT categories_id UNIQUE (id)
+);

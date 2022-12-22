@@ -1,12 +1,16 @@
 import { Router, Request, Response } from "express";
 import {
   createBrandController,
+  createCategoryController,
   createItemController,
   deleteBrandController,
+  deleteCategoryController,
   deleteItemController,
   getAllBrandsController,
+  getAllCategoriesController,
   getAllItemsController,
   updateBrandController,
+  updateCategoryController,
   updateItemController,
 } from "./Factory";
 
@@ -36,6 +40,19 @@ router.delete("/brands/:id", (req: Request, res: Response) => {
 });
 router.get("/brands", (req: Request, res: Response) => {
   getAllBrandsController.handle(req, res);
+});
+
+router.post("/categories", (req: Request, res: Response) => {
+  createCategoryController.handle(req, res);
+});
+router.put("/categories/:id", (req: Request, res: Response) => {
+  updateCategoryController.handle(req, res);
+});
+router.delete("/categories/:id", (req: Request, res: Response) => {
+  deleteCategoryController.handle(req, res);
+});
+router.get("/categories", (req: Request, res: Response) => {
+  getAllCategoriesController.handle(req, res);
 });
 
 export { router };

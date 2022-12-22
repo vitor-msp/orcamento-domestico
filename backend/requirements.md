@@ -12,11 +12,11 @@
   - [x] update
   - [x] delete
   - [x] getAll
-- [ ] brand
-  - [ ] create
-  - [ ] update
-  - [ ] delete
-  - [ ] getAll
+- [x] brand
+  - [x] create
+  - [x] update
+  - [x] delete
+  - [x] getAll
 - [ ] category
   - [ ] create
   - [ ] update
