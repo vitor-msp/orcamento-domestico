@@ -15,7 +15,7 @@ export class ItemsRepository implements IRepository {
     if (wasUpdated) return;
     const wasInserted: boolean = await this.insert(entity);
     if (wasInserted) return;
-    throw new Error("Item was not saved in the database.")
+    throw new Error("Error to save item in the database.");
   }
 
   private async insert(entity: Item): Promise<boolean> {
@@ -35,7 +35,11 @@ export class ItemsRepository implements IRepository {
   }
 
   async delete(id: string): Promise<void> {
-    throw new Error("Method not implemented.");
+    const text: string = `DELETE FROM items WHERE id = $1;`;
+    const values: string[] = [id];
+    const res = await this.db.query(text, values);
+    if (res.rowCount !== 1)
+      throw new Error("Error to delete item in the database.");
   }
 
   async get(id: string): Promise<itemDB> {
