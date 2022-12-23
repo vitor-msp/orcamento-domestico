@@ -14,6 +14,7 @@ import { CreateItemController } from "../controllers/item/CreateItemController";
 import { DeleteItemController } from "../controllers/item/DeleteItemController";
 import { GetAllItemsController } from "../controllers/item/GetAllItemsController";
 import { UpdateItemController } from "../controllers/item/UpdateItemController";
+import { CreateTransactionItemController } from "../controllers/transaction-item/CreateTransactionItemController";
 import { CreateTransactionController } from "../controllers/transaction/CreateTransactionController";
 import { UpdateTransactionController } from "../controllers/transaction/UpdateTransactionController";
 import { DB } from "../infra/database/DB";
@@ -21,6 +22,7 @@ import { BrandRepository } from "../repositories/implementations/BrandRepository
 import { CategoryRepository } from "../repositories/implementations/CategoryRepository";
 import { EnterpriseRepository } from "../repositories/implementations/EnterpriseRepository";
 import { ItemRepository } from "../repositories/implementations/ItemRepository";
+import { TransactionItemRepository } from "../repositories/implementations/TransactionItemRepository";
 import { TransactionRepository } from "../repositories/implementations/TransactionRepository";
 import { CreateBrand } from "../use-cases/brand/CreateBrand";
 import { DeleteBrand } from "../use-cases/brand/DeleteBrand";
@@ -38,8 +40,10 @@ import { CreateItem } from "../use-cases/item/CreateItem";
 import { DeleteItem } from "../use-cases/item/DeleteItem";
 import { GetAllItems } from "../use-cases/item/GetAllItems";
 import { UpdateItem } from "../use-cases/item/UpdateItem";
+import { CreateTransactionItem } from "../use-cases/transaction-item/CreateTransactionItem";
 import { CreateTransaction } from "../use-cases/transaction/CreateTransaction";
 import { UpdateTransaction } from "../use-cases/transaction/UpdateTransaction";
+import { TransactionItemValidator } from "../validators/TransactionItemValidator";
 import { TransactionValidator } from "../validators/TransactionValidator";
 
 let createItemController: CreateItemController;
@@ -64,6 +68,8 @@ let getAllEnterprisesController: GetAllEnterprisesController;
 
 let createTransactionController: CreateTransactionController;
 let updateTransactionController: UpdateTransactionController;
+
+let createTransactionItemController: CreateTransactionItemController;
 
 (async () => {
   const dbClient = await DB.connect();
@@ -142,6 +148,20 @@ let updateTransactionController: UpdateTransactionController;
     updateTransactionUseCase,
     transactionValidator
   );
+
+  const transactionItemRepository = new TransactionItemRepository(dbClient);
+  const createTransactionItemUseCase = new CreateTransactionItem(
+    transactionItemRepository,
+    transactionRepository,
+    itemRepository,
+    brandRepository,
+    categoryRepository
+  );
+  const transactionItemValidator = new TransactionItemValidator();
+  createTransactionItemController = new CreateTransactionItemController(
+    createTransactionItemUseCase,
+    transactionItemValidator
+  );
 })();
 
 export {
@@ -163,4 +183,5 @@ export {
   getAllEnterprisesController,
   createTransactionController,
   updateTransactionController,
+  createTransactionItemController,
 };

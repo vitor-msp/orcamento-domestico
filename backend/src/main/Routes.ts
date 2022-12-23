@@ -5,6 +5,7 @@ import {
   createEnterpriseController,
   createItemController,
   createTransactionController,
+  createTransactionItemController,
   deleteBrandController,
   deleteCategoryController,
   deleteEnterpriseController,
@@ -79,6 +80,10 @@ router.post("/transactions", (req: Request, res: Response) => {
 });
 router.put("/transactions/:id", (req: Request, res: Response) => {
   updateTransactionController.handle(req, res);
+});
+
+router.post("/transaction-items", (req: Request, res: Response) => {
+  createTransactionItemController.handle(req, res);
 });
 
 export { router };

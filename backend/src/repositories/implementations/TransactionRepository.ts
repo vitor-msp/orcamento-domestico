@@ -50,7 +50,7 @@ export class TransactionRepository implements ITransactionRepository {
     const text: string = `SELECT id, enterprise, date FROM transaction WHERE id = $1;`;
     const values: string[] = [id];
     const res = await this.db.query<transactionDB>(text, values);
-    if (res.rowCount !== 1) throw new Error("Item not found.");
+    if (res.rowCount !== 1) throw new Error("Transaction not found.");
     return res.rows[0];
   }
   // // to edit

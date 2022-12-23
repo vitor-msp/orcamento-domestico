@@ -1,8 +1,8 @@
 import { Client } from "pg";
-import { TransactionItem } from "../domain/TransactionItem";
-import { ITransactionItemRepository } from "./ITransactionItemRepository";
+import { TransactionItem } from "../../domain/TransactionItem";
+import { ITransactionItemRepository } from "../interfaces/ITransactionItemRepository";
 
-export class TransactionItemsRepository implements ITransactionItemRepository {
+export class TransactionItemRepository implements ITransactionItemRepository {
   constructor(private readonly db: Client) {}
 
   async save(entity: TransactionItem): Promise<void> {
@@ -37,8 +37,8 @@ export class TransactionItemsRepository implements ITransactionItemRepository {
     const text: string = `
       UPDATE transaction_item SET
       item = $2, brand = $3, category = $4,
-      quantity = $5, unitOfMeasurement = $6, totalValue = $7;
-      WHERE id = $1`;
+      quantity = $5, unitOfMeasurement = $6, totalValue = $7
+      WHERE id = $1;`;
     const values: any[] = [
       entity.getId(),
       entity.getItem().getId(),
@@ -53,7 +53,4 @@ export class TransactionItemsRepository implements ITransactionItemRepository {
     return false;
   }
 
-  delete(id: string): Promise<void> {
-    throw new Error("Method not implemented.");
-  }
 }
