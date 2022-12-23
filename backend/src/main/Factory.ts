@@ -127,7 +127,7 @@ let createTransactionController: CreateTransactionController;
     enterprisesRepository
   );
   const transactionValidator = new TransactionValidator();
-  const createTransactionController = new CreateTransactionController(
+  createTransactionController = new CreateTransactionController(
     createTransactionUseCase,
     transactionValidator
   );

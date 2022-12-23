@@ -1,14 +1,15 @@
 import { Request, Response } from "express";
+import { IUseCase } from "../../use-cases/IUseCase";
 import {
-  CreateTransaction,
   createTransactionInput,
+  createTransactionOutput,
 } from "../../use-cases/transaction/CreateTransaction";
 import { IValidator } from "../../validators/IValidator";
 import { IController } from "../IController";
 
 export class CreateTransactionController implements IController {
   constructor(
-    private readonly useCase: CreateTransaction,
+    private readonly useCase: IUseCase,
     private readonly validator: IValidator
   ) {}
 
@@ -17,10 +18,12 @@ export class CreateTransactionController implements IController {
       this.validator.validate(req);
       const input: createTransactionInput = {
         enterprise: req.body.enterprise,
-        date: req.body.date,
+        date: new Date(req.body.date),
       };
-      const item = await this.useCase.execute(input);
-      return res.status(201).json({ id: item.id });
+      const transaction: createTransactionOutput = await this.useCase.execute(
+        input
+      );
+      return res.status(201).json({ id: transaction.id });
     } catch (error) {
       return res.status(500).json({ message: `Internal error - ${error}` });
     }

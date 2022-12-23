@@ -28,14 +28,6 @@ export class Transaction {
     return this.date ?? null;
   }
 
-  public getFormattedDate(): string {
-    if (!this.date) return "";
-    const year = this.date.getFullYear();
-    const month = this.date.getMonth();
-    const day = this.date.getDate();
-    return `${year}-${month}-${day}`;
-  }
-
   public getId(): string {
     return this.id;
   }

@@ -1,5 +1,6 @@
 import { Client } from "pg";
 import { Transaction } from "../domain/Transaction";
+import { FormatDateToPG } from "../helpers/FormatDateToPG";
 import { ITransactionRepository } from "./ITransactionRepository";
 
 // export type itemDB = {
@@ -23,7 +24,7 @@ export class TransactionsRepository implements ITransactionRepository {
     const values: string[] = [
       entity.getId(),
       entity.getEnterprise()!.getId(),
-      entity.getFormattedDate(),
+      FormatDateToPG.format(entity.getDate()!),
     ];
     const res = await this.db.query(text, values);
     if (res.rowCount === 1) return true;
@@ -35,13 +36,20 @@ export class TransactionsRepository implements ITransactionRepository {
     const values: string[] = [
       entity.getId(),
       entity.getEnterprise()!.getId(),
-      entity.getFormattedDate(),
+      FormatDateToPG.format(entity.getDate()!),
     ];
     const res = await this.db.query(text, values);
     if (res.rowCount === 1) return true;
     return false;
   }
 
+  async exists(enterpriseID: string, date: Date): Promise<boolean> {
+    const text: string = `SELECT id FROM transaction WHERE enterprise = $1 AND date = $2;`;
+    const values: string[] = [enterpriseID, FormatDateToPG.format(date)];
+    const res = await this.db.query(text, values);
+    if (res.rowCount === 1) return true;
+    return false;
+  }
   // // to edit
   // async delete(id: string): Promise<void> {
   //   const text: string = `DELETE FROM items WHERE id = $1;`;
