@@ -2,40 +2,33 @@ import { Request } from "express";
 import { ITransactionItemValidator } from "./ITransactionItemValidator";
 
 export class TransactionItemValidator implements ITransactionItemValidator {
-  validate(req: Request): void {
-    this.validateTransaction(req);
-    this.validateItem(req);
-    this.validateBrand(req);
-    this.validateCategory(req);
-    this.validateQuantity(req);
-    this.validateTotalValue(req);
-    this.validateUnitOfMeasurement(req);
-  }
-  validateTransaction(req: Request): void {
+  validateToCreate(req: Request): void {
     this.validateText(req, "transaction");
-  }
-  validateItem(req: Request): void {
     this.validateText(req, "item");
-  }
-  validateBrand(req: Request): void {
     this.validateText(req, "brand");
-  }
-  validateCategory(req: Request): void {
     this.validateText(req, "category");
-  }
-  validateQuantity(req: Request): void {
     this.validateNumber(req, "quantity");
-  }
-  validateTotalValue(req: Request): void {
     this.validateNumber(req, "totalValue");
-  }
-  validateUnitOfMeasurement(req: Request): void {
     this.validateText(req, "unitOfMeasurement");
   }
+
+  validateToUpdate(req: Request): void {
+    if (!req.params.id || req.params.id === "") throw new Error(`Missing id.`);
+    if (req.body.item !== undefined) this.validateText(req, "item");
+    if (req.body.brand !== undefined) this.validateText(req, "brand");
+    if (req.body.category !== undefined) this.validateText(req, "category");
+    if (req.body.quantity !== undefined) this.validateNumber(req, "quantity");
+    if (req.body.totalValue !== undefined)
+      this.validateNumber(req, "totalValue");
+    if (req.body.unitOfMeasurement !== undefined)
+      this.validateText(req, "unitOfMeasurement");
+  }
+
   private validateText(req: Request, field: string): void {
     if (!req.body[field] || req.body[field] === "")
       throw new Error(`Missing ${field}.`);
   }
+
   private validateNumber(req: Request, field: string): void {
     if (!req.body[field]) throw new Error(`Missing ${field}.`);
     if (isNaN(req.body[field])) throw new Error(`Invalid ${field}.`);

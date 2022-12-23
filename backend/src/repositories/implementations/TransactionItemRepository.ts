@@ -1,6 +1,9 @@
 import { Client } from "pg";
 import { TransactionItem } from "../../domain/TransactionItem";
-import { ITransactionItemRepository } from "../interfaces/ITransactionItemRepository";
+import {
+  ITransactionItemRepository,
+  transactionItemDB,
+} from "../interfaces/ITransactionItemRepository";
 
 export class TransactionItemRepository implements ITransactionItemRepository {
   constructor(private readonly db: Client) {}
@@ -53,4 +56,11 @@ export class TransactionItemRepository implements ITransactionItemRepository {
     return false;
   }
 
+  async get(id: string): Promise<transactionItemDB> {
+    const text: string = `SELECT * FROM transaction_item WHERE id = $1;`;
+    const values: any[] = [id];
+    const res = await this.db.query<transactionItemDB>(text, values);
+    if (res.rowCount !== 1) throw new Error("Transaction item not found.");
+    return res.rows[0];
+  }
 }

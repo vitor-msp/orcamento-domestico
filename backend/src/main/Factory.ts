@@ -15,6 +15,7 @@ import { DeleteItemController } from "../controllers/item/DeleteItemController";
 import { GetAllItemsController } from "../controllers/item/GetAllItemsController";
 import { UpdateItemController } from "../controllers/item/UpdateItemController";
 import { CreateTransactionItemController } from "../controllers/transaction-item/CreateTransactionItemController";
+import { UpdateTransactionItemController } from "../controllers/transaction-item/UpdateTransactionItemController";
 import { CreateTransactionController } from "../controllers/transaction/CreateTransactionController";
 import { UpdateTransactionController } from "../controllers/transaction/UpdateTransactionController";
 import { DB } from "../infra/database/DB";
@@ -41,6 +42,7 @@ import { DeleteItem } from "../use-cases/item/DeleteItem";
 import { GetAllItems } from "../use-cases/item/GetAllItems";
 import { UpdateItem } from "../use-cases/item/UpdateItem";
 import { CreateTransactionItem } from "../use-cases/transaction-item/CreateTransactionItem";
+import { UpdateTransactionItem } from "../use-cases/transaction-item/UpdateTransactionItem";
 import { CreateTransaction } from "../use-cases/transaction/CreateTransaction";
 import { UpdateTransaction } from "../use-cases/transaction/UpdateTransaction";
 import { TransactionItemValidator } from "../validators/TransactionItemValidator";
@@ -70,6 +72,7 @@ let createTransactionController: CreateTransactionController;
 let updateTransactionController: UpdateTransactionController;
 
 let createTransactionItemController: CreateTransactionItemController;
+let updateTransactionItemController: UpdateTransactionItemController;
 
 (async () => {
   const dbClient = await DB.connect();
@@ -162,6 +165,16 @@ let createTransactionItemController: CreateTransactionItemController;
     createTransactionItemUseCase,
     transactionItemValidator
   );
+  const updateTransactionItemUseCase = new UpdateTransactionItem(
+    transactionItemRepository,
+    itemRepository,
+    brandRepository,
+    categoryRepository
+  );
+  updateTransactionItemController = new UpdateTransactionItemController(
+    updateTransactionItemUseCase,
+    transactionItemValidator
+  );
 })();
 
 export {
@@ -184,4 +197,5 @@ export {
   createTransactionController,
   updateTransactionController,
   createTransactionItemController,
+  updateTransactionItemController,
 };

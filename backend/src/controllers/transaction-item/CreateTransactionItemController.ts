@@ -15,7 +15,7 @@ export class CreateTransactionItemController implements IController {
 
   async handle(req: Request, res: Response) {
     try {
-      this.validator.validate(req);
+      this.validator.validateToCreate(req);
       const input: createTransactionItemInput = {
         transaction: req.body.transaction,
         item: req.body.item,

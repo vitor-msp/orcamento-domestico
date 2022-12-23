@@ -19,6 +19,7 @@ import {
   updateEnterpriseController,
   updateItemController,
   updateTransactionController,
+  updateTransactionItemController,
 } from "./Factory";
 
 const router = Router();
@@ -84,6 +85,9 @@ router.put("/transactions/:id", (req: Request, res: Response) => {
 
 router.post("/transaction-items", (req: Request, res: Response) => {
   createTransactionItemController.handle(req, res);
+});
+router.put("/transaction-items/:id", (req: Request, res: Response) => {
+  updateTransactionItemController.handle(req, res);
 });
 
 export { router };

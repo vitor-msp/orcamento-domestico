@@ -28,8 +28,8 @@
   - [x] delete
   - [x] getAll
 - [ ] transactionItem
-  - [ ] create
-  - [ ] update
+  - [x] create
+  - [x] update
   - [ ] delete
 - [ ] transaction
   - [x] create
