@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
-import { DeleteBrand, deleteBrandInput } from "../../use-cases/brand/DeleteBrand";
+import { deleteBrandInput } from "../../use-cases/brand/DeleteBrand";
+import { IUseCase } from "../../use-cases/IUseCase";
 import { IController } from "../IController";
 
 export class DeleteBrandController implements IController {
-  constructor(private readonly useCase: DeleteBrand) {}
+  constructor(private readonly useCase: IUseCase) {}
 
   async handle(req: Request, res: Response) {
     try {

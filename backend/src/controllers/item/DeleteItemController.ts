@@ -1,13 +1,15 @@
 import { Request, Response } from "express";
-import { DeleteItem, deleteItemInput } from "../../use-cases/item/DeleteItem";
+import { deleteItemInput } from "../../use-cases/item/DeleteItem";
+import { IUseCase } from "../../use-cases/IUseCase";
 import { IController } from "../IController";
 
 export class DeleteItemController implements IController {
-  constructor(private readonly useCase: DeleteItem) {}
+  constructor(private readonly useCase: IUseCase) {}
 
   async handle(req: Request, res: Response) {
     try {
-      if (!req.params.id) return res.status(400).json({ message: "Missing id." });
+      if (!req.params.id)
+        return res.status(400).json({ message: "Missing id." });
       const input: deleteItemInput = {
         id: req.params.id,
       };

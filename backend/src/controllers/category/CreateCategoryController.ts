@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
-import { CreateCategory, createCategoryInput } from "../../use-cases/category/CreateCategory";
+import { createCategoryInput } from "../../use-cases/category/CreateCategory";
+import { IUseCase } from "../../use-cases/IUseCase";
 import { IController } from "../IController";
 
 export class CreateCategoryController implements IController {
-  constructor(private readonly useCase: CreateCategory) {}
+  constructor(private readonly useCase: IUseCase) {}
 
   async handle(req: Request, res: Response) {
     try {

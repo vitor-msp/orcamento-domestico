@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
-import { DeleteCategory, deleteCategoryInput } from "../../use-cases/category/DeleteCategory";
+import { deleteCategoryInput } from "../../use-cases/category/DeleteCategory";
+import { IUseCase } from "../../use-cases/IUseCase";
 import { IController } from "../IController";
 
 export class DeleteCategoryController implements IController {
-  constructor(private readonly useCase: DeleteCategory) {}
+  constructor(private readonly useCase: IUseCase) {}
 
   async handle(req: Request, res: Response) {
     try {

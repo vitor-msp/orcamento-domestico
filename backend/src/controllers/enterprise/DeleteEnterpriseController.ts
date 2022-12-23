@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
-import { DeleteEnterprise, deleteEnterpriseInput } from "../../use-cases/enterprise/DeleteEnterprise";
+import { deleteEnterpriseInput } from "../../use-cases/enterprise/DeleteEnterprise";
+import { IUseCase } from "../../use-cases/IUseCase";
 import { IController } from "../IController";
 
 export class DeleteEnterpriseController implements IController {
-  constructor(private readonly useCase: DeleteEnterprise) {}
+  constructor(private readonly useCase: IUseCase) {}
 
   async handle(req: Request, res: Response) {
     try {

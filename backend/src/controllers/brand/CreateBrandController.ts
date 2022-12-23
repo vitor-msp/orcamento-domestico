@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
-import { CreateBrand, createBrandInput } from "../../use-cases/brand/CreateBrand";
+import { createBrandInput } from "../../use-cases/brand/CreateBrand";
+import { IUseCase } from "../../use-cases/IUseCase";
 import { IController } from "../IController";
 
 export class CreateBrandController implements IController {
-  constructor(private readonly useCase: CreateBrand) {}
+  constructor(private readonly useCase: IUseCase) {}
 
   async handle(req: Request, res: Response) {
     try {

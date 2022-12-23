@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
-import { UpdateEnterprise, updateEnterpriseInput } from "../../use-cases/enterprise/UpdateEnterprise";
+import { updateEnterpriseInput } from "../../use-cases/enterprise/UpdateEnterprise";
+import { IUseCase } from "../../use-cases/IUseCase";
 import { IController } from "../IController";
 
 export class UpdateEnterpriseController implements IController {
-  constructor(private readonly useCase: UpdateEnterprise) {}
+  constructor(private readonly useCase: IUseCase) {}
 
   async handle(req: Request, res: Response) {
     try {

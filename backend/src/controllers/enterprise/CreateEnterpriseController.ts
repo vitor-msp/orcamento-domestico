@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
-import { CreateEnterprise, createEnterpriseInput } from "../../use-cases/enterprise/CreateEnterprise";
+import { createEnterpriseInput } from "../../use-cases/enterprise/CreateEnterprise";
+import { IUseCase } from "../../use-cases/IUseCase";
 import { IController } from "../IController";
 
 export class CreateEnterpriseController implements IController {
-  constructor(private readonly useCase: CreateEnterprise) {}
+  constructor(private readonly useCase: IUseCase) {}
 
   async handle(req: Request, res: Response) {
     try {

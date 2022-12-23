@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { GetAllItems } from "../../use-cases/item/GetAllItems";
+import { IUseCase } from "../../use-cases/IUseCase";
 import { IController } from "../IController";
 
 export class GetAllItemsController implements IController {
-  constructor(private readonly useCase: GetAllItems) {}
+  constructor(private readonly useCase: IUseCase) {}
 
   async handle(req: Request, res: Response) {
     try {

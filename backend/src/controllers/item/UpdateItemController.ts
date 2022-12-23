@@ -1,13 +1,15 @@
 import { Request, Response } from "express";
-import { UpdateItem, updateItemInput } from "../../use-cases/item/UpdateItem";
+import { updateItemInput } from "../../use-cases/item/UpdateItem";
+import { IUseCase } from "../../use-cases/IUseCase";
 import { IController } from "../IController";
 
 export class UpdateItemController implements IController {
-  constructor(private readonly useCase: UpdateItem) {}
+  constructor(private readonly useCase: IUseCase) {}
 
   async handle(req: Request, res: Response) {
     try {
-      if (!req.params.id) return res.status(400).json({ message: "Missing id." });
+      if (!req.params.id)
+        return res.status(400).json({ message: "Missing id." });
       if (!req.body.description)
         return res.status(400).json({ message: "Missing description." });
       const input: updateItemInput = {
