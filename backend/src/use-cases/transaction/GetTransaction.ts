@@ -9,7 +9,8 @@ import {
 import { IUseCase } from "../IUseCase";
 
 export type getTransactionInput = {
-  id: string;
+  enterprise: string;
+  date: Date;
 };
 
 export type getTransactionOutput = transactionDB & {
@@ -24,7 +25,8 @@ export class GetTransaction implements IUseCase {
 
   async execute(input: getTransactionInput): Promise<getTransactionOutput> {
     const { id, enterprise, date } = await this.transactionRepository.get(
-      input.id
+      input.enterprise,
+      input.date
     );
     const transaction: getTransactionOutput = {
       id,
@@ -33,7 +35,7 @@ export class GetTransaction implements IUseCase {
       items: [],
     };
     const items = await this.transactionItemRepository.getByTransaction(
-      input.id
+      transaction.id
     );
     transaction.items = items;
     return transaction;

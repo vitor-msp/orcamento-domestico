@@ -78,7 +78,7 @@ export class TransactionItemRepository implements ITransactionItemRepository {
   }
 
   async getByTransaction(transaction: string): Promise<transactionItemDB[]> {
-    const text: string = `SELECT * FROM transaction_item WHERE id = $1;`;
+    const text: string = `SELECT * FROM transaction_item WHERE transaction = $1;`;
     const values: any[] = [transaction];
     const res = await this.db.query<transactionItemDB[]>(text, values);
     //@ts-ignore

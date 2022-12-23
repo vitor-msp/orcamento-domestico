@@ -203,7 +203,8 @@ let deleteTransactionItemController: DeleteTransactionItemController;
     transactionItemRepository
   );
   getTransactionController = new GetTransactionController(
-    getTransactionUseCase
+    getTransactionUseCase,
+    transactionValidator
   );
 })();
 

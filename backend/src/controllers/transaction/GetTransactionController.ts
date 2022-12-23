@@ -4,17 +4,22 @@ import {
   getTransactionInput,
   getTransactionOutput,
 } from "../../use-cases/transaction/GetTransaction";
+import { ITransactionValidator } from "../../validators/ITransactionValidator";
 import { IController } from "../IController";
 
 export class GetTransactionController implements IController {
-  constructor(private readonly useCase: IUseCase) {}
+  constructor(
+    private readonly useCase: IUseCase,
+    private readonly validator: ITransactionValidator
+  ) {}
 
   async handle(req: Request, res: Response) {
     try {
-      if (!req.params.id)
-        return res.status(400).json({ message: "Missing id." });
+      this.validator.validateEnterprise(req);
+      this.validator.validateDate(req);
       const input: getTransactionInput = {
-        id: req.params.id,
+        enterprise: req.body.enterprise,
+        date: new Date(req.body.date),
       };
       const transaction: getTransactionOutput = await this.useCase.execute(
         input
