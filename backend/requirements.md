@@ -31,10 +31,10 @@
   - [x] create
   - [x] update
   - [x] delete
-- [ ] transaction
+- [x] transaction
   - [x] create
   - [x] update
-  - [ ] delete
-    - [ ] transactionItem -> deleteAll
-  - [ ] get
-    - [ ] transactionItem -> getAll
+  - [x] delete
+    - [x] transactionItem -> deleteAll
+  - [x] get
+    - [x] transactionItem -> getAll
