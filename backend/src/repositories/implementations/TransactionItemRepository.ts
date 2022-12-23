@@ -70,4 +70,10 @@ export class TransactionItemRepository implements ITransactionItemRepository {
     const res = await this.db.query(text, values);
     if (res.rowCount !== 1) throw new Error("Transaction item not found.");
   }
+
+  async deleteByTransaction(transaction: string): Promise<void> {
+    const text: string = `DELETE FROM transaction_item WHERE transaction = $1;`;
+    const values: string[] = [transaction];
+    await this.db.query(text, values);
+  }
 }

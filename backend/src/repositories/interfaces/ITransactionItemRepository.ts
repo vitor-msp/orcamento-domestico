@@ -15,4 +15,5 @@ export interface ITransactionItemRepository {
   save(entity: TransactionItem): Promise<void>;
   get(id: string): Promise<transactionItemDB>;
   delete(id: string): Promise<void>;
+  deleteByTransaction(transaction: string): Promise<void>;
 }

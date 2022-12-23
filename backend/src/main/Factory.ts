@@ -18,6 +18,7 @@ import { CreateTransactionItemController } from "../controllers/transaction-item
 import { DeleteTransactionItemController } from "../controllers/transaction-item/DeleteTransactionItemController";
 import { UpdateTransactionItemController } from "../controllers/transaction-item/UpdateTransactionItemController";
 import { CreateTransactionController } from "../controllers/transaction/CreateTransactionController";
+import { DeleteTransactionController } from "../controllers/transaction/DeleteTransactionController";
 import { UpdateTransactionController } from "../controllers/transaction/UpdateTransactionController";
 import { DB } from "../infra/database/DB";
 import { BrandRepository } from "../repositories/implementations/BrandRepository";
@@ -46,6 +47,7 @@ import { CreateTransactionItem } from "../use-cases/transaction-item/CreateTrans
 import { DeleteTransactionItem } from "../use-cases/transaction-item/DeleteTransactionItem";
 import { UpdateTransactionItem } from "../use-cases/transaction-item/UpdateTransactionItem";
 import { CreateTransaction } from "../use-cases/transaction/CreateTransaction";
+import { DeleteTransaction } from "../use-cases/transaction/DeleteTransaction";
 import { UpdateTransaction } from "../use-cases/transaction/UpdateTransaction";
 import { TransactionItemValidator } from "../validators/TransactionItemValidator";
 import { TransactionValidator } from "../validators/TransactionValidator";
@@ -72,6 +74,7 @@ let getAllEnterprisesController: GetAllEnterprisesController;
 
 let createTransactionController: CreateTransactionController;
 let updateTransactionController: UpdateTransactionController;
+let deleteTransactionController: DeleteTransactionController;
 
 let createTransactionItemController: CreateTransactionItemController;
 let updateTransactionItemController: UpdateTransactionItemController;
@@ -184,6 +187,14 @@ let deleteTransactionItemController: DeleteTransactionItemController;
   deleteTransactionItemController = new DeleteTransactionItemController(
     deleteTransactionItemUseCase
   );
+
+  const deleteTransactionUseCase = new DeleteTransaction(
+    transactionRepository,
+    transactionItemRepository
+  );
+  deleteTransactionController = new DeleteTransactionController(
+    deleteTransactionUseCase
+  );
 })();
 
 export {
@@ -205,6 +216,7 @@ export {
   getAllEnterprisesController,
   createTransactionController,
   updateTransactionController,
+  deleteTransactionController,
   createTransactionItemController,
   updateTransactionItemController,
   deleteTransactionItemController,

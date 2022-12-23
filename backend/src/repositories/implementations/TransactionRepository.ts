@@ -53,11 +53,11 @@ export class TransactionRepository implements ITransactionRepository {
     if (res.rowCount !== 1) throw new Error("Transaction not found.");
     return res.rows[0];
   }
-  // // to edit
-  // async delete(id: string): Promise<void> {
-  //   const text: string = `DELETE FROM items WHERE id = $1;`;
-  //   const values: string[] = [id];
-  //   const res = await this.db.query(text, values);
-  //   if (res.rowCount !== 1) throw new Error("Item not found.");
-  // }
+
+  async delete(id: string): Promise<void> {
+    const text: string = `DELETE FROM transaction WHERE id = $1;`;
+    const values: string[] = [id];
+    const res = await this.db.query(text, values);
+    if (res.rowCount !== 1) throw new Error("Transaction not found.");
+  }
 }

@@ -10,6 +10,7 @@ import {
   deleteCategoryController,
   deleteEnterpriseController,
   deleteItemController,
+  deleteTransactionController,
   deleteTransactionItemController,
   getAllBrandsController,
   getAllCategoriesController,
@@ -82,6 +83,9 @@ router.post("/transactions", (req: Request, res: Response) => {
 });
 router.put("/transactions/:id", (req: Request, res: Response) => {
   updateTransactionController.handle(req, res);
+});
+router.delete("/transactions/:id", (req: Request, res: Response) => {
+  deleteTransactionController.handle(req, res);
 });
 
 router.post("/transaction-items", (req: Request, res: Response) => {

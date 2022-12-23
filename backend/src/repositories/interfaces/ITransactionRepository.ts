@@ -10,5 +10,5 @@ export interface ITransactionRepository {
   save(entity: Transaction): Promise<void>;
   exists(enterpriseID: string, date: Date): Promise<boolean>;
   get(id: string): Promise<transactionDB>;
-  // delete(id: string): Promise<void>;
+  delete(id: string): Promise<void>;
 }
