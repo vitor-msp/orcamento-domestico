@@ -1,20 +1,15 @@
 import { Request } from "express";
-import { IValidator } from "./IValidator";
+import { ITransactionValidator } from "./ITransactionValidator";
 
-export class TransactionValidator implements IValidator {
+export class TransactionValidator implements ITransactionValidator {
   constructor() {}
 
-  validate(req: Request): void {
-    this.validateEnterpise(req);
-    this.validateDate(req);
-  }
-
-  private validateEnterpise(req: Request): void {
+  validateEnterprise(req: Request): void {
     if (!req.body.enterprise || req.body.enterprise === "")
       throw new Error("Missing enterprise.");
   }
 
-  private validateDate(req: Request): void {
+  validateDate(req: Request): void {
     if (!req.body.date || req.body.date === "")
       throw new Error("Missing date.");
     try {

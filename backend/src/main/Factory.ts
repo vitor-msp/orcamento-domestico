@@ -15,6 +15,7 @@ import { DeleteItemController } from "../controllers/item/DeleteItemController";
 import { GetAllItemsController } from "../controllers/item/GetAllItemsController";
 import { UpdateItemController } from "../controllers/item/UpdateItemController";
 import { CreateTransactionController } from "../controllers/transaction/CreateTransactionController";
+import { UpdateTransactionController } from "../controllers/transaction/UpdateTransactionController";
 import { DB } from "../infra/database/DB";
 import { BrandsRepository } from "../repositories/BrandsRepository";
 import { CategoriesRepository } from "../repositories/CategoriesRepository";
@@ -38,6 +39,7 @@ import { DeleteItem } from "../use-cases/item/DeleteItem";
 import { GetAllItems } from "../use-cases/item/GetAllItems";
 import { UpdateItem } from "../use-cases/item/UpdateItem";
 import { CreateTransaction } from "../use-cases/transaction/CreateTransaction";
+import { UpdateTransaction } from "../use-cases/transaction/UpdateTransaction";
 import { TransactionValidator } from "../validators/TransactionValidator";
 
 let createItemController: CreateItemController;
@@ -61,6 +63,7 @@ let deleteEnterpriseController: DeleteEnterpriseController;
 let getAllEnterprisesController: GetAllEnterprisesController;
 
 let createTransactionController: CreateTransactionController;
+let updateTransactionController: UpdateTransactionController;
 
 (async () => {
   const dbClient = await DB.connect();
@@ -131,6 +134,14 @@ let createTransactionController: CreateTransactionController;
     createTransactionUseCase,
     transactionValidator
   );
+  const updateTransactionUseCase = new UpdateTransaction(
+    transactionsRepository,
+    enterprisesRepository
+  );
+  updateTransactionController = new UpdateTransactionController(
+    updateTransactionUseCase,
+    transactionValidator
+  );
 })();
 
 export {
@@ -151,4 +162,5 @@ export {
   deleteEnterpriseController,
   getAllEnterprisesController,
   createTransactionController,
+  updateTransactionController,
 };

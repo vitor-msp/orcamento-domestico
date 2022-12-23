@@ -3,10 +3,11 @@ import { Transaction } from "../domain/Transaction";
 import { FormatDateToPG } from "../helpers/FormatDateToPG";
 import { ITransactionRepository } from "./ITransactionRepository";
 
-// export type itemDB = {
-//   id: string;
-//   description: string;
-// };
+export type transactionDB = {
+  id: string;
+  enterprise: string;
+  date: string;
+};
 
 export class TransactionsRepository implements ITransactionRepository {
   constructor(private readonly db: Client) {}
@@ -50,20 +51,19 @@ export class TransactionsRepository implements ITransactionRepository {
     if (res.rowCount === 1) return true;
     return false;
   }
+
+  async get(id: string): Promise<transactionDB> {
+    const text: string = `SELECT id, enterprise, date FROM transaction WHERE id = $1;`;
+    const values: string[] = [id];
+    const res = await this.db.query<transactionDB>(text, values);
+    if (res.rowCount !== 1) throw new Error("Item not found.");
+    return res.rows[0];
+  }
   // // to edit
   // async delete(id: string): Promise<void> {
   //   const text: string = `DELETE FROM items WHERE id = $1;`;
   //   const values: string[] = [id];
   //   const res = await this.db.query(text, values);
   //   if (res.rowCount !== 1) throw new Error("Item not found.");
-  // }
-
-  // // to edit
-  // async get(id: string): Promise<itemDB> {
-  //   const text: string = `SELECT id, description FROM items WHERE id = $1;`;
-  //   const values: string[] = [id];
-  //   const res = await this.db.query<itemDB>(text, values);
-  //   if (res.rowCount !== 1) throw new Error("Item not found.");
-  //   return res.rows[0];
   // }
 }

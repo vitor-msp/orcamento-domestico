@@ -4,18 +4,19 @@ import {
   createTransactionInput,
   createTransactionOutput,
 } from "../../use-cases/transaction/CreateTransaction";
-import { IValidator } from "../../validators/IValidator";
+import { ITransactionValidator } from "../../validators/ITransactionValidator";
 import { IController } from "../IController";
 
 export class CreateTransactionController implements IController {
   constructor(
     private readonly useCase: IUseCase,
-    private readonly validator: IValidator
+    private readonly validator: ITransactionValidator
   ) {}
 
   async handle(req: Request, res: Response) {
     try {
-      this.validator.validate(req);
+      this.validator.validateEnterprise(req);
+      this.validator.validateDate(req);
       const input: createTransactionInput = {
         enterprise: req.body.enterprise,
         date: new Date(req.body.date),

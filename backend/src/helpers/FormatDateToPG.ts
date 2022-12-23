@@ -1,8 +1,6 @@
 export abstract class FormatDateToPG {
   public static format(input: Date): string {
-    const year = input.getFullYear();
-    const month = input.getMonth();
-    const day = input.getDate();
-    return `${year}-${month}-${day}`;
+    const dateWithoutTime = input.toISOString().slice(0, 10);
+    return dateWithoutTime;
   }
 }

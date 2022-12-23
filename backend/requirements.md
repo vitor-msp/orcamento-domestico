@@ -33,7 +33,7 @@
   - [ ] delete
 - [ ] transaction
   - [x] create
-  - [ ] update
+  - [x] update
   - [ ] delete
     - [ ] transactionItem -> deleteAll
   - [ ] get
