@@ -17,11 +17,11 @@ import { UpdateItemController } from "../controllers/item/UpdateItemController";
 import { CreateTransactionController } from "../controllers/transaction/CreateTransactionController";
 import { UpdateTransactionController } from "../controllers/transaction/UpdateTransactionController";
 import { DB } from "../infra/database/DB";
-import { BrandsRepository } from "../repositories/implementations/BrandRepository";
-import { CategoriesRepository } from "../repositories/implementations/CategoryRepository";
-import { EnterprisesRepository } from "../repositories/implementations/EnterpriseRepository";
-import { ItemsRepository } from "../repositories/implementations/ItemRepository";
-import { TransactionsRepository } from "../repositories/implementations/TransactionRepository";
+import { BrandRepository } from "../repositories/implementations/BrandRepository";
+import { CategoryRepository } from "../repositories/implementations/CategoryRepository";
+import { EnterpriseRepository } from "../repositories/implementations/EnterpriseRepository";
+import { ItemRepository } from "../repositories/implementations/ItemRepository";
+import { TransactionRepository } from "../repositories/implementations/TransactionRepository";
 import { CreateBrand } from "../use-cases/brand/CreateBrand";
 import { DeleteBrand } from "../use-cases/brand/DeleteBrand";
 import { GetAllBrands } from "../use-cases/brand/GetAllBrands";
@@ -68,66 +68,66 @@ let updateTransactionController: UpdateTransactionController;
 (async () => {
   const dbClient = await DB.connect();
 
-  const itemsRepository = new ItemsRepository(dbClient);
-  const createItemUseCase = new CreateItem(itemsRepository);
+  const itemRepository = new ItemRepository(dbClient);
+  const createItemUseCase = new CreateItem(itemRepository);
   createItemController = new CreateItemController(createItemUseCase);
-  const updateItemUseCase = new UpdateItem(itemsRepository);
+  const updateItemUseCase = new UpdateItem(itemRepository);
   updateItemController = new UpdateItemController(updateItemUseCase);
-  const deleteItemuseCase = new DeleteItem(itemsRepository);
+  const deleteItemuseCase = new DeleteItem(itemRepository);
   deleteItemController = new DeleteItemController(deleteItemuseCase);
-  const getAllItemsUseCase = new GetAllItems(itemsRepository);
+  const getAllItemsUseCase = new GetAllItems(itemRepository);
   getAllItemsController = new GetAllItemsController(getAllItemsUseCase);
 
-  const brandsRepository = new BrandsRepository(dbClient);
-  const createBrandUseCase = new CreateBrand(brandsRepository);
+  const brandRepository = new BrandRepository(dbClient);
+  const createBrandUseCase = new CreateBrand(brandRepository);
   createBrandController = new CreateBrandController(createBrandUseCase);
-  const updateBrandUseCase = new UpdateBrand(brandsRepository);
+  const updateBrandUseCase = new UpdateBrand(brandRepository);
   updateBrandController = new UpdateBrandController(updateBrandUseCase);
-  const deleteBranduseCase = new DeleteBrand(brandsRepository);
+  const deleteBranduseCase = new DeleteBrand(brandRepository);
   deleteBrandController = new DeleteBrandController(deleteBranduseCase);
-  const getAllBrandsUseCase = new GetAllBrands(brandsRepository);
+  const getAllBrandsUseCase = new GetAllBrands(brandRepository);
   getAllBrandsController = new GetAllBrandsController(getAllBrandsUseCase);
 
-  const categoriesRepository = new CategoriesRepository(dbClient);
-  const createCategoryUseCase = new CreateCategory(categoriesRepository);
+  const categoryRepository = new CategoryRepository(dbClient);
+  const createCategoryUseCase = new CreateCategory(categoryRepository);
   createCategoryController = new CreateCategoryController(
     createCategoryUseCase
   );
-  const updateCategoryUseCase = new UpdateCategory(categoriesRepository);
+  const updateCategoryUseCase = new UpdateCategory(categoryRepository);
   updateCategoryController = new UpdateCategoryController(
     updateCategoryUseCase
   );
-  const deleteCategoryuseCase = new DeleteCategory(categoriesRepository);
+  const deleteCategoryuseCase = new DeleteCategory(categoryRepository);
   deleteCategoryController = new DeleteCategoryController(
     deleteCategoryuseCase
   );
-  const getAllCategorysUseCase = new GetAllCategories(categoriesRepository);
+  const getAllCategorysUseCase = new GetAllCategories(categoryRepository);
   getAllCategoriesController = new GetAllCategoriesController(
     getAllCategorysUseCase
   );
 
-  const enterprisesRepository = new EnterprisesRepository(dbClient);
-  const createEnterpriseUseCase = new CreateEnterprise(enterprisesRepository);
+  const enterpriseRepository = new EnterpriseRepository(dbClient);
+  const createEnterpriseUseCase = new CreateEnterprise(enterpriseRepository);
   createEnterpriseController = new CreateEnterpriseController(
     createEnterpriseUseCase
   );
-  const updateEnterpriseUseCase = new UpdateEnterprise(enterprisesRepository);
+  const updateEnterpriseUseCase = new UpdateEnterprise(enterpriseRepository);
   updateEnterpriseController = new UpdateEnterpriseController(
     updateEnterpriseUseCase
   );
-  const deleteEnterpriseuseCase = new DeleteEnterprise(enterprisesRepository);
+  const deleteEnterpriseuseCase = new DeleteEnterprise(enterpriseRepository);
   deleteEnterpriseController = new DeleteEnterpriseController(
     deleteEnterpriseuseCase
   );
-  const getAllEnterprisesUseCase = new GetAllEnterprises(enterprisesRepository);
+  const getAllEnterprisesUseCase = new GetAllEnterprises(enterpriseRepository);
   getAllEnterprisesController = new GetAllEnterprisesController(
     getAllEnterprisesUseCase
   );
 
-  const transactionsRepository = new TransactionsRepository(dbClient);
+  const transactionRepository = new TransactionRepository(dbClient);
   const createTransactionUseCase = new CreateTransaction(
-    transactionsRepository,
-    enterprisesRepository
+    transactionRepository,
+    enterpriseRepository
   );
   const transactionValidator = new TransactionValidator();
   createTransactionController = new CreateTransactionController(
@@ -135,8 +135,8 @@ let updateTransactionController: UpdateTransactionController;
     transactionValidator
   );
   const updateTransactionUseCase = new UpdateTransaction(
-    transactionsRepository,
-    enterprisesRepository
+    transactionRepository,
+    enterpriseRepository
   );
   updateTransactionController = new UpdateTransactionController(
     updateTransactionUseCase,

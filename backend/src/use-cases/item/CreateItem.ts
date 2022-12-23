@@ -11,11 +11,11 @@ export type createItemOutput = {
 };
 
 export class CreateItem implements IUseCase {
-  constructor(private readonly itemsRepository: IItemRepository) {}
+  constructor(private readonly itemRepository: IItemRepository) {}
 
   async execute(input: createItemInput): Promise<createItemOutput> {
     const item = new Item({ description: input.description });
-    await this.itemsRepository.save(item);
+    await this.itemRepository.save(item);
     return {
       id: item.getId(),
     };

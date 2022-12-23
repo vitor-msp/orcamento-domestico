@@ -6,10 +6,10 @@ export type getAllItemsOutput = {
 };
 
 export class GetAllItems implements IUseCase {
-  constructor(private readonly itemsRepository: IItemRepository) {}
+  constructor(private readonly itemRepository: IItemRepository) {}
 
   async execute(): Promise<getAllItemsOutput> {
-    const items: itemDB[] = await this.itemsRepository.getAll();
+    const items: itemDB[] = await this.itemRepository.getAll();
     return {
       items,
     };

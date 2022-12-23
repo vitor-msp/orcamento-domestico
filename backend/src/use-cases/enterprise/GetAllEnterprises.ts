@@ -6,11 +6,11 @@ export type getAllEnterprisesOutput = {
 };
 
 export class GetAllEnterprises implements IUseCase {
-  constructor(private readonly enterprisesRepository: IEnterpriseRepository) {}
+  constructor(private readonly enterpriseRepository: IEnterpriseRepository) {}
 
   async execute(): Promise<getAllEnterprisesOutput> {
     const enterprises: enterpriseDB[] =
-      await this.enterprisesRepository.getAll();
+      await this.enterpriseRepository.getAll();
     return {
       enterprises,
     };

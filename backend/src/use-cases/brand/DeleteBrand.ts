@@ -10,10 +10,10 @@ export type deleteBrandOutput = {
 };
 
 export class DeleteBrand implements IUseCase {
-  constructor(private readonly brandsRepository: IBrandRepository) {}
+  constructor(private readonly brandRepository: IBrandRepository) {}
 
   async execute(input: deleteBrandInput): Promise<deleteBrandOutput> {
-    await this.brandsRepository.delete(input.id);
+    await this.brandRepository.delete(input.id);
     return {
       id: input.id,
     };

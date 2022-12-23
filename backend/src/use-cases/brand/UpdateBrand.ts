@@ -12,16 +12,16 @@ export type updateBrandOutput = {
 };
 
 export class UpdateBrand implements IUseCase {
-  constructor(private readonly brandsRepository: IBrandRepository) {}
+  constructor(private readonly brandRepository: IBrandRepository) {}
 
   async execute(input: updateBrandInput): Promise<updateBrandOutput> {
-    const brandDB: brandDB = await this.brandsRepository.get(input.id);
+    const brandDB: brandDB = await this.brandRepository.get(input.id);
     const item = new Brand({
       id: brandDB.id,
       description: brandDB.description,
     });
     item.setDescription(input.description);
-    await this.brandsRepository.save(item);
+    await this.brandRepository.save(item);
     return {
       id: item.getId(),
     };

@@ -16,15 +16,15 @@ export type updateTransactionOutput = {
 
 export class UpdateTransaction implements IUseCase {
   constructor(
-    private readonly transactionsRepository: ITransactionRepository,
-    private readonly enterprisesRepository: IEnterpriseRepository
+    private readonly transactionRepository: ITransactionRepository,
+    private readonly enterpriseRepository: IEnterpriseRepository
   ) {}
 
   async execute(
     input: updateTransactionInput
   ): Promise<updateTransactionOutput> {
     const { id, enterprise, date }: transactionDB =
-      await this.transactionsRepository.get(input.id);
+      await this.transactionRepository.get(input.id);
     const transaction = new Transaction({
       id,
       enterprise: new Enterprise({ id: enterprise }),
@@ -32,12 +32,12 @@ export class UpdateTransaction implements IUseCase {
     });
     if (input.date) transaction.setDate(input.date);
     if (input.enterprise) {
-      const enterpriseDB: enterpriseDB = await this.enterprisesRepository.get(
+      const enterpriseDB: enterpriseDB = await this.enterpriseRepository.get(
         input.enterprise
       );
       transaction.setEnterprise(new Enterprise({ id: enterpriseDB.id }));
     }
-    await this.transactionsRepository.save(transaction);
+    await this.transactionRepository.save(transaction);
     return {
       id: transaction.getId(),
     };

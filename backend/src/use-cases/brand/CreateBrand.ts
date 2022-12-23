@@ -11,11 +11,11 @@ export type createBrandOutput = {
 };
 
 export class CreateBrand implements IUseCase {
-  constructor(private readonly brandsRepository: IBrandRepository) {}
+  constructor(private readonly brandRepository: IBrandRepository) {}
 
   async execute(input: createBrandInput): Promise<createBrandOutput> {
     const brand = new Brand({ description: input.description });
-    await this.brandsRepository.save(brand);
+    await this.brandRepository.save(brand);
     return {
       id: brand.getId(),
     };

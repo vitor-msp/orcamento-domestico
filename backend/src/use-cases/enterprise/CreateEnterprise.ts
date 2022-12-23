@@ -11,11 +11,11 @@ export type createEnterpriseOutput = {
 };
 
 export class CreateEnterprise implements IUseCase {
-  constructor(private readonly enterprisesRepository: IEnterpriseRepository) {}
+  constructor(private readonly enterpriseRepository: IEnterpriseRepository) {}
 
   async execute(input: createEnterpriseInput): Promise<createEnterpriseOutput> {
     const enterprise = new Enterprise({ description: input.description });
-    await this.enterprisesRepository.save(enterprise);
+    await this.enterpriseRepository.save(enterprise);
     return {
       id: enterprise.getId(),
     };

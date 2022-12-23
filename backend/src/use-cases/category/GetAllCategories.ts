@@ -6,10 +6,10 @@ export type getAllCategoriesOutput = {
 };
 
 export class GetAllCategories implements IUseCase {
-  constructor(private readonly categoriesRepository: ICategoryRepository) {}
+  constructor(private readonly categoryRepository: ICategoryRepository) {}
 
   async execute(): Promise<getAllCategoriesOutput> {
-    const categories: categoryDB[] = await this.categoriesRepository.getAll();
+    const categories: categoryDB[] = await this.categoryRepository.getAll();
     return {
       categories,
     };

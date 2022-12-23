@@ -11,11 +11,11 @@ export type createCategoryOutput = {
 };
 
 export class CreateCategory implements IUseCase {
-  constructor(private readonly categoriesRepository: ICategoryRepository) {}
+  constructor(private readonly categoryRepository: ICategoryRepository) {}
 
   async execute(input: createCategoryInput): Promise<createCategoryOutput> {
     const category = new Category({ description: input.description });
-    await this.categoriesRepository.save(category);
+    await this.categoryRepository.save(category);
     return {
       id: category.getId(),
     };

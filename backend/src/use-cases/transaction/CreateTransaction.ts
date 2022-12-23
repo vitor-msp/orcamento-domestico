@@ -15,24 +15,24 @@ export type createTransactionOutput = {
 
 export class CreateTransaction implements IUseCase {
   constructor(
-    private readonly transactionsRepository: ITransactionRepository,
-    private readonly enterprisesRepository: IEnterpriseRepository
+    private readonly transactionRepository: ITransactionRepository,
+    private readonly enterpriseRepository: IEnterpriseRepository
   ) {}
 
   async execute(
     input: createTransactionInput
   ): Promise<createTransactionOutput> {
-    const enterpriseDB: enterpriseDB = await this.enterprisesRepository.get(
+    const enterpriseDB: enterpriseDB = await this.enterpriseRepository.get(
       input.enterprise
     );
     const enterprise = new Enterprise({ id: enterpriseDB.id });
-    const transactionExists = await this.transactionsRepository.exists(
+    const transactionExists = await this.transactionRepository.exists(
       enterprise.getId(),
       input.date
     );
     if (transactionExists) throw new Error("Transaction already exists.");
     const transaction = new Transaction({ enterprise, date: input.date });
-    await this.transactionsRepository.save(transaction);
+    await this.transactionRepository.save(transaction);
     return {
       id: transaction.getId(),
     };

@@ -10,10 +10,10 @@ export type deleteCategoryOutput = {
 };
 
 export class DeleteCategory implements IUseCase {
-  constructor(private readonly categoriesRepository: ICategoryRepository) {}
+  constructor(private readonly categoryRepository: ICategoryRepository) {}
 
   async execute(input: deleteCategoryInput): Promise<deleteCategoryOutput> {
-    await this.categoriesRepository.delete(input.id);
+    await this.categoryRepository.delete(input.id);
     return {
       id: input.id,
     };

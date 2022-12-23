@@ -6,10 +6,10 @@ export type getAllBrandsOutput = {
 };
 
 export class GetAllBrands implements IUseCase {
-  constructor(private readonly brandsRepository: IBrandRepository) {}
+  constructor(private readonly brandRepository: IBrandRepository) {}
 
   async execute(): Promise<getAllBrandsOutput> {
-    const brands: brandDB[] = await this.brandsRepository.getAll();
+    const brands: brandDB[] = await this.brandRepository.getAll();
     return {
       brands,
     };

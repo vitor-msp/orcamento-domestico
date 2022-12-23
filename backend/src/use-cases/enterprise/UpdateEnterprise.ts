@@ -12,10 +12,10 @@ export type updateEnterpriseOutput = {
 };
 
 export class UpdateEnterprise implements IUseCase {
-  constructor(private readonly enterprisesRepository: IEnterpriseRepository) {}
+  constructor(private readonly enterpriseRepository: IEnterpriseRepository) {}
 
   async execute(input: updateEnterpriseInput): Promise<updateEnterpriseOutput> {
-    const enterpriseDB: enterpriseDB = await this.enterprisesRepository.get(
+    const enterpriseDB: enterpriseDB = await this.enterpriseRepository.get(
       input.id
     );
     const enterprise = new Enterprise({
@@ -23,7 +23,7 @@ export class UpdateEnterprise implements IUseCase {
       description: enterpriseDB.description,
     });
     enterprise.setDescription(input.description);
-    await this.enterprisesRepository.save(enterprise);
+    await this.enterpriseRepository.save(enterprise);
     return {
       id: enterprise.getId(),
     };

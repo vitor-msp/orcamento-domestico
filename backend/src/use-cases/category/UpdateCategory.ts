@@ -12,10 +12,10 @@ export type updateCategoryOutput = {
 };
 
 export class UpdateCategory implements IUseCase {
-  constructor(private readonly categoriesRepository: ICategoryRepository) {}
+  constructor(private readonly categoryRepository: ICategoryRepository) {}
 
   async execute(input: updateCategoryInput): Promise<updateCategoryOutput> {
-    const categoryDB: categoryDB = await this.categoriesRepository.get(
+    const categoryDB: categoryDB = await this.categoryRepository.get(
       input.id
     );
     const category = new Category({
@@ -23,7 +23,7 @@ export class UpdateCategory implements IUseCase {
       description: categoryDB.description,
     });
     category.setDescription(input.description);
-    await this.categoriesRepository.save(category);
+    await this.categoryRepository.save(category);
     return {
       id: category.getId(),
     };
