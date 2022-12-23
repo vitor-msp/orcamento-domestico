@@ -1,4 +1,4 @@
-import { IRepository } from "../../repositories/IRepository";
+import { ICategoryRepository } from "../../repositories/interfaces/ICategoryRepository";
 import { IUseCase } from "../IUseCase";
 
 export type deleteCategoryInput = {
@@ -10,7 +10,7 @@ export type deleteCategoryOutput = {
 };
 
 export class DeleteCategory implements IUseCase {
-  constructor(private readonly categoriesRepository: IRepository) {}
+  constructor(private readonly categoriesRepository: ICategoryRepository) {}
 
   async execute(input: deleteCategoryInput): Promise<deleteCategoryOutput> {
     await this.categoriesRepository.delete(input.id);

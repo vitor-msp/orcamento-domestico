@@ -1,10 +1,10 @@
 import { Enterprise } from "../../domain/Enterprise";
 import { Transaction } from "../../domain/Transaction";
-import { enterpriseDB } from "../../repositories/EnterprisesRepository";
-import { IRepository } from "../../repositories/IRepository";
-import { ITransactionRepository } from "../../repositories/ITransactionRepository";
-import { transactionDB } from "../../repositories/TransactionsRepository";
+import { enterpriseDB } from "../../repositories/implementations/EnterpriseRepository";
+import { ITransactionRepository } from "../../repositories/interfaces/ITransactionRepository";
+import { transactionDB } from "../../repositories/implementations/TransactionRepository";
 import { IUseCase } from "../IUseCase";
+import { IEnterpriseRepository } from "../../repositories/interfaces/IEnterpriseRepository";
 
 export type updateTransactionInput = {
   id: string;
@@ -19,7 +19,7 @@ export type updateTransactionOutput = {
 export class UpdateTransaction implements IUseCase {
   constructor(
     private readonly transactionsRepository: ITransactionRepository,
-    private readonly enterprisesRepository: IRepository
+    private readonly enterprisesRepository: IEnterpriseRepository
   ) {}
 
   async execute(

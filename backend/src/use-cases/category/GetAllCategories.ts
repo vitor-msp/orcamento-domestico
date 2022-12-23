@@ -1,5 +1,5 @@
-import { categoryDB } from "../../repositories/CategoriesRepository";
-import { IRepository } from "../../repositories/IRepository";
+import { categoryDB } from "../../repositories/implementations/CategoryRepository";
+import { ICategoryRepository } from "../../repositories/interfaces/ICategoryRepository";
 import { IUseCase } from "../IUseCase";
 
 export type getAllCategoriesOutput = {
@@ -7,7 +7,7 @@ export type getAllCategoriesOutput = {
 };
 
 export class GetAllCategories implements IUseCase {
-  constructor(private readonly categoriesRepository: IRepository) {}
+  constructor(private readonly categoriesRepository: ICategoryRepository) {}
 
   async execute(): Promise<getAllCategoriesOutput> {
     const categories: categoryDB[] = await this.categoriesRepository.getAll();

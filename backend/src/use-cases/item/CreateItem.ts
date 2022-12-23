@@ -1,5 +1,5 @@
 import { Item } from "../../domain/Item";
-import { IRepository } from "../../repositories/IRepository";
+import { IItemRepository } from "../../repositories/interfaces/IItemRepository";
 import { IUseCase } from "../IUseCase";
 
 export type createItemInput = {
@@ -11,7 +11,7 @@ export type createItemOutput = {
 };
 
 export class CreateItem implements IUseCase {
-  constructor(private readonly itemsRepository: IRepository) {}
+  constructor(private readonly itemsRepository: IItemRepository) {}
 
   async execute(input: createItemInput): Promise<createItemOutput> {
     const item = new Item({ description: input.description });

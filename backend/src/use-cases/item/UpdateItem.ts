@@ -1,6 +1,6 @@
 import { Item } from "../../domain/Item";
-import { IRepository } from "../../repositories/IRepository";
-import { itemDB } from "../../repositories/ItemsRepository";
+import { itemDB } from "../../repositories/implementations/ItemRepository";
+import { IItemRepository } from "../../repositories/interfaces/IItemRepository";
 import { IUseCase } from "../IUseCase";
 
 export type updateItemInput = {
@@ -13,7 +13,7 @@ export type updateItemOutput = {
 };
 
 export class UpdateItem implements IUseCase {
-  constructor(private readonly itemsRepository: IRepository) {}
+  constructor(private readonly itemsRepository: IItemRepository) {}
 
   async execute(input: updateItemInput): Promise<updateItemOutput> {
     const itemDB: itemDB = await this.itemsRepository.get(input.id);

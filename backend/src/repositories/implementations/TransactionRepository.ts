@@ -1,13 +1,7 @@
 import { Client } from "pg";
-import { Transaction } from "../domain/Transaction";
-import { FormatDateToPG } from "../helpers/FormatDateToPG";
-import { ITransactionRepository } from "./ITransactionRepository";
-
-export type transactionDB = {
-  id: string;
-  enterprise: string;
-  date: string;
-};
+import { Transaction } from "../../domain/Transaction";
+import { FormatDateToPG } from "../../helpers/FormatDateToPG";
+import { ITransactionRepository, transactionDB } from "../interfaces/ITransactionRepository";
 
 export class TransactionsRepository implements ITransactionRepository {
   constructor(private readonly db: Client) {}

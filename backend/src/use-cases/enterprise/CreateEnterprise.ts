@@ -1,5 +1,5 @@
 import { Enterprise } from "../../domain/Enterprise";
-import { IRepository } from "../../repositories/IRepository";
+import { IEnterpriseRepository } from "../../repositories/interfaces/IEnterpriseRepository";
 import { IUseCase } from "../IUseCase";
 
 export type createEnterpriseInput = {
@@ -11,7 +11,7 @@ export type createEnterpriseOutput = {
 };
 
 export class CreateEnterprise implements IUseCase {
-  constructor(private readonly enterprisesRepository: IRepository) {}
+  constructor(private readonly enterprisesRepository: IEnterpriseRepository) {}
 
   async execute(input: createEnterpriseInput): Promise<createEnterpriseOutput> {
     const enterprise = new Enterprise({ description: input.description });

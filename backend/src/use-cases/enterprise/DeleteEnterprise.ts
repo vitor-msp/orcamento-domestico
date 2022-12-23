@@ -1,4 +1,4 @@
-import { IRepository } from "../../repositories/IRepository";
+import { IEnterpriseRepository } from "../../repositories/interfaces/IEnterpriseRepository";
 import { IUseCase } from "../IUseCase";
 
 export type deleteEnterpriseInput = {
@@ -10,7 +10,7 @@ export type deleteEnterpriseOutput = {
 };
 
 export class DeleteEnterprise implements IUseCase {
-  constructor(private readonly enterprisesRepository: IRepository) {}
+  constructor(private readonly enterprisesRepository: IEnterpriseRepository) {}
 
   async execute(input: deleteEnterpriseInput): Promise<deleteEnterpriseOutput> {
     await this.enterprisesRepository.delete(input.id);

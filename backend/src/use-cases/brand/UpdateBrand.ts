@@ -1,6 +1,6 @@
 import { Brand } from "../../domain/Brand";
-import { brandDB } from "../../repositories/BrandsRepository";
-import { IRepository } from "../../repositories/IRepository";
+import { brandDB } from "../../repositories/implementations/BrandRepository";
+import { IBrandRepository } from "../../repositories/interfaces/IBrandRepository";
 import { IUseCase } from "../IUseCase";
 
 export type updateBrandInput = {
@@ -13,11 +13,14 @@ export type updateBrandOutput = {
 };
 
 export class UpdateBrand implements IUseCase {
-  constructor(private readonly brandsRepository: IRepository) {}
+  constructor(private readonly brandsRepository: IBrandRepository) {}
 
   async execute(input: updateBrandInput): Promise<updateBrandOutput> {
     const brandDB: brandDB = await this.brandsRepository.get(input.id);
-    const item = new Brand({ id: brandDB.id, description: brandDB.description });
+    const item = new Brand({
+      id: brandDB.id,
+      description: brandDB.description,
+    });
     item.setDescription(input.description);
     await this.brandsRepository.save(item);
     return {

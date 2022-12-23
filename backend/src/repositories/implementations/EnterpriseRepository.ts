@@ -1,13 +1,8 @@
 import { Client } from "pg";
-import { Enterprise } from "../domain/Enterprise";
-import { IRepository } from "./IRepository";
+import { Enterprise } from "../../domain/Enterprise";
+import { enterpriseDB, IEnterpriseRepository } from "../interfaces/IEnterpriseRepository";
 
-export type enterpriseDB = {
-  id: string;
-  description: string;
-};
-
-export class EnterprisesRepository implements IRepository {
+export class EnterprisesRepository implements IEnterpriseRepository {
   constructor(private readonly db: Client) {}
 
   async save(entity: Enterprise): Promise<void> {

@@ -1,5 +1,5 @@
 import { Category } from "../../domain/Category";
-import { IRepository } from "../../repositories/IRepository";
+import { ICategoryRepository } from "../../repositories/interfaces/ICategoryRepository";
 import { IUseCase } from "../IUseCase";
 
 export type createCategoryInput = {
@@ -11,7 +11,7 @@ export type createCategoryOutput = {
 };
 
 export class CreateCategory implements IUseCase {
-  constructor(private readonly categoriesRepository: IRepository) {}
+  constructor(private readonly categoriesRepository: ICategoryRepository) {}
 
   async execute(input: createCategoryInput): Promise<createCategoryOutput> {
     const category = new Category({ description: input.description });

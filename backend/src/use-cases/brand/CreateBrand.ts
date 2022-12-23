@@ -1,5 +1,5 @@
 import { Brand } from "../../domain/Brand";
-import { IRepository } from "../../repositories/IRepository";
+import { IBrandRepository } from "../../repositories/interfaces/IBrandRepository";
 import { IUseCase } from "../IUseCase";
 
 export type createBrandInput = {
@@ -11,7 +11,7 @@ export type createBrandOutput = {
 };
 
 export class CreateBrand implements IUseCase {
-  constructor(private readonly brandsRepository: IRepository) {}
+  constructor(private readonly brandsRepository: IBrandRepository) {}
 
   async execute(input: createBrandInput): Promise<createBrandOutput> {
     const brand = new Brand({ description: input.description });

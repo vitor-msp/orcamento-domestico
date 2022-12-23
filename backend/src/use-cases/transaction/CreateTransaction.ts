@@ -1,8 +1,8 @@
 import { Enterprise } from "../../domain/Enterprise";
 import { Transaction } from "../../domain/Transaction";
-import { enterpriseDB } from "../../repositories/EnterprisesRepository";
-import { IRepository } from "../../repositories/IRepository";
-import { ITransactionRepository } from "../../repositories/ITransactionRepository";
+import { enterpriseDB } from "../../repositories/implementations/EnterpriseRepository";
+import { IEnterpriseRepository } from "../../repositories/interfaces/IEnterpriseRepository";
+import { ITransactionRepository } from "../../repositories/interfaces/ITransactionRepository";
 import { IUseCase } from "../IUseCase";
 
 export type createTransactionInput = {
@@ -17,7 +17,7 @@ export type createTransactionOutput = {
 export class CreateTransaction implements IUseCase {
   constructor(
     private readonly transactionsRepository: ITransactionRepository,
-    private readonly enterprisesRepository: IRepository
+    private readonly enterprisesRepository: IEnterpriseRepository
   ) {}
 
   async execute(
