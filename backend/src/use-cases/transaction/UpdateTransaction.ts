@@ -1,10 +1,8 @@
 import { Enterprise } from "../../domain/Enterprise";
 import { Transaction } from "../../domain/Transaction";
-import { enterpriseDB } from "../../repositories/implementations/EnterpriseRepository";
-import { ITransactionRepository } from "../../repositories/interfaces/ITransactionRepository";
-import { transactionDB } from "../../repositories/implementations/TransactionRepository";
+import { ITransactionRepository, transactionDB } from "../../repositories/interfaces/ITransactionRepository";
 import { IUseCase } from "../IUseCase";
-import { IEnterpriseRepository } from "../../repositories/interfaces/IEnterpriseRepository";
+import { enterpriseDB, IEnterpriseRepository } from "../../repositories/interfaces/IEnterpriseRepository";
 
 export type updateTransactionInput = {
   id: string;

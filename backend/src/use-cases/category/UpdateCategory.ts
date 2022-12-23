@@ -1,6 +1,5 @@
 import { Category } from "../../domain/Category";
-import { categoryDB } from "../../repositories/implementations/CategoryRepository";
-import { ICategoryRepository } from "../../repositories/interfaces/ICategoryRepository";
+import { categoryDB, ICategoryRepository } from "../../repositories/interfaces/ICategoryRepository";
 import { IUseCase } from "../IUseCase";
 
 export type updateCategoryInput = {

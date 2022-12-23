@@ -2,7 +2,7 @@ import { Client } from "pg";
 import { Item } from "../../domain/Item";
 import { IItemRepository, itemDB } from "../interfaces/IItemRepository";
 
-export class ItemsRepository implements IItemRepository {
+export class ItemRepository implements IItemRepository {
   constructor(private readonly db: Client) {}
 
   async save(entity: Item): Promise<void> {

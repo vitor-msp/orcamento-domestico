@@ -1,6 +1,5 @@
 import { Enterprise } from "../../domain/Enterprise";
-import { enterpriseDB } from "../../repositories/implementations/EnterpriseRepository";
-import { IEnterpriseRepository } from "../../repositories/interfaces/IEnterpriseRepository";
+import { enterpriseDB, IEnterpriseRepository } from "../../repositories/interfaces/IEnterpriseRepository";
 import { IUseCase } from "../IUseCase";
 
 export type updateEnterpriseInput = {

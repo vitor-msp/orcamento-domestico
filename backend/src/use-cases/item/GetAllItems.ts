@@ -1,5 +1,4 @@
-import { itemDB } from "../../repositories/implementations/ItemRepository";
-import { IItemRepository } from "../../repositories/interfaces/IItemRepository";
+import { IItemRepository, itemDB } from "../../repositories/interfaces/IItemRepository";
 import { IUseCase } from "../IUseCase";
 
 export type getAllItemsOutput = {

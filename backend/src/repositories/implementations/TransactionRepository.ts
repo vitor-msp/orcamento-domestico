@@ -3,7 +3,7 @@ import { Transaction } from "../../domain/Transaction";
 import { FormatDateToPG } from "../../helpers/FormatDateToPG";
 import { ITransactionRepository, transactionDB } from "../interfaces/ITransactionRepository";
 
-export class TransactionsRepository implements ITransactionRepository {
+export class TransactionRepository implements ITransactionRepository {
   constructor(private readonly db: Client) {}
 
   async save(entity: Transaction): Promise<void> {

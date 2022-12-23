@@ -1,5 +1,4 @@
-import { brandDB } from "../../repositories/implementations/BrandRepository";
-import { IBrandRepository } from "../../repositories/interfaces/IBrandRepository";
+import { brandDB, IBrandRepository } from "../../repositories/interfaces/IBrandRepository";
 import { IUseCase } from "../IUseCase";
 
 export type getAllBrandsOutput = {
