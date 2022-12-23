@@ -27,10 +27,10 @@
   - [x] update
   - [x] delete
   - [x] getAll
-- [ ] transactionItem
+- [x] transactionItem
   - [x] create
   - [x] update
-  - [ ] delete
+  - [x] delete
 - [ ] transaction
   - [x] create
   - [x] update
