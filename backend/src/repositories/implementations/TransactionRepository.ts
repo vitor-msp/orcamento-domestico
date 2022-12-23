@@ -1,7 +1,10 @@
 import { Client } from "pg";
 import { Transaction } from "../../domain/Transaction";
 import { FormatDateToPG } from "../../helpers/FormatDateToPG";
-import { ITransactionRepository, transactionDB } from "../interfaces/ITransactionRepository";
+import {
+  ITransactionRepository,
+  transactionDB,
+} from "../interfaces/ITransactionRepository";
 
 export class TransactionRepository implements ITransactionRepository {
   constructor(private readonly db: Client) {}

@@ -76,4 +76,12 @@ export class TransactionItemRepository implements ITransactionItemRepository {
     const values: string[] = [transaction];
     await this.db.query(text, values);
   }
+
+  async getByTransaction(transaction: string): Promise<transactionItemDB[]> {
+    const text: string = `SELECT * FROM transaction_item WHERE id = $1;`;
+    const values: any[] = [transaction];
+    const res = await this.db.query<transactionItemDB[]>(text, values);
+    //@ts-ignore
+    return res.rows;
+  }
 }

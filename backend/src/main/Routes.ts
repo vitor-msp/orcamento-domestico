@@ -16,6 +16,7 @@ import {
   getAllCategoriesController,
   getAllEnterprisesController,
   getAllItemsController,
+  getTransactionController,
   updateBrandController,
   updateCategoryController,
   updateEnterpriseController,
@@ -86,6 +87,9 @@ router.put("/transactions/:id", (req: Request, res: Response) => {
 });
 router.delete("/transactions/:id", (req: Request, res: Response) => {
   deleteTransactionController.handle(req, res);
+});
+router.get("/transactions/:id", (req: Request, res: Response) => {
+  getTransactionController.handle(req, res);
 });
 
 router.post("/transaction-items", (req: Request, res: Response) => {
