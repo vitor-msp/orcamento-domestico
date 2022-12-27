@@ -39,7 +39,7 @@ export abstract class DB {
 
   private static async runMigrations(client: Client): Promise<void> {
     try {
-      await migrate({ client }, "src/infra/database/migrations/");
+      await migrate({ client }, "migrations/");
       console.log(`Migrations executed in database.`)
     } catch (error) {
       throw new Error(`Error to execute migrations in database - ${error}`);
