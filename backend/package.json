@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "dev": "ts-node-dev --respawn --transpile-only src/main/index.ts"
+    "dev": "ts-node-dev --respawn --transpile-only src/main/index.ts",
+    "build": "rm -rf ./dist && tsc",
+    "start": "node ./dist/main/index.js"
   },
   "repository": {
     "type": "git",

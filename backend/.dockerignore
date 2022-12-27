@@ -1,0 +1,11 @@
+container-db-scripts
+data
+node_modules
+.dockerignore
+.env.sample
+.gitignore
+clean-db.sql
+create-data-directory.sh
+docker-compose.yml
+Dockerfile
+requirements.md
