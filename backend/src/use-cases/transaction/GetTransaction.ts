@@ -24,7 +24,7 @@ export class GetTransaction implements IUseCase {
   ) {}
 
   async execute(input: getTransactionInput): Promise<getTransactionOutput> {
-    const { id, enterprise, date } = await this.transactionRepository.get(
+    const { id, enterprise, date } = await this.transactionRepository.getByEnterpriseAndDate(
       input.enterprise,
       input.date
     );

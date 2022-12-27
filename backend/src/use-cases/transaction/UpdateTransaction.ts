@@ -24,7 +24,7 @@ export class UpdateTransaction implements IUseCase {
     input: updateTransactionInput
   ): Promise<updateTransactionOutput> {
     const { id, enterprise, date }: transactionDB =
-      await this.transactionRepository.get(input.id);
+      await this.transactionRepository.getById(input.id);
     const transaction = new Transaction({
       id,
       enterprise: new Enterprise({ id: enterprise }),

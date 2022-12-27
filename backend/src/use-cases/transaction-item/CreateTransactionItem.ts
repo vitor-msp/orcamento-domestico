@@ -36,7 +36,7 @@ export class CreateTransactionItem implements IUseCase {
   async execute(
     input: createTransactionItemInput
   ): Promise<createTransactionItemOutput> {
-    const transactionDB = await this.transactionRepository.get(
+    const transactionDB = await this.transactionRepository.getById(
       input.transaction
     );
     const transaction = new Transaction({ id: transactionDB.id });

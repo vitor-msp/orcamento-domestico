@@ -49,7 +49,18 @@ export class TransactionRepository implements ITransactionRepository {
     return false;
   }
 
-  async get(enterprise: string, date: Date): Promise<transactionDB> {
+  async getById(id: string): Promise<transactionDB> {
+    const text: string = `SELECT id, enterprise, date FROM transaction WHERE id = $1;`;
+    const values: string[] = [id];
+    const res = await this.db.query<transactionDB>(text, values);
+    if (res.rowCount !== 1) throw new Error("Transaction not found.");
+    return res.rows[0];
+  }
+
+  async getByEnterpriseAndDate(
+    enterprise: string,
+    date: Date
+  ): Promise<transactionDB> {
     const text: string = `SELECT id, enterprise, date FROM transaction
       WHERE enterprise = $1 AND date = $2;`;
     const values: string[] = [enterprise, FormatDateToPG.format(date)];
