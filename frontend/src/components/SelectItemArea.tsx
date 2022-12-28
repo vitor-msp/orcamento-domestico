@@ -6,11 +6,13 @@ import "./SelectItemArea.css";
 export type SelectItemAreaProps = {
   itemName: string;
   api: IItemApi;
+  returnSelectedValue: (item: Item) => void;
 };
 
 export const SelectItemArea: React.FC<SelectItemAreaProps> = (props) => {
   const [defaultItems, setDefaultItems] = useState<Item[]>([]);
   const [currentItems, setCurrentItems] = useState<Item[]>([]);
+  const [currentItem, setCurrentItem] = useState<Item | null>(null);
   const [currentText, setCurrentText] = useState<string>("");
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
 
@@ -25,8 +27,9 @@ export const SelectItemArea: React.FC<SelectItemAreaProps> = (props) => {
     alert(`show modal with ${props.itemName}s`);
   };
 
-  const selectItem = (itemName: string): void => {
-    setCurrentText(itemName);
+  const selectItem = (item: Item): void => {
+    setCurrentText(item.description);
+    setCurrentItem(item);
   };
 
   const captureCurrentText = (event: any): void => {
@@ -38,9 +41,15 @@ export const SelectItemArea: React.FC<SelectItemAreaProps> = (props) => {
     setCurrentItems(filteredItems);
   }, [currentText]);
 
+  useEffect(() => {
+    if (currentItem) props.returnSelectedValue(currentItem);
+  }, [currentItem]);
+
   const filterItemsWithText = (items: Item[], text: string): Item[] => {
     text = text.toLowerCase();
-    return items.filter((item) => item.description.toLowerCase().includes(text));
+    return items.filter((item) =>
+      item.description.toLowerCase().includes(text)
+    );
   };
 
   const currentTextFocusOut = () => {
@@ -66,7 +75,7 @@ export const SelectItemArea: React.FC<SelectItemAreaProps> = (props) => {
           />
           <ul style={showDropdown ? { display: "block" } : { display: "none" }}>
             {currentItems.map((item) => (
-              <li key={item.id} onClick={() => selectItem(item.description)}>
+              <li key={item.id} onClick={() => selectItem(item)}>
                 {item.description}
               </li>
             ))}
