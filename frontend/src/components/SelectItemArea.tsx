@@ -10,26 +10,11 @@ export const SelectItemArea: React.FC<SelectItemAreaProps> = (props) => {
   const [defaultItems, setDefaultItems] = useState<string[]>(INITIAL_ITEMS);
   const [currentItems, setCurrentItems] = useState<string[]>(INITIAL_ITEMS);
   const [currentText, setCurrentText] = useState<string>("");
+  const [showDropdown, setShowDropdown] = useState<boolean>(false);
 
   const handleAddItem = () => {
     alert(`show modal with ${props.itemName}s`);
   };
-
-  function filterFunction() {
-    var txtValue, input, div, filter, ul, li, a, i;
-    input = document.getElementById("myInput");
-    filter = input!.ariaValueText!.toUpperCase();
-    div = document.getElementById("myDropdown");
-    a = div!.getElementsByTagName("a");
-    for (i = 0; i < a.length; i++) {
-      txtValue = a[i].textContent || a[i].innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        a[i].style.display = "";
-      } else {
-        a[i].style.display = "none";
-      }
-    }
-  }
 
   const selectItem = (itemName: string): void => {
     alert(`${itemName} have been selected`);
@@ -49,26 +34,29 @@ export const SelectItemArea: React.FC<SelectItemAreaProps> = (props) => {
     return items.filter((item) => item.toLowerCase().includes(text));
   };
 
+  const currentTextFocusOut = () => {
+    setTimeout(() => {
+      setShowDropdown(false);
+    }, 100);
+  };
+
   return (
     <div style={{ border: "1px solid red" }}>
       <p>Select Item Area - {props.itemName}</p>
 
-      <div className="dropdown" style={{ border: "1px solid yellow" }}>
-        <div id="myDropdown" className="dropdown-content">
+      <div className="dropdown">
+        <div className="dropdown-content">
           <input
             type="text"
             placeholder="Search.."
-            id="myInput"
+            className="dropdown-input"
             onKeyUp={captureCurrentText}
+            onFocus={() => setShowDropdown(true)}
+            onBlur={currentTextFocusOut}
           />
-          <ul>
+          <ul style={showDropdown ? { display: "block" } : { display: "none" }}>
             {currentItems.map((item) => (
-              <li
-                key={item}
-                onClick={() => {
-                  selectItem(item);
-                }}
-              >
+              <li key={item} onClick={() => selectItem(item)}>
                 {item}
               </li>
             ))}
