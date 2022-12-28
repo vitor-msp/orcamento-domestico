@@ -1,3 +1,4 @@
+import { EnterpriseApi } from "../services/EnterpriseApi";
 import { SelectItemArea } from "./SelectItemArea";
 
 export const SearchTransactionArea = () => {
@@ -9,7 +10,7 @@ export const SearchTransactionArea = () => {
 
           <label htmlFor="">
             enterprise
-            <SelectItemArea itemName="enterprise" />
+            <SelectItemArea itemName="enterprise" api={new EnterpriseApi()} />
           </label>
 
           <label htmlFor="">

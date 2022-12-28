@@ -1,23 +1,32 @@
 import React, { useEffect, useState } from "react";
+import { Item } from "../domain/Item";
+import { IItemApi } from "../services/IItemApi";
 import "./SelectItemArea.css";
 
 export type SelectItemAreaProps = {
   itemName: string;
+  api: IItemApi;
 };
 
 export const SelectItemArea: React.FC<SelectItemAreaProps> = (props) => {
-  const INITIAL_ITEMS = ["Citopharma", "Autentica", "Cemig", "Tim"];
-  const [defaultItems, setDefaultItems] = useState<string[]>(INITIAL_ITEMS);
-  const [currentItems, setCurrentItems] = useState<string[]>(INITIAL_ITEMS);
+  const [defaultItems, setDefaultItems] = useState<Item[]>([]);
+  const [currentItems, setCurrentItems] = useState<Item[]>([]);
   const [currentText, setCurrentText] = useState<string>("");
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
+
+  useEffect(() => {
+    (async () => {
+      const items = await props.api.getAll();
+      setDefaultItems(items);
+    })();
+  }, []);
 
   const handleAddItem = () => {
     alert(`show modal with ${props.itemName}s`);
   };
 
   const selectItem = (itemName: string): void => {
-    alert(`${itemName} have been selected`);
+    setCurrentText(itemName);
   };
 
   const captureCurrentText = (event: any): void => {
@@ -29,9 +38,9 @@ export const SelectItemArea: React.FC<SelectItemAreaProps> = (props) => {
     setCurrentItems(filteredItems);
   }, [currentText]);
 
-  const filterItemsWithText = (items: string[], text: string): string[] => {
+  const filterItemsWithText = (items: Item[], text: string): Item[] => {
     text = text.toLowerCase();
-    return items.filter((item) => item.toLowerCase().includes(text));
+    return items.filter((item) => item.description.toLowerCase().includes(text));
   };
 
   const currentTextFocusOut = () => {
@@ -50,14 +59,15 @@ export const SelectItemArea: React.FC<SelectItemAreaProps> = (props) => {
             type="text"
             placeholder="Search.."
             className="dropdown-input"
-            onKeyUp={captureCurrentText}
+            onChange={captureCurrentText}
             onFocus={() => setShowDropdown(true)}
             onBlur={currentTextFocusOut}
+            value={currentText}
           />
           <ul style={showDropdown ? { display: "block" } : { display: "none" }}>
             {currentItems.map((item) => (
-              <li key={item} onClick={() => selectItem(item)}>
-                {item}
+              <li key={item.id} onClick={() => selectItem(item.description)}>
+                {item.description}
               </li>
             ))}
           </ul>
