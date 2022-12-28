@@ -1,7 +1,7 @@
-export const AddItemArea = () => {
+export const TransactionItem = () => {
   return (
     <div style={{ border: "1px solid red" }}>
-      <p>AddItemArea</p>
+      <p>Transaction Item</p>
     </div>
   );
 };

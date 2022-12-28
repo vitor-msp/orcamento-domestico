@@ -1,16 +1,15 @@
-import { SearchArea } from "./SearchArea";
-import { AddItemArea } from "./AddItemArea";
-import { ItemsList } from "./ItemsList";
+import { SearchTransactionArea } from "./SearchTransactionArea";
+import { AddTransactionItemArea } from "./AddTransactionItemArea";
+import { TransactionItemsList } from "./TransactionItemsList";
 
 export const App = () => {
   return (
-    <div style={{ border: "1px solid red", padding: "10px" }}>
-      <p>App</p>
-      <SearchArea />
+    <div>
+      <SearchTransactionArea />
       <p></p>
-      <AddItemArea />
+      <AddTransactionItemArea />
       <p></p>
-      <ItemsList />
+      <TransactionItemsList />
     </div>
   );
 };
