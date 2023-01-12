@@ -1,8 +1,7 @@
 import { Item } from "../domain/Item";
 import { IItemApi } from "./IItemApi";
-export class EnterpriseApi implements IItemApi {
-  constructor() {}
 
+export class EnterpriseApi implements IItemApi {
   async create(entity: Item): Promise<void> {
     throw new Error("Method not implemented.");
   }

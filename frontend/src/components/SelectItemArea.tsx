@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Item } from "../domain/Item";
 import { IItemApi } from "../services/IItemApi";
+import { ModalItem } from "./ModalItem";
 import "./SelectItemArea.css";
 
 export type SelectItemAreaProps = {
@@ -22,10 +23,6 @@ export const SelectItemArea: React.FC<SelectItemAreaProps> = (props) => {
       setDefaultItems(items);
     })();
   }, []);
-
-  const handleAddItem = () => {
-    alert(`show modal with ${props.itemName}s`);
-  };
 
   const selectItem = (item: Item): void => {
     setCurrentText(item.description);
@@ -52,7 +49,7 @@ export const SelectItemArea: React.FC<SelectItemAreaProps> = (props) => {
     );
   };
 
-  const currentTextFocusOut = () => {
+  const currentTextFocusOut = (): void => {
     setTimeout(() => {
       setShowDropdown(false);
     }, 100);
@@ -84,7 +81,7 @@ export const SelectItemArea: React.FC<SelectItemAreaProps> = (props) => {
       </div>
 
       <hr />
-      <button onClick={handleAddItem}>+</button>
+      <ModalItem />
     </div>
   );
 };
