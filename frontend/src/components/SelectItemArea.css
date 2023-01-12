@@ -9,7 +9,7 @@
   /* min-width: 230px; */
   overflow: auto;
   border: 1px solid #ddd;
-  z-index: 1;
+  z-index: 0.5;
 }
 .dropdown-content li {
   color: black;
