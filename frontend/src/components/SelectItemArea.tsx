@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Item } from "../domain/Item";
 import { IItemApi } from "../services/IItemApi";
-import { ModalItem } from "./ModalItem";
+import { Modal } from "./Modal";
 import "./SelectItemArea.css";
 
 export type SelectItemAreaProps = {
@@ -10,7 +10,7 @@ export type SelectItemAreaProps = {
   returnSelectedValue: (item: Item) => void;
 };
 
-export const SelectItemArea: React.FC<SelectItemAreaProps> = (props) => {
+export const SelectItemArea = (props: SelectItemAreaProps) => {
   const [defaultItems, setDefaultItems] = useState<Item[]>([]);
   const [currentItems, setCurrentItems] = useState<Item[]>([]);
   const [currentItem, setCurrentItem] = useState<Item | null>(null);
@@ -81,7 +81,7 @@ export const SelectItemArea: React.FC<SelectItemAreaProps> = (props) => {
       </div>
 
       <hr />
-      <ModalItem itens={defaultItems} />
+      <Modal itens={defaultItems} api={props.api} />
     </div>
   );
 };
