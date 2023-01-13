@@ -50,6 +50,11 @@ export const Modal = (props: ModalProps) => {
     props.updateItems(props.items);
   };
 
+  const selectItem = (item: Item): void => {
+    props.selectItem(item);
+    closeModal();
+  };
+
   return (
     <>
       <button type="button" onClick={openModal}>
@@ -76,7 +81,7 @@ export const Modal = (props: ModalProps) => {
                   api={props.api}
                   deleteItem={deleteItem}
                   updateItem={updateItem}
-                  selectItem={props.selectItem}
+                  selectItem={selectItem}
                 />
               );
             })}
