@@ -59,6 +59,13 @@ export const SelectItemArea = (props: SelectItemAreaProps) => {
     <div style={{ border: "1px solid red" }}>
       <p>Select Item Area - {props.itemName}</p>
 
+      <Modal
+        items={defaultItems}
+        api={props.api}
+        updateItems={setDefaultItems}
+        selectItem={selectItem}
+      />
+
       <div className="dropdown">
         <div className="dropdown-content">
           <input
@@ -80,13 +87,7 @@ export const SelectItemArea = (props: SelectItemAreaProps) => {
         </div>
       </div>
 
-      <hr />
-      <Modal
-        items={defaultItems}
-        api={props.api}
-        updateItems={setDefaultItems}
-        selectItem={selectItem}
-      />
+      <p></p>
     </div>
   );
 };

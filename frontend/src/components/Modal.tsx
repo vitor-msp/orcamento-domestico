@@ -56,9 +56,9 @@ export const Modal = (props: ModalProps) => {
   };
 
   return (
-    <>
+    <span>
       <button type="button" onClick={openModal}>
-        show modal
+        +
       </button>
       {modalIsOpen && (
         <ReactModal isOpen={modalIsOpen} onRequestClose={closeModal}>
@@ -88,6 +88,6 @@ export const Modal = (props: ModalProps) => {
           </ul>
         </ReactModal>
       )}
-    </>
+    </span>
   );
 };
