@@ -3,7 +3,7 @@ import { IItemApi } from "./IItemApi";
 
 export class EnterpriseApi implements IItemApi {
   async create(entity: Item): Promise<void> {
-    throw new Error("Method not implemented.");
+    alert(`created in backend: ${entity.description}`);
   }
 
   async update(id: string, entity: Item): Promise<void> {

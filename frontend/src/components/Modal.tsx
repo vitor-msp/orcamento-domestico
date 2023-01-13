@@ -15,7 +15,9 @@ interface ModalProps {
 }
 
 export const Modal = ({ items, api, updateItems }: ModalProps) => {
+  const emptyItem: Item = { id: "", description: "" };
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [newItem, setNewItem] = useState<Item>(emptyItem);
 
   const closeModal = (): void => {
     setModalIsOpen(false);
@@ -23,6 +25,10 @@ export const Modal = ({ items, api, updateItems }: ModalProps) => {
 
   const openModal = (): void => {
     setModalIsOpen(true);
+  };
+
+  const changeNewItem = (event: any): void => {
+    setNewItem({ ...newItem, [event.target.name]: event.target.value });
   };
 
   const deleteItem = async (itemToDelete: Item): Promise<void> => {
@@ -37,6 +43,13 @@ export const Modal = ({ items, api, updateItems }: ModalProps) => {
     updateItems(newItems);
   };
 
+  const createItem = async (): Promise<void> => {
+    await api.create(newItem);
+    items.push(newItem);
+    setNewItem(emptyItem);
+    updateItems(items);
+  };
+
   return (
     <>
       <button type="button" onClick={openModal}>
@@ -44,7 +57,16 @@ export const Modal = ({ items, api, updateItems }: ModalProps) => {
       </button>
       {modalIsOpen && (
         <ReactModal isOpen={modalIsOpen} onRequestClose={closeModal}>
-          <div>I am a modal</div>
+          <p>Itens</p>
+          <input
+            type="text"
+            value={newItem.description}
+            name={"description"}
+            onChange={changeNewItem}
+          />
+          <button type="button" onClick={createItem}>
+            {"+"}
+          </button>
           <ul>
             {items.map((item) => {
               return (
