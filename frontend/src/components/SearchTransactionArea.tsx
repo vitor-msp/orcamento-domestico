@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Item } from "../domain/Item";
 import { Transaction } from "../domain/Transaction";
-import { EnterpriseApi } from "../services/EnterpriseApi";
+import { ItemApi } from "../services/ItemApi";
 import { ITransactionApi } from "../services/ITransactionApi";
 import { TransactionApi } from "../services/TransactionApi";
 import { SelectItemArea } from "./SelectItemArea";
@@ -70,7 +70,7 @@ export const SearchTransactionArea = () => {
             enterprise
             <SelectItemArea
               itemName="enterprise"
-              api={new EnterpriseApi()}
+              api={new ItemApi()}
               returnSelectedValue={getSelectedValue}
             />
           </label>

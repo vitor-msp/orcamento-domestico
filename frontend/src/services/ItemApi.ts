@@ -1,9 +1,11 @@
 import { Item } from "../domain/Item";
 import { IItemApi } from "./IItemApi";
 
-export class EnterpriseApi implements IItemApi {
-  async create(entity: Item): Promise<void> {
+export class ItemApi implements IItemApi {
+  async create(entity: Item): Promise<string> {
     alert(`created in backend: ${entity.description}`);
+    const id = Math.floor(Math.random() * 1000).toString();
+    return id;
   }
 
   async update(id: string, entity: Item): Promise<void> {

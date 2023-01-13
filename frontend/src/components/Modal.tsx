@@ -44,7 +44,8 @@ export const Modal = ({ items, api, updateItems }: ModalProps) => {
   };
 
   const createItem = async (): Promise<void> => {
-    await api.create(newItem);
+    const id = await api.create(newItem);
+    newItem.id = id;
     items.push(newItem);
     setNewItem(emptyItem);
     updateItems(items);
