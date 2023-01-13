@@ -8,13 +8,12 @@ ReactModal.setAppElement("#root");
 
 interface ModalProps {
   items: Item[];
-  // itemName: string;
   api: IItemApi;
-  // returnSelectedValue: (item: Item) => void;
   updateItems: (items: Item[]) => void;
+  selectItem: (item: Item) => void;
 }
 
-export const Modal = ({ items, api, updateItems }: ModalProps) => {
+export const Modal = (props: ModalProps) => {
   const emptyItem: Item = { id: "", description: "" };
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
   const [newItem, setNewItem] = useState<Item>(emptyItem);
@@ -32,23 +31,23 @@ export const Modal = ({ items, api, updateItems }: ModalProps) => {
   };
 
   const deleteItem = async (itemToDelete: Item): Promise<void> => {
-    const updatedItems = items.filter(({ id }) => id !== itemToDelete.id);
-    updateItems(updatedItems);
+    const updatedItems = props.items.filter(({ id }) => id !== itemToDelete.id);
+    props.updateItems(updatedItems);
   };
 
   const updateItem = async (itemToUpdate: Item): Promise<void> => {
-    const newItems = Object.assign<Item[], Item[]>([], items);
+    const newItems = Object.assign<Item[], Item[]>([], props.items);
     const itemIndex = newItems.findIndex(({ id }) => id === itemToUpdate.id);
     newItems[itemIndex] = itemToUpdate;
-    updateItems(newItems);
+    props.updateItems(newItems);
   };
 
   const createItem = async (): Promise<void> => {
-    const id = await api.create(newItem);
+    const id = await props.api.create(newItem);
     newItem.id = id;
-    items.push(newItem);
+    props.items.push(newItem);
     setNewItem(emptyItem);
-    updateItems(items);
+    props.updateItems(props.items);
   };
 
   return (
@@ -69,14 +68,15 @@ export const Modal = ({ items, api, updateItems }: ModalProps) => {
             {"+"}
           </button>
           <ul>
-            {items.map((item) => {
+            {props.items.map((item) => {
               return (
                 <ModalListItem
                   key={item.id}
                   item={item}
-                  api={api}
+                  api={props.api}
                   deleteItem={deleteItem}
                   updateItem={updateItem}
+                  selectItem={props.selectItem}
                 />
               );
             })}

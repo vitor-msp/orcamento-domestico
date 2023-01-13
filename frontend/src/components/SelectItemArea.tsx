@@ -7,7 +7,7 @@ import "./SelectItemArea.css";
 export type SelectItemAreaProps = {
   itemName: string;
   api: IItemApi;
-  returnSelectedValue: (item: Item) => void;
+  returnSelectedItem: (item: Item) => void;
 };
 
 export const SelectItemArea = (props: SelectItemAreaProps) => {
@@ -39,7 +39,7 @@ export const SelectItemArea = (props: SelectItemAreaProps) => {
   }, [currentText]);
 
   useEffect(() => {
-    if (currentItem) props.returnSelectedValue(currentItem);
+    if (currentItem) props.returnSelectedItem(currentItem);
   }, [currentItem]);
 
   const filterItemsWithText = (items: Item[], text: string): Item[] => {
@@ -85,6 +85,7 @@ export const SelectItemArea = (props: SelectItemAreaProps) => {
         items={defaultItems}
         api={props.api}
         updateItems={setDefaultItems}
+        selectItem={selectItem}
       />
     </div>
   );

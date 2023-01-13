@@ -14,7 +14,7 @@ export const SearchTransactionArea = () => {
     date: "",
   });
 
-  const getSelectedValue = (item: Item): void => {
+  const getSelectedItem = (item: Item): void => {
     setTransaction({ ...transaction, enterprise: item.id });
   };
 
@@ -71,7 +71,7 @@ export const SearchTransactionArea = () => {
             <SelectItemArea
               itemName="enterprise"
               api={new ItemApi()}
-              returnSelectedValue={getSelectedValue}
+              returnSelectedItem={getSelectedItem}
             />
           </label>
 

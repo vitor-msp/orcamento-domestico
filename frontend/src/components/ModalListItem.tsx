@@ -4,11 +4,10 @@ import { IItemApi } from "../services/IItemApi";
 
 interface ModalListItemProps {
   item: Item;
-  // itemName: string;
   api: IItemApi;
-  // returnSelectedValue: (item: Item) => void;
   deleteItem: (itemToDelete: Item) => void;
   updateItem: (itemToUpdate: Item) => void;
+  selectItem: (item: Item) => void;
 }
 
 export const ModalListItem = (props: ModalListItemProps) => {
@@ -44,6 +43,9 @@ export const ModalListItem = (props: ModalListItemProps) => {
       </button>
       <button type="button" onClick={deleteItem}>
         x
+      </button>
+      <button type="button" onClick={() => props.selectItem(props.item)}>
+        Selecionar
       </button>
     </li>
   );
