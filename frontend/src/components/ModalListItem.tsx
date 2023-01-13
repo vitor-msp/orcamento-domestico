@@ -20,8 +20,11 @@ export const ModalListItem = (props: ModalListItemProps) => {
   };
 
   const deleteItem = async (): Promise<void> => {
-    await props.api.delete(props.item.id);
-    props.deleteItem(props.item);
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm("Delete item?")) {
+      await props.api.delete(props.item.id);
+      props.deleteItem(props.item);
+    }
   };
 
   return (
