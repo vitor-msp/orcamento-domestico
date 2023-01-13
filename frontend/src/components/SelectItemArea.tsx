@@ -81,7 +81,7 @@ export const SelectItemArea: React.FC<SelectItemAreaProps> = (props) => {
       </div>
 
       <hr />
-      <ModalItem />
+      <ModalItem itens={defaultItems} />
     </div>
   );
 };
