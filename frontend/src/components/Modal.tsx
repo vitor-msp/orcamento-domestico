@@ -7,14 +7,14 @@ import { ModalListItem } from "./ModalListItem";
 ReactModal.setAppElement("#root");
 
 interface ModalProps {
-  itens: Item[];
+  items: Item[];
   // itemName: string;
   api: IItemApi;
   // returnSelectedValue: (item: Item) => void;
   updateItems: (items: Item[]) => void;
 }
 
-export const Modal = ({ itens, api, updateItems }: ModalProps) => {
+export const Modal = ({ items, api, updateItems }: ModalProps) => {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
 
   const closeModal = (): void => {
@@ -26,8 +26,15 @@ export const Modal = ({ itens, api, updateItems }: ModalProps) => {
   };
 
   const deleteItem = async (itemToDelete: Item): Promise<void> => {
-    const updatedItems = itens.filter(({ id }) => id !== itemToDelete.id);
+    const updatedItems = items.filter(({ id }) => id !== itemToDelete.id);
     updateItems(updatedItems);
+  };
+
+  const updateItem = async (itemToUpdate: Item): Promise<void> => {
+    const newItems = Object.assign<Item[], Item[]>([], items);
+    const itemIndex = newItems.findIndex(({ id }) => id === itemToUpdate.id);
+    newItems[itemIndex] = itemToUpdate;
+    updateItems(newItems);
   };
 
   return (
@@ -39,13 +46,14 @@ export const Modal = ({ itens, api, updateItems }: ModalProps) => {
         <ReactModal isOpen={modalIsOpen} onRequestClose={closeModal}>
           <div>I am a modal</div>
           <ul>
-            {itens.map((item) => {
+            {items.map((item) => {
               return (
                 <ModalListItem
                   key={item.id}
                   item={item}
                   api={api}
                   deleteItem={deleteItem}
+                  updateItem={updateItem}
                 />
               );
             })}
