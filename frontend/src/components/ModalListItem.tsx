@@ -7,18 +7,29 @@ interface ModalListItemProps {
   // itemName: string;
   api: IItemApi;
   // returnSelectedValue: (item: Item) => void;
+  deleteItem: (itemToDelete: Item) => void;
 }
 
-export const ModalListItem = ({ item, api }: ModalListItemProps) => {
-  const [description, setDescription] = useState<string>(item.description);
+export const ModalListItem = (props: ModalListItemProps) => {
+  const [description, setDescription] = useState<string>(
+    props.item.description
+  );
 
   const changeDescription = (event: any): any => {
     setDescription(event.target.value);
   };
 
+  const deleteItem = async (): Promise<void> => {
+    await props.api.delete(props.item.id);
+    props.deleteItem(props.item);
+  };
+
   return (
-    <li key={item.id}>
+    <li key={props.item.id}>
       <input type="text" value={description} onChange={changeDescription} />
+      <button type="button" onClick={deleteItem}>
+        x
+      </button>
     </li>
   );
 };

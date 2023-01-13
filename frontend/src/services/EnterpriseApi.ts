@@ -9,7 +9,7 @@ export class EnterpriseApi implements IItemApi {
     throw new Error("Method not implemented.");
   }
   async delete(id: string): Promise<void> {
-    throw new Error("Method not implemented.");
+    alert(`deleted in backend: ${id}`);
   }
   async getAll(): Promise<Item[]> {
     return [

@@ -81,7 +81,11 @@ export const SelectItemArea = (props: SelectItemAreaProps) => {
       </div>
 
       <hr />
-      <Modal itens={defaultItems} api={props.api} />
+      <Modal
+        itens={defaultItems}
+        api={props.api}
+        updateItems={setDefaultItems}
+      />
     </div>
   );
 };

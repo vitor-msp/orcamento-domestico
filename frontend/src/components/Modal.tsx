@@ -11,9 +11,10 @@ interface ModalProps {
   // itemName: string;
   api: IItemApi;
   // returnSelectedValue: (item: Item) => void;
+  updateItems: (items: Item[]) => void;
 }
 
-export const Modal = ({itens,api}: ModalProps) => {
+export const Modal = ({ itens, api, updateItems }: ModalProps) => {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
 
   const closeModal = (): void => {
@@ -22,6 +23,11 @@ export const Modal = ({itens,api}: ModalProps) => {
 
   const openModal = (): void => {
     setModalIsOpen(true);
+  };
+
+  const deleteItem = async (itemToDelete: Item): Promise<void> => {
+    const updatedItems = itens.filter(({ id }) => id !== itemToDelete.id);
+    updateItems(updatedItems);
   };
 
   return (
@@ -35,7 +41,12 @@ export const Modal = ({itens,api}: ModalProps) => {
           <ul>
             {itens.map((item) => {
               return (
-                <ModalListItem key={item.id} item={item} api={api} />
+                <ModalListItem
+                  key={item.id}
+                  item={item}
+                  api={api}
+                  deleteItem={deleteItem}
+                />
               );
             })}
           </ul>
