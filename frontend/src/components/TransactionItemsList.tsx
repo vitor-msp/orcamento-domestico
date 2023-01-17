@@ -23,6 +23,7 @@ export const TransactionItemsList = ({
               <TransactionItemArea
                 updateTransactionItem={() => {}}
                 savedTransactionItem={item}
+                canEditFields={false}
               />
             </li>
           );

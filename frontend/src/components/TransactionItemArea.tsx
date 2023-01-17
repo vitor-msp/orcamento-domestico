@@ -7,6 +7,7 @@ import { SelectItemArea } from "./SelectItemArea";
 interface TransactionItemAreaProps {
   updateTransactionItem: (transactionItem: TransactionItem) => void;
   savedTransactionItem?: TransactionItem | null | undefined;
+  canEditFields: boolean;
 }
 
 export const TransactionItemArea = (props: TransactionItemAreaProps) => {
@@ -14,16 +15,11 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
   const [transactionItem, setTransactionItem] = useState<TransactionItem>(
     props.savedTransactionItem ?? emptyTransactionItem
   );
-  const [isSaved, setIsSaved] = useState<boolean>(true);
   const [canEdit, setCanEdit] = useState<boolean>(true);
 
   useEffect(() => {
-    props.savedTransactionItem ? setIsSaved(true) : setIsSaved(false);
-  }, [props.savedTransactionItem]);
-
-  useEffect(() => {
-    isSaved ? setCanEdit(false) : setCanEdit(true);
-  }, [isSaved]);
+    setCanEdit(props.canEditFields);
+  }, [props.canEditFields]);
 
   const getSelectedItem = (item: Item, field: string): void => {
     setTransactionItem({ ...transactionItem, [field.toLowerCase()]: item });
@@ -53,7 +49,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
             returnSelectedItem={(item) => {
               getSelectedItem(item, "item");
             }}
-            canEdit={!canEdit}
+            canEdit={canEdit}
           />
         </label>
 
@@ -65,7 +61,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
             returnSelectedItem={(item) => {
               getSelectedItem(item, "brand");
             }}
-            canEdit={!canEdit}
+            canEdit={canEdit}
           />
         </label>
 
@@ -77,7 +73,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
             returnSelectedItem={(item) => {
               getSelectedItem(item, "category");
             }}
-            canEdit={!canEdit}
+            canEdit={canEdit}
           />
         </label>
 
