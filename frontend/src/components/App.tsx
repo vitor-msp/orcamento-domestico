@@ -15,7 +15,7 @@ export const App = () => {
   return (
     <div>
       <SearchTransactionArea updateTransactionItems={setTransactionItems} />
-      <p></p>
+      {/* <p></p>
       <AddTransactionItemArea
         api={api}
         items={transactionItems}
@@ -27,7 +27,7 @@ export const App = () => {
         items={transactionItems}
         updateTransactionItems={setTransactionItems}
       />
-      <p></p>
+      <p></p> */}
     </div>
   );
 };

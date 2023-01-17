@@ -1,0 +1,16 @@
+:root {
+    --principal-color: rgb(100, 149, 237);
+    --principal-color-transparent: rgb(100, 149, 237, 0.5);
+}
+.button {
+    padding: 5px;
+    margin: 2px;
+    cursor: pointer;
+    color: black;
+    border: black;
+    border-radius: 3px;
+    background-color: var(--principal-color);
+}
+.button:hover {
+    background-color: var(--principal-color-transparent);
+}

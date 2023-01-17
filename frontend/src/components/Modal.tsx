@@ -3,6 +3,7 @@ import ReactModal from "react-modal";
 import { Item } from "../domain/Item";
 import { IItemApi } from "../services/IItemApi";
 import { ModalListItem } from "./ModalListItem";
+import "./Modal.css";
 
 ReactModal.setAppElement("#root");
 
@@ -56,7 +57,7 @@ export const Modal = (props: ModalProps) => {
   };
 
   return (
-    <span>
+    <div className="modal-div">
       <button type="button" onClick={openModal}>
         +
       </button>
@@ -88,6 +89,6 @@ export const Modal = (props: ModalProps) => {
           </ul>
         </ReactModal>
       )}
-    </span>
+    </div>
   );
 };
