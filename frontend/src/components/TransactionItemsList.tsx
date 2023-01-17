@@ -1,5 +1,6 @@
 import { TransactionItem } from "../domain/TransactionItem";
 import { ITransactionItemApi } from "../services/ITransactionItemApi";
+import { TransactionItemArea } from "./TransactionItemArea";
 
 interface TransactionItemsListProps {
   api: ITransactionItemApi;
@@ -17,7 +18,11 @@ export const TransactionItemsList = ({
       <p>Transaction Items List</p>
       <ul>
         {items.map((item) => {
-          return <li key={item.id}>{item.brand?.description}</li>;
+          return (
+            <li key={item.id}>
+              <TransactionItemArea updateTransactionItem={() => {}} />
+            </li>
+          );
         })}
       </ul>
     </div>

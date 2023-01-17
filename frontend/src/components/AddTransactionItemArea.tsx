@@ -6,11 +6,11 @@ import { TransactionItemArea } from "./TransactionItemArea";
 
 interface AddTransactionItemAreaProps {
   api: ITransactionItemApi;
+  items: TransactionItem[];
+  updateTransactionItems: (transactionItems: TransactionItem[]) => void;
 }
 
-export const AddTransactionItemArea = ({
-  api,
-}: AddTransactionItemAreaProps) => {
+export const AddTransactionItemArea = (props: AddTransactionItemAreaProps) => {
   const emptyTransactionItem: TransactionItem = {};
 
   const [transactionItem, setTransactionItem] =
@@ -23,8 +23,10 @@ export const AddTransactionItemArea = ({
   };
 
   const addTransactionItem = async (): Promise<void> => {
-    console.log(transactionItem);
-    await api.create(transactionItem);
+    await props.api.create(transactionItem);
+    const newItems = Object.assign([], props.items);
+    newItems.push(transactionItem);
+    props.updateTransactionItems(newItems);
   };
 
   return (
