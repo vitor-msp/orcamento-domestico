@@ -7,10 +7,8 @@ export class TransactionItemApi implements ITransactionItemApi {
   }
 
   async update(id: string, entity: TransactionItem): Promise<TransactionItem> {
-    throw new Error("Method not implemented.");
+    return entity;
   }
 
-  async delete(id: string): Promise<void> {
-    throw new Error("Method not implemented.");
-  }
+  async delete(id: string): Promise<void> {}
 }
