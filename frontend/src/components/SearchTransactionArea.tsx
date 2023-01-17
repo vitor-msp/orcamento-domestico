@@ -1,12 +1,17 @@
 import { useState } from "react";
 import { Item } from "../domain/Item";
 import { Transaction } from "../domain/Transaction";
+import { TransactionItem } from "../domain/TransactionItem";
 import { ItemApi } from "../services/ItemApi";
 import { ITransactionApi } from "../services/ITransactionApi";
 import { TransactionApi } from "../services/TransactionApi";
 import { SelectItemArea } from "./SelectItemArea";
 
-export const SearchTransactionArea = () => {
+interface SearchTransactionAreaProps {
+  updateTransactionItems: (transactionItems: TransactionItem[]) => void;
+}
+
+export const SearchTransactionArea = (props: SearchTransactionAreaProps) => {
   const api: ITransactionApi = new TransactionApi();
   const [transaction, setTransaction] = useState<Transaction>({
     id: "",
@@ -57,6 +62,7 @@ export const SearchTransactionArea = () => {
     if (fieldIsValid(enterprise) && fieldIsValid(date)) {
       const savedTransaction = await api.get(transaction);
       setTransaction({ ...savedTransaction });
+      props.updateTransactionItems(savedTransaction.transactionItems!);
     }
   };
 
