@@ -56,7 +56,7 @@ export const SelectItemArea = (props: SelectItemAreaProps) => {
   };
 
   return (
-    <div style={{ border: "1px solid red" }}>
+    <div>
       <p>Select Item Area - {props.itemName}</p>
 
       <Modal
