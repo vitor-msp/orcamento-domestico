@@ -7,6 +7,7 @@ interface TransactionListItemProps {
   transactionItem: TransactionItem;
   api: ITransactionItemApi;
   updateTransactionItem: (transactionItem: TransactionItem) => void;
+  deleteTransactionItem: (transactionItem: TransactionItem) => void;
 }
 
 export const TransactionListItem = (props: TransactionListItemProps) => {
@@ -19,6 +20,14 @@ export const TransactionListItem = (props: TransactionListItemProps) => {
     await props.api.update(transactionItem.id!, transactionItem);
     props.updateTransactionItem(transactionItem);
     setCanEdit(false);
+  };
+
+  const deleteItem = async (): Promise<void> => {
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm("Delete item?")) {
+      await props.api.delete(transactionItem.id!);
+      props.deleteTransactionItem(transactionItem);
+    }
   };
 
   return (
@@ -42,7 +51,9 @@ export const TransactionListItem = (props: TransactionListItemProps) => {
           Edit
         </button>
       )}
-      <button type="button">X</button>
+      <button type="button" onClick={deleteItem}>
+        X
+      </button>
     </>
   );
 };

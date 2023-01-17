@@ -23,9 +23,9 @@ export const AddTransactionItemArea = (props: AddTransactionItemAreaProps) => {
   };
 
   const addTransactionItem = async (): Promise<void> => {
-    await props.api.create(transactionItem);
+    const savedItem = await props.api.create(transactionItem);
     const newItems = Object.assign([], props.items);
-    newItems.push(transactionItem);
+    newItems.push(savedItem);
     props.updateTransactionItems(newItems);
   };
 

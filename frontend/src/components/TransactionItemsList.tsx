@@ -17,17 +17,24 @@ export const TransactionItemsList = (props: TransactionItemsListProps) => {
     props.updateTransactionItems(props.items);
   };
 
+  const deleteTransactionItem = (deletedItem: TransactionItem): void => {
+    const newItems = props.items.filter((item) => item.id !== deletedItem.id);
+    props.updateTransactionItems(newItems);
+  };
+
   return (
     <div style={{ border: "1px solid red" }}>
       <p>Transaction Items List</p>
       <ul>
         {props.items.map((item) => {
+          console.log(item.id);
           return (
             <li key={item.id}>
               <TransactionListItem
                 transactionItem={item}
                 api={props.api}
                 updateTransactionItem={updateTransactionItem}
+                deleteTransactionItem={deleteTransactionItem}
               />
             </li>
           );
