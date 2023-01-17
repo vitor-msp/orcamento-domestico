@@ -9,6 +9,7 @@ export type SelectItemAreaProps = {
   api: IItemApi;
   returnSelectedItem: (item: Item) => void;
   canEdit: boolean;
+  defaultItem?: Item;
 };
 
 export const SelectItemArea = (props: SelectItemAreaProps) => {
@@ -25,6 +26,10 @@ export const SelectItemArea = (props: SelectItemAreaProps) => {
       setDefaultItems(items);
     })();
   }, []);
+
+  useEffect(() => {
+    if (props.defaultItem) selectItem(props.defaultItem);
+  }, [props.defaultItem]);
 
   useEffect(() => {
     setCanEdit(props.canEdit);

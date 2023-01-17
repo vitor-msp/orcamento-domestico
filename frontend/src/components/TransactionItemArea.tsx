@@ -50,6 +50,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
               getSelectedItem(item, "item");
             }}
             canEdit={canEdit}
+            defaultItem={transactionItem.item}
           />
         </label>
 
@@ -62,6 +63,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
               getSelectedItem(item, "brand");
             }}
             canEdit={canEdit}
+            defaultItem={transactionItem.brand}
           />
         </label>
 
@@ -74,6 +76,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
               getSelectedItem(item, "category");
             }}
             canEdit={canEdit}
+            defaultItem={transactionItem.category}
           />
         </label>
 
