@@ -1,8 +1,8 @@
 import { TransactionItem } from "../domain/TransactionItem";
-import { ITransactionApi } from "../services/ITransactionApi";
+import { ITransactionItemApi } from "../services/ITransactionItemApi";
 
 interface TransactionItemsListProps {
-  api: ITransactionApi;
+  api: ITransactionItemApi;
   items: TransactionItem[];
   updateTransactionItems: (transactionItems: TransactionItem[]) => void;
 }

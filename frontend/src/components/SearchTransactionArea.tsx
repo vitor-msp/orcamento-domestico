@@ -5,6 +5,7 @@ import { TransactionItem } from "../domain/TransactionItem";
 import { ItemApi } from "../services/ItemApi";
 import { ITransactionApi } from "../services/ITransactionApi";
 import { TransactionApi } from "../services/TransactionApi";
+import { FormUtils } from "../utils/FormUtils";
 import { SelectItemArea } from "./SelectItemArea";
 
 interface SearchTransactionAreaProps {
@@ -25,11 +26,6 @@ export const SearchTransactionArea = (props: SearchTransactionAreaProps) => {
 
   const changeField = (event: any): void => {
     setTransaction({ ...transaction, [event.target.name]: event.target.value });
-  };
-
-  const blockSubmit = (event: any): void => {
-    event.preventDefault();
-    event.stopPropagation();
   };
 
   const fieldIsValid = (field: any): boolean => {
@@ -68,7 +64,7 @@ export const SearchTransactionArea = (props: SearchTransactionAreaProps) => {
 
   return (
     <div>
-      <form action="" onSubmit={blockSubmit}>
+      <form action="" onSubmit={FormUtils.blockSubmit}>
         <fieldset>
           <legend>Search Transaction Area</legend>
 
