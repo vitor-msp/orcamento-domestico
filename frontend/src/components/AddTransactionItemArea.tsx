@@ -32,7 +32,10 @@ export const AddTransactionItemArea = (props: AddTransactionItemAreaProps) => {
   return (
     <div>
       <form action="" onSubmit={FormUtils.blockSubmit}>
-        <TransactionItemArea updateTransactionItem={updateTransactionItem} />
+        <TransactionItemArea
+          updateTransactionItem={updateTransactionItem}
+          savedTransactionItem={null}
+        />
         <button type="button" onClick={addTransactionItem}>
           Add
         </button>

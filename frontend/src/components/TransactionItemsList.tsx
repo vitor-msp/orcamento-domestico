@@ -20,7 +20,10 @@ export const TransactionItemsList = ({
         {items.map((item) => {
           return (
             <li key={item.id}>
-              <TransactionItemArea updateTransactionItem={() => {}} />
+              <TransactionItemArea
+                updateTransactionItem={() => {}}
+                savedTransactionItem={item}
+              />
             </li>
           );
         })}

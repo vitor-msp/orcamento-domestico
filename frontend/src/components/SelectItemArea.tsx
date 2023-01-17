@@ -8,6 +8,7 @@ export type SelectItemAreaProps = {
   itemName: string;
   api: IItemApi;
   returnSelectedItem: (item: Item) => void;
+  canEdit: boolean;
 };
 
 export const SelectItemArea = (props: SelectItemAreaProps) => {
@@ -16,6 +17,7 @@ export const SelectItemArea = (props: SelectItemAreaProps) => {
   const [currentItem, setCurrentItem] = useState<Item | null>(null);
   const [currentText, setCurrentText] = useState<string>("");
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
+  const [canEdit, setCanEdit] = useState<boolean>(true);
 
   useEffect(() => {
     (async () => {
@@ -23,6 +25,10 @@ export const SelectItemArea = (props: SelectItemAreaProps) => {
       setDefaultItems(items);
     })();
   }, []);
+
+  useEffect(() => {
+    setCanEdit(props.canEdit);
+  }, [props.canEdit]);
 
   const selectItem = (item: Item): void => {
     setCurrentText(item.description);
@@ -76,6 +82,7 @@ export const SelectItemArea = (props: SelectItemAreaProps) => {
             onFocus={() => setShowDropdown(true)}
             onBlur={currentTextFocusOut}
             value={currentText}
+            disabled={!canEdit}
           />
           <ul style={showDropdown ? { display: "block" } : { display: "none" }}>
             {currentItems.map((item) => (

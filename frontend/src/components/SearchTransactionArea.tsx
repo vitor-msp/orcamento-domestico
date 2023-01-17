@@ -74,6 +74,7 @@ export const SearchTransactionArea = (props: SearchTransactionAreaProps) => {
               itemName="enterprise"
               api={new ItemApi()}
               returnSelectedItem={getSelectedItem}
+              canEdit={true}
             />
           </label>
 

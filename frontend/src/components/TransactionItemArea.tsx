@@ -6,13 +6,24 @@ import { SelectItemArea } from "./SelectItemArea";
 
 interface TransactionItemAreaProps {
   updateTransactionItem: (transactionItem: TransactionItem) => void;
+  savedTransactionItem?: TransactionItem | null | undefined;
 }
 
 export const TransactionItemArea = (props: TransactionItemAreaProps) => {
   const emptyTransactionItem: TransactionItem = {};
+  const [transactionItem, setTransactionItem] = useState<TransactionItem>(
+    props.savedTransactionItem ?? emptyTransactionItem
+  );
+  const [isSaved, setIsSaved] = useState<boolean>(true);
+  const [canEdit, setCanEdit] = useState<boolean>(true);
 
-  const [transactionItem, setTransactionItem] =
-    useState<TransactionItem>(emptyTransactionItem);
+  useEffect(() => {
+    props.savedTransactionItem ? setIsSaved(true) : setIsSaved(false);
+  }, [props.savedTransactionItem]);
+
+  useEffect(() => {
+    isSaved ? setCanEdit(false) : setCanEdit(true);
+  }, [isSaved]);
 
   const getSelectedItem = (item: Item, field: string): void => {
     setTransactionItem({ ...transactionItem, [field.toLowerCase()]: item });
@@ -42,6 +53,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
             returnSelectedItem={(item) => {
               getSelectedItem(item, "item");
             }}
+            canEdit={!canEdit}
           />
         </label>
 
@@ -53,6 +65,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
             returnSelectedItem={(item) => {
               getSelectedItem(item, "brand");
             }}
+            canEdit={!canEdit}
           />
         </label>
 
@@ -64,6 +77,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
             returnSelectedItem={(item) => {
               getSelectedItem(item, "category");
             }}
+            canEdit={!canEdit}
           />
         </label>
 
@@ -74,6 +88,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
             name="quantity"
             value={transactionItem.quantity}
             onChange={changeField}
+            disabled={!canEdit}
           />
         </label>
 
@@ -84,6 +99,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
             name="unitOfMeasurement"
             value={transactionItem.unitOfMeasurement}
             onChange={changeField}
+            disabled={!canEdit}
           />
         </label>
 
@@ -94,6 +110,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
             name="totalValue"
             value={transactionItem.totalValue}
             onChange={changeField}
+            disabled={!canEdit}
           />
         </label>
       </fieldset>
