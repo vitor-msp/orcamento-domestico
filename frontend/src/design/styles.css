@@ -118,3 +118,14 @@ div.add-item-top, div.add-item-bottom {
 }
 div.add-item-bottom div {
 }
+div.add-item-btn {
+    margin-left: auto;
+    display: flex;
+    justify-content: right;
+    /* border: 1px solid red; */
+}
+div.add-item-btn button {
+    padding: 10px 15px;
+    font-size: 1.0rem;
+    margin-top: 5px;
+}
