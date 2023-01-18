@@ -3,7 +3,7 @@ import ReactModal from "react-modal";
 import { Item } from "../domain/Item";
 import { IItemApi } from "../services/IItemApi";
 import { ModalListItem } from "./ModalListItem";
-import "./Modal.css";
+import "../design/styles.css";
 
 ReactModal.setAppElement("#root");
 

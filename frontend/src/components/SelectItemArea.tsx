@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Item } from "../domain/Item";
 import { IItemApi } from "../services/IItemApi";
 import { Modal } from "./Modal";
-import "./SelectItemArea.css";
+import "../design/styles.css";
 
 export type SelectItemAreaProps = {
   itemName: string;

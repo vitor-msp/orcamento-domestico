@@ -7,7 +7,7 @@ import { ITransactionApi } from "../services/ITransactionApi";
 import { TransactionApi } from "../services/TransactionApi";
 import { FormUtils } from "../utils/FormUtils";
 import { SelectItemArea } from "./SelectItemArea";
-import "./Main.css";
+import "../design/styles.css";
 
 interface SearchTransactionAreaProps {
   updateTransactionItems: (transactionItems: TransactionItem[]) => void;
