@@ -96,13 +96,25 @@ button {
 button:hover {
     background-color: var(--secondary-color-transparent);
 }
-input {
-    background-color: rgba(255, 255, 255, 0.5);
+input, input:hover {
+    background-color: rgba(255, 255, 255, 0.6);
     border: none;
     border-radius: 3px;
     padding: 5px 10px;
     margin: 2px;
 }
+input[disabled] {
+    background-color: rgba(255, 255, 255, 0.3);
+}
 fieldset {
     border-radius: 5px;
+}
+div.add-item-top, div.add-item-bottom {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 10px auto;
+}
+div.add-item-bottom div {
 }

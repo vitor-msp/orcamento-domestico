@@ -39,79 +39,87 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
   return (
     <div>
       <fieldset>
-        <legend>Transaction Item Area</legend>
+        <legend>Adicionar item:</legend>
+        <div>
+          <div className="add-item-top">
+            <div>
+              <label htmlFor="add-item-item">item</label>
+              <SelectItemArea
+                api={new ItemApi()}
+                itemName="Item"
+                returnSelectedItem={(item) => {
+                  getSelectedItem(item, "item");
+                }}
+                canEdit={canEdit}
+                defaultItem={transactionItem.item}
+              />
+            </div>
 
-        <label>
-          Item
-          <SelectItemArea
-            api={new ItemApi()}
-            itemName="Item"
-            returnSelectedItem={(item) => {
-              getSelectedItem(item, "item");
-            }}
-            canEdit={canEdit}
-            defaultItem={transactionItem.item}
-          />
-        </label>
+            <div>
+              <label htmlFor="add-item-brand">Brand</label>
+              <SelectItemArea
+                api={new ItemApi()}
+                itemName="Brand"
+                returnSelectedItem={(item) => {
+                  getSelectedItem(item, "brand");
+                }}
+                canEdit={canEdit}
+                defaultItem={transactionItem.brand}
+              />
+            </div>
 
-        <label>
-          Brand
-          <SelectItemArea
-            api={new ItemApi()}
-            itemName="Brand"
-            returnSelectedItem={(item) => {
-              getSelectedItem(item, "brand");
-            }}
-            canEdit={canEdit}
-            defaultItem={transactionItem.brand}
-          />
-        </label>
+            <div>
+              <label htmlFor="add-item-category">Category</label>
+              <SelectItemArea
+                api={new ItemApi()}
+                itemName="Category"
+                returnSelectedItem={(item) => {
+                  getSelectedItem(item, "category");
+                }}
+                canEdit={canEdit}
+                defaultItem={transactionItem.category}
+              />
+            </div>
+          </div>
 
-        <label>
-          Category
-          <SelectItemArea
-            api={new ItemApi()}
-            itemName="Category"
-            returnSelectedItem={(item) => {
-              getSelectedItem(item, "category");
-            }}
-            canEdit={canEdit}
-            defaultItem={transactionItem.category}
-          />
-        </label>
+          <div className="add-item-bottom">
+            <div>
+              <label htmlFor="add-item-quantity">Quantity</label>
+              <input
+                type="number"
+                name="quantity"
+                value={transactionItem.quantity}
+                onChange={changeField}
+                disabled={!canEdit}
+                id="add-item-quantity"
+              />
+            </div>
 
-        <label>
-          Quantity
-          <input
-            type="number"
-            name="quantity"
-            value={transactionItem.quantity}
-            onChange={changeField}
-            disabled={!canEdit}
-          />
-        </label>
+            <div>
+              <label htmlFor="add-item-um">Unit of Measurement</label>
+              <input
+                type="text"
+                name="unitOfMeasurement"
+                value={transactionItem.unitOfMeasurement}
+                onChange={changeField}
+                disabled={!canEdit}
+                id="add-item-um"
+              />
+            </div>
 
-        <label>
-          Unit of Measurement
-          <input
-            type="text"
-            name="unitOfMeasurement"
-            value={transactionItem.unitOfMeasurement}
-            onChange={changeField}
-            disabled={!canEdit}
-          />
-        </label>
-
-        <label>
-          Total Value
-          <input
-            type="number"
-            name="totalValue"
-            value={transactionItem.totalValue}
-            onChange={changeField}
-            disabled={!canEdit}
-          />
-        </label>
+            <div>
+              <label htmlFor="add-item-total-value">Total Value</label>
+              <input
+                type="number"
+                name="totalValue"
+                value={transactionItem.totalValue}
+                onChange={changeField}
+                disabled={!canEdit}
+                id="add-item-total-value"
+              />
+            </div>
+          </div>
+        </div>
       </fieldset>
     </div>
   );
