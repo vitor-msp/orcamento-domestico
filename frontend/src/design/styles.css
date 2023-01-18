@@ -106,26 +106,51 @@ input, input:hover {
 input[disabled] {
     background-color: rgba(255, 255, 255, 0.3);
 }
-fieldset {
+/* transaction-item */
+div.transaction-item {
+    border: 2px solid var(--secondary-color);
     border-radius: 5px;
 }
-div.add-item-top, div.add-item-bottom {
+div.transaction-item div {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
     margin: 10px auto;
 }
-div.add-item-bottom div {
+div.transaction-item div div {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-div.add-item-btn {
+div.transaction-item div div label {
+    margin: 0px 5px;
+}
+div.item-btn {
     margin-left: auto;
     display: flex;
     justify-content: right;
-    /* border: 1px solid red; */
 }
-div.add-item-btn button {
+div.item-btn button {
     padding: 10px 15px;
     font-size: 1.0rem;
     margin-top: 5px;
 }
+h4 {
+    font-weight: normal;
+    padding: 5px;
+    margin: 0px;
+}
+div.items ul {
+    list-style-type: none;
+    padding: 0px;
+}
+div.items li {
+    text-decoration: none;
+    margin: 5px;
+}
+/* div.item {
+    border: 1px solid red;
+    display: flex;
+} */

@@ -65,9 +65,8 @@ export const SearchTransactionArea = (props: SearchTransactionAreaProps) => {
 
   return (
     <form action="" onSubmit={FormUtils.blockSubmit}>
+      <h4>Lançamento</h4>
       <fieldset>
-        <legend>Lançamento</legend>
-
         <div
           style={{
             display: "flex",

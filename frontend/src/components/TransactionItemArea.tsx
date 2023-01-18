@@ -37,90 +37,80 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
   }, [transactionItem]);
 
   return (
-    <div>
-      <fieldset>
-        <legend>Adicionar item:</legend>
+    <div className="transaction-item">
+      <div>
         <div>
-          <div className="add-item-top">
-            <div>
-              <label htmlFor="add-item-item">item</label>
-              <SelectItemArea
-                api={new ItemApi()}
-                itemName="Item"
-                returnSelectedItem={(item) => {
-                  getSelectedItem(item, "item");
-                }}
-                canEdit={canEdit}
-                defaultItem={transactionItem.item}
-              />
-            </div>
-
-            <div>
-              <label htmlFor="add-item-brand">Brand</label>
-              <SelectItemArea
-                api={new ItemApi()}
-                itemName="Brand"
-                returnSelectedItem={(item) => {
-                  getSelectedItem(item, "brand");
-                }}
-                canEdit={canEdit}
-                defaultItem={transactionItem.brand}
-              />
-            </div>
-
-            <div>
-              <label htmlFor="add-item-category">Category</label>
-              <SelectItemArea
-                api={new ItemApi()}
-                itemName="Category"
-                returnSelectedItem={(item) => {
-                  getSelectedItem(item, "category");
-                }}
-                canEdit={canEdit}
-                defaultItem={transactionItem.category}
-              />
-            </div>
-          </div>
-
-          <div className="add-item-bottom">
-            <div>
-              <label htmlFor="add-item-quantity">Quantity</label>
-              <input
-                type="number"
-                name="quantity"
-                value={transactionItem.quantity}
-                onChange={changeField}
-                disabled={!canEdit}
-                id="add-item-quantity"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="add-item-um">Unit of Measurement</label>
-              <input
-                type="text"
-                name="unitOfMeasurement"
-                value={transactionItem.unitOfMeasurement}
-                onChange={changeField}
-                disabled={!canEdit}
-                id="add-item-um"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="add-item-total-value">Total Value</label>
-              <input
-                type="number"
-                name="totalValue"
-                value={transactionItem.totalValue}
-                onChange={changeField}
-                disabled={!canEdit}
-                id="add-item-total-value"
-              />
-            </div>
-          </div>
+          <label htmlFor="transaction-item-item">item</label>
+          <SelectItemArea
+            api={new ItemApi()}
+            itemName="Item"
+            returnSelectedItem={(item) => {
+              getSelectedItem(item, "item");
+            }}
+            canEdit={canEdit}
+            defaultItem={transactionItem.item}
+          />
         </div>
-      </fieldset>
+        <div>
+          <label htmlFor="transaction-item-brand">Brand</label>
+          <SelectItemArea
+            api={new ItemApi()}
+            itemName="Brand"
+            returnSelectedItem={(item) => {
+              getSelectedItem(item, "brand");
+            }}
+            canEdit={canEdit}
+            defaultItem={transactionItem.brand}
+          />
+        </div>
+        <div>
+          <label htmlFor="transaction-item-category">Category</label>
+          <SelectItemArea
+            api={new ItemApi()}
+            itemName="Category"
+            returnSelectedItem={(item) => {
+              getSelectedItem(item, "category");
+            }}
+            canEdit={canEdit}
+            defaultItem={transactionItem.category}
+          />
+        </div>
+      </div>
+      <div>
+        <div>
+          <label htmlFor="transaction-item-quantity">Quantity</label>
+          <input
+            type="number"
+            name="quantity"
+            value={transactionItem.quantity}
+            onChange={changeField}
+            disabled={!canEdit}
+            id="transaction-item-quantity"
+          />
+        </div>
+        <div>
+          <label htmlFor="transaction-item-um">Unit of Measurement</label>
+          <input
+            type="text"
+            name="unitOfMeasurement"
+            value={transactionItem.unitOfMeasurement}
+            onChange={changeField}
+            disabled={!canEdit}
+            id="transaction-item-um"
+          />
+        </div>
+        <div>
+          <label htmlFor="transaction-item-total-value">Total Value</label>
+          <input
+            type="number"
+            name="totalValue"
+            value={transactionItem.totalValue}
+            onChange={changeField}
+            disabled={!canEdit}
+            id="transaction-item-total-value"
+          />
+        </div>
+      </div>
     </div>
   );
 };

@@ -23,11 +23,10 @@ export const TransactionItemsList = (props: TransactionItemsListProps) => {
   };
 
   return (
-    <div style={{ border: "1px solid red" }}>
-      <p>Transaction Items List</p>
+    <div className="items">
+      <h4>Itens</h4>
       <ul>
         {props.items.map((item) => {
-          console.log(item.id);
           return (
             <li key={item.id}>
               <TransactionListItem

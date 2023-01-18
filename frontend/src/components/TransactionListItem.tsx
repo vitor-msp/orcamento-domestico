@@ -31,29 +31,35 @@ export const TransactionListItem = (props: TransactionListItemProps) => {
   };
 
   return (
-    <>
+    <div className="item">
       <TransactionItemArea
         updateTransactionItem={setTransactionItem}
         savedTransactionItem={props.transactionItem}
         canEditFields={canEdit}
       />
-      {canEdit ? (
-        <>
-          <button type="button" onClick={() => setCanEdit(false)}>
-            Cancel
+      <div>
+        {canEdit ? (
+          <div>
+            <button type="button" onClick={() => setCanEdit(false)}>
+              Cancel
+            </button>
+            <button type="button" onClick={editItem}>
+              Save
+            </button>
+          </div>
+        ) : (
+          <div>
+            <button type="button" onClick={() => setCanEdit(true)}>
+              Edit
+            </button>
+          </div>
+        )}
+        <div>
+          <button type="button" onClick={deleteItem}>
+            X
           </button>
-          <button type="button" onClick={editItem}>
-            Save
-          </button>
-        </>
-      ) : (
-        <button type="button" onClick={() => setCanEdit(true)}>
-          Edit
-        </button>
-      )}
-      <button type="button" onClick={deleteItem}>
-        X
-      </button>
-    </>
+        </div>
+      </div>
+    </div>
   );
 };
