@@ -58,7 +58,7 @@ export const Modal = (props: ModalProps) => {
 
   return (
     <div className="modal-div">
-      <button type="button" onClick={openModal}>
+      <button type="button" className="button" onClick={openModal}>
         +
       </button>
       {modalIsOpen && (

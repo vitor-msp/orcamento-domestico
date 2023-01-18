@@ -1,8 +1,48 @@
+* {
+    box-sizing: border-box;
+}
+:root {
+    --primary-color: rgb(14, 51, 119);
+    --primary-color-transparent: rgba(14, 51, 119, 0.8);
+    --secondary-color: rgb(139, 139, 139);
+    --secondary-color-transparent: rgba(139, 139, 139, 0.5);
+}
+body {
+    background-color: var(--primary-color-transparent);
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+h2 {
+    text-align: center;
+}
+.search-transaction-area {
+    border: none;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    padding: 15px;
+    margin: 15px;
+}
+.transaction-items-list {
+    border: none;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    padding: 15px;
+    margin: 15px;
+}
+.add-transaction-item-area {
+    border: none;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    padding: 15px;
+    margin: 15px;
+}
+.dropdown-root {
+    position: absolute;
+}
 .dropdown {
     position: relative;
     display: inline-block;
 }
-
 .dropdown-content {
     display: block;
     position: absolute;
@@ -10,52 +50,59 @@
     /* min-width: 230px; */
     overflow: auto;
     border: 1px solid #ddd;
-    z-index: 10000;
+    z-index: 1;
 }
-
+.dropdown-content ul {
+    list-style-type: none;
+}
 .dropdown-content li {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    cursor: pointer;
+    margin: 0%;
 }
-
 .dropdown li:hover {
     background-color: #ddd;
 }
-
 .dropdown-input {
     /* box-sizing: border-box; */
     /* background-image: url('searchicon.png'); */
     /* background-position: 14px 12px; */
     /* background-repeat: no-repeat; */
     /* font-size: 14px; */
-    /* padding: 14px 20px 12px 45px; */
-    /* border: none; */
+    padding: 5px;
+    border: none;
+    border-radius: 3px;
     /* border-bottom: 1px solid #ddd; */
+    width: auto;
 }
-
 .dropdown-input:focus {
     /* outline: 3px solid #ddd; */
 }
 .modal-div {
     display: inline;
 }
-:root {
-    --principal-color: rgb(100, 149, 237);
-    --principal-color-transparent: rgb(100, 149, 237, 0.5);
-}
-
-.button {
-    padding: 5px;
+button {
+    padding: 5px 10px;
     margin: 2px;
     cursor: pointer;
-    color: black;
-    border: black;
+    color: white;
+    border: white;
     border-radius: 3px;
-    background-color: var(--principal-color);
+    background-color: var(--secondary-color);
 }
-
-.button:hover {
-    background-color: var(--principal-color-transparent);
+button:hover {
+    background-color: var(--secondary-color-transparent);
+}
+input {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    margin: 2px;
+}
+fieldset {
+    border-radius: 5px;
 }

@@ -68,35 +68,59 @@ export const SearchTransactionArea = (props: SearchTransactionAreaProps) => {
       <fieldset>
         <legend>Lançamento</legend>
 
-        <SelectItemArea
-          itemName="enterprise"
-          api={new ItemApi()}
-          returnSelectedItem={getSelectedItem}
-          canEdit={true}
-        />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            flexWrap: "wrap",
+            // alignContent: "center",
+          }}
+        >
+          <div style={{ margin: "0px auto" }}>
+            <SelectItemArea
+              itemName="enterprise"
+              api={new ItemApi()}
+              returnSelectedItem={getSelectedItem}
+              canEdit={true}
+            />
+            <div>
+              <label htmlFor="">date</label>
+              <input
+                type="date"
+                name="date"
+                value={transaction.date}
+                onChange={changeField}
+              />
+            </div>
+          </div>
 
-        <label htmlFor="">
-          date
-          <input
-            type="date"
-            name="date"
-            value={transaction.date}
-            onChange={changeField}
-          />
-        </label>
-
-        <button type="button" onClick={createTransaction} className="button">
-          Adicionar
-        </button>
-        <button type="button" onClick={getTransaction} className="button">
-          Buscar
-        </button>
-        <button type="button" onClick={updateTransaction} className="button">
-          Atualizar
-        </button>
-        <button type="button" onClick={deleteTransaction} className="button">
-          Deletar
-        </button>
+          <div style={{ margin: "0px auto" }}>
+            <button
+              type="button"
+              onClick={createTransaction}
+              className="button"
+            >
+              Adicionar
+            </button>
+            <button type="button" onClick={getTransaction} className="button">
+              Buscar
+            </button>
+            <button
+              type="button"
+              onClick={updateTransaction}
+              className="button"
+            >
+              Atualizar
+            </button>
+            <button
+              type="button"
+              onClick={deleteTransaction}
+              className="button"
+            >
+              Deletar
+            </button>
+          </div>
+        </div>
       </fieldset>
     </form>
   );

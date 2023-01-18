@@ -14,20 +14,24 @@ export const App = () => {
 
   return (
     <div>
-      <SearchTransactionArea updateTransactionItems={setTransactionItems} />
-      {/* <p></p>
-      <AddTransactionItemArea
-        api={api}
-        items={transactionItems}
-        updateTransactionItems={setTransactionItems}
-      />
-      <p></p>
-      <TransactionItemsList
-        api={api}
-        items={transactionItems}
-        updateTransactionItems={setTransactionItems}
-      />
-      <p></p> */}
+      <h2>Orçamento Doméstico</h2>
+      <div className="search-transaction-area">
+        <SearchTransactionArea updateTransactionItems={setTransactionItems} />
+      </div>
+      <div className="add-transaction-item-area">
+        <AddTransactionItemArea
+          api={api}
+          items={transactionItems}
+          updateTransactionItems={setTransactionItems}
+        />
+      </div>
+      <div className="transaction-items-list">
+        <TransactionItemsList
+          api={api}
+          items={transactionItems}
+          updateTransactionItems={setTransactionItems}
+        />
+      </div>
     </div>
   );
 };
