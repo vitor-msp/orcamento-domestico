@@ -1,3 +1,4 @@
+/************ General ************/
 * {
     box-sizing: border-box;
 }
@@ -17,6 +18,45 @@ body {
 h2 {
     text-align: center;
 }
+button {
+    padding: 7px 10px;
+    font-size: 1.0rem;
+    margin: 2px;
+    cursor: pointer;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    background-color: var(--secondary-color);
+}
+button:hover {
+    background-color: var(--secondary-color-transparent);
+}
+input, input:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    margin: 2px;
+}
+input[disabled] {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+h4 {
+    font-weight: normal;
+    padding: 5px;
+    margin: 0px;
+}
+button.btn-delete {
+    padding: 7px 13px;
+    background-color: var(--tertiary-color-transparent);
+}
+button.btn-delete:hover {
+    background-color: var(--tertiary-color);
+}
+/************ General ************/
+
+
+/************ Select Item Area ************/
 .dropdown-root {
     position: absolute;
 }
@@ -62,44 +102,37 @@ h2 {
 .dropdown-input:focus {
     /* outline: 3px solid #ddd; */
 }
+/************ Select Item Area ************/
+
+
+/************ Modal ************/
 .modal-div {
     display: inline;
 }
-button {
-    padding: 7px 10px;
-    font-size: 1.0rem;
-    margin: 2px;
-    cursor: pointer;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    background-color: var(--secondary-color);
+/************ Modal ************/
+
+
+/************ Transaction Item Area ************/
+div.transaction-item {
+    border: 2px solid var(--secondary-color);
+    border-radius: 5px;
 }
-button:hover {
-    background-color: var(--secondary-color-transparent);
+div.transaction-item div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 10px auto;
 }
-input, input:hover {
-    background-color: rgba(255, 255, 255, 0.6);
-    border: none;
-    border-radius: 3px;
-    padding: 5px 10px;
-    margin: 2px;
+div.transaction-item div div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-input[disabled] {
-    background-color: rgba(255, 255, 255, 0.3);
+div.transaction-item div div label {
+    margin: 0px 5px;
 }
-h4 {
-    font-weight: normal;
-    padding: 5px;
-    margin: 0px;
-}
-button.btn-delete {
-    padding: 7px 13px;
-    background-color: var(--tertiary-color-transparent);
-}
-button.btn-delete:hover {
-    background-color: var(--tertiary-color);
-}
+/************ Transaction Item Area ************/
 
 
 /************ Search Transaction Area ************/
@@ -129,22 +162,44 @@ div.search-transaction-area label {
 
 
 /************ Add Transaction Item Area ************/
-.add-transaction-item-area {
+div.add-transaction-item-area {
     border: none;
     border-radius: 10px;
     background-color: var(--primary-color);
     padding: 15px;
     margin: 15px;
 }
+div.add-transaction-item-area-btn {
+    display: flex;
+    justify-content: right;
+}
+div.add-transaction-item-area-btn button {
+    margin-top: 5px;
+}
 /************ Add Transaction Item Area ************/
 
 
 /************ Transaction Items List ************/
+div.transaction-items-list {
+    border: none;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    padding: 15px;
+    margin: 15px;
+}
 div.transaction-items-list-header {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+}
+div.transaction-items-list ul {
+    list-style-type: none;
+    padding: 0px;
+}
+div.transaction-items-list li {
+    text-decoration: none;
+    margin: 5px;
 }
 div.transaction-items-total-value {
     margin-right: 50px;
@@ -153,52 +208,11 @@ div.transaction-items-total-value {
 div.transaction-items-total-value .value {
     font-weight: bold;
 }
-div.items ul {
-    list-style-type: none;
-    padding: 0px;
-}
-div.items li {
-    text-decoration: none;
-    margin: 5px;
-}
 div.transaction-list-item-btn {
     display: flex;
     justify-content: right;
 }
 div.transaction-list-item-btn button {
     margin-top: 5px;
-}
-div.transaction-item {
-    border: 2px solid var(--secondary-color);
-    border-radius: 5px;
-}
-div.transaction-item div {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin: 10px auto;
-}
-div.transaction-item div div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-div.transaction-item div div label {
-    margin: 0px 5px;
-}
-div.item-btn {
-    display: flex;
-    justify-content: right;
-}
-div.item-btn button {
-    margin-top: 5px;
-}
-.transaction-items-list {
-    border: none;
-    border-radius: 10px;
-    background-color: var(--primary-color);
-    padding: 15px;
-    margin: 15px;
 }
 /************ Transaction Items List ************/

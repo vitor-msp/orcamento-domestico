@@ -24,7 +24,7 @@ export const TransactionItemsList = (props: TransactionItemsListProps) => {
   };
 
   return (
-    <div className="items">
+    <div>
       <div className="transaction-items-list-header">
         <h4>Itens</h4>
         <TransactionItemsTotalValue items={props.items} />

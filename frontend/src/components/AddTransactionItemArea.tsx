@@ -38,7 +38,7 @@ export const AddTransactionItemArea = (props: AddTransactionItemAreaProps) => {
           savedTransactionItem={null}
           canEditFields={true}
         />
-        <div className="item-btn">
+        <div className="add-transaction-item-area-btn">
           <button type="button" onClick={addTransactionItem}>
             Add
           </button>
