@@ -1,11 +1,8 @@
 import { useState } from "react";
-import ReactModal from "react-modal";
 import { Item } from "../domain/Item";
 import { IItemApi } from "../services/IItemApi";
 import { ModalListItem } from "./ModalListItem";
 import "../design/styles.css";
-
-ReactModal.setAppElement("#root");
 
 interface ModalProps {
   items: Item[];
@@ -57,37 +54,52 @@ export const Modal = (props: ModalProps) => {
   };
 
   return (
-    <div className="modal-div">
-      <button type="button" className="button" onClick={openModal}>
+    <div className="modal-btn">
+      <button type="button" onClick={openModal}>
         +
       </button>
       {modalIsOpen && (
-        <ReactModal isOpen={modalIsOpen} onRequestClose={closeModal}>
-          <p>Itens</p>
-          <input
-            type="text"
-            value={newItem.description}
-            name={"description"}
-            onChange={changeNewItem}
-          />
-          <button type="button" onClick={createItem}>
-            {"+"}
-          </button>
-          <ul>
-            {props.items.map((item) => {
-              return (
-                <ModalListItem
-                  key={item.id}
-                  item={item}
-                  api={props.api}
-                  deleteItem={deleteItem}
-                  updateItem={updateItem}
-                  selectItem={selectItem}
-                />
-              );
-            })}
-          </ul>
-        </ReactModal>
+        <div className="modal">
+          <div className="modal-content">
+            <div className="modal-header">
+              <div>
+                <h4>Itens</h4>
+              </div>
+              <div>
+                <button type="button" onClick={closeModal}>
+                  X
+                </button>
+              </div>
+            </div>
+            <div>
+              <input
+                type="text"
+                value={newItem.description}
+                name={"description"}
+                onChange={changeNewItem}
+              />
+              <button type="button" onClick={createItem}>
+                {"+"}
+              </button>
+            </div>
+            <div>
+              <ul>
+                {props.items.map((item) => {
+                  return (
+                    <ModalListItem
+                      key={item.id}
+                      item={item}
+                      api={props.api}
+                      deleteItem={deleteItem}
+                      updateItem={updateItem}
+                      selectItem={selectItem}
+                    />
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
