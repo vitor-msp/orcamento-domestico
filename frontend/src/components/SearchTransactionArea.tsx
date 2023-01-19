@@ -66,61 +66,40 @@ export const SearchTransactionArea = (props: SearchTransactionAreaProps) => {
   return (
     <form action="" onSubmit={FormUtils.blockSubmit}>
       <h4>Lançamento</h4>
-      <fieldset>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            flexWrap: "wrap",
-            // alignContent: "center",
-          }}
-        >
-          <div style={{ margin: "0px auto" }}>
-            <SelectItemArea
-              itemName="enterprise"
-              api={new ItemApi()}
-              returnSelectedItem={getSelectedItem}
-              canEdit={true}
+      <div>
+        <div>
+          <SelectItemArea
+            itemName="enterprise"
+            api={new ItemApi()}
+            returnSelectedItem={getSelectedItem}
+            canEdit={true}
+          />
+          <div>
+            <label htmlFor="">date</label>
+            <input
+              type="date"
+              name="date"
+              value={transaction.date}
+              onChange={changeField}
             />
-            <div>
-              <label htmlFor="">date</label>
-              <input
-                type="date"
-                name="date"
-                value={transaction.date}
-                onChange={changeField}
-              />
-            </div>
-          </div>
-
-          <div style={{ margin: "0px auto" }}>
-            <button
-              type="button"
-              onClick={createTransaction}
-              className="button"
-            >
-              Adicionar
-            </button>
-            <button type="button" onClick={getTransaction} className="button">
-              Buscar
-            </button>
-            <button
-              type="button"
-              onClick={updateTransaction}
-              className="button"
-            >
-              Atualizar
-            </button>
-            <button
-              type="button"
-              onClick={deleteTransaction}
-              className="button"
-            >
-              Deletar
-            </button>
           </div>
         </div>
-      </fieldset>
+
+        <div className="buttons">
+          <button type="button" onClick={createTransaction} className="button">
+            Adicionar
+          </button>
+          <button type="button" onClick={getTransaction} className="button">
+            Buscar
+          </button>
+          <button type="button" onClick={updateTransaction} className="button">
+            Atualizar
+          </button>
+          <button type="button" onClick={deleteTransaction} className="button">
+            Deletar
+          </button>
+        </div>
+      </div>
     </form>
   );
 };

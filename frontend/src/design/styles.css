@@ -17,27 +17,6 @@ body {
 h2 {
     text-align: center;
 }
-.search-transaction-area {
-    border: none;
-    border-radius: 10px;
-    background-color: var(--primary-color);
-    padding: 15px;
-    margin: 15px;
-}
-.transaction-items-list {
-    border: none;
-    border-radius: 10px;
-    background-color: var(--primary-color);
-    padding: 15px;
-    margin: 15px;
-}
-.add-transaction-item-area {
-    border: none;
-    border-radius: 10px;
-    background-color: var(--primary-color);
-    padding: 15px;
-    margin: 15px;
-}
 .dropdown-root {
     position: absolute;
 }
@@ -109,6 +88,86 @@ input, input:hover {
 input[disabled] {
     background-color: rgba(255, 255, 255, 0.3);
 }
+h4 {
+    font-weight: normal;
+    padding: 5px;
+    margin: 0px;
+}
+button.btn-delete {
+    padding: 7px 13px;
+    background-color: var(--tertiary-color-transparent);
+}
+button.btn-delete:hover {
+    background-color: var(--tertiary-color);
+}
+
+
+/************ Search Transaction Area ************/
+div.search-transaction-area {
+    border: none;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    padding: 15px;
+    margin: 15px;
+}
+div.search-transaction-area > form > div {
+    border: 2px solid var(--secondary-color);
+    border-radius: 5px;
+}
+div.search-transaction-area div div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    /* border: 1px solid red; */
+}
+div.search-transaction-area label {
+    margin-right: 3px;
+}
+/************ Search Transaction Area ************/
+
+
+/************ Add Transaction Item Area ************/
+.add-transaction-item-area {
+    border: none;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    padding: 15px;
+    margin: 15px;
+}
+/************ Add Transaction Item Area ************/
+
+
+/************ Transaction Items List ************/
+div.transaction-items-list-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+div.transaction-items-total-value {
+    margin-right: 50px;
+    /* border: 1px solid red; */
+}
+div.transaction-items-total-value .value {
+    font-weight: bold;
+}
+div.items ul {
+    list-style-type: none;
+    padding: 0px;
+}
+div.items li {
+    text-decoration: none;
+    margin: 5px;
+}
+div.transaction-list-item-btn {
+    display: flex;
+    justify-content: right;
+}
+div.transaction-list-item-btn button {
+    margin-top: 5px;
+}
 div.transaction-item {
     border: 2px solid var(--secondary-color);
     border-radius: 5px;
@@ -135,43 +194,11 @@ div.item-btn {
 div.item-btn button {
     margin-top: 5px;
 }
-h4 {
-    font-weight: normal;
-    padding: 5px;
-    margin: 0px;
+.transaction-items-list {
+    border: none;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    padding: 15px;
+    margin: 15px;
 }
-div.items ul {
-    list-style-type: none;
-    padding: 0px;
-}
-div.items li {
-    text-decoration: none;
-    margin: 5px;
-}
-div.transaction-list-item-btn {
-    display: flex;
-    justify-content: right;
-}
-div.transaction-list-item-btn button {
-    margin-top: 5px;
-}
-button.btn-delete {
-    padding: 7px 13px;
-    background-color: var(--tertiary-color-transparent);
-}
-button.btn-delete:hover {
-    background-color: var(--tertiary-color);
-}
-div.transaction-items-list-header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-div.transaction-items-total-value {
-    margin-right: 50px;
-    /* border: 1px solid red; */
-}
-div.transaction-items-total-value .value {
-    font-weight: bold;
-}
+/************ Transaction Items List ************/
