@@ -34,11 +34,16 @@ export const ModalListItem = (props: ModalListItemProps) => {
     setEdit(false);
   };
 
+  const selectItem = (): void => {
+    if (props.activeItem === props.item.id) props.selectItem(props.item);
+    props.setActiveItem(props.item.id);
+  };
+
   return (
     <li
       key={props.item.id}
       className={props.activeItem === props.item.id ? "modal-li-active" : ""}
-      onClick={() => props.setActiveItem(props.item.id)}
+      onClick={selectItem}
     >
       <div className="modal-li-input">
         <input
@@ -70,9 +75,6 @@ export const ModalListItem = (props: ModalListItemProps) => {
           x
         </button>
       </div>
-      {/* <button type="button" onClick={() => props.selectItem(props.item)}>
-        Selecionar
-      </button> */}
     </li>
   );
 };
