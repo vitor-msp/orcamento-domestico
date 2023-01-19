@@ -118,7 +118,6 @@ div.modal {
     width: 100%;
     margin: 0px !important;
     height: 100%;
-    overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
 }
 div.modal-content {
@@ -128,19 +127,25 @@ div.modal-content {
     border: none;
     border-radius: 5px;
     width: 60%;
-    max-height: 80%;
-    overflow-y: auto;
-}
-div.modal-content {
+    height: 40vw;
     display: flex !important;
     flex-direction: column !important;
     flex-wrap: wrap !important;
 }
 div.modal ul {
     list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* border: 1px solid red; */
+    height: 300px;
+    max-height: 300px;
 }
 div.modal li {
     text-decoration: none;
+    margin: 0px;
+    padding: 0px;
 }
 div.modal input {
     padding: 8px;
