@@ -12,6 +12,7 @@ interface ModalListItemProps {
 
 export const ModalListItem = (props: ModalListItemProps) => {
   const [item, setItem] = useState<Item>(props.item);
+  const [edit, setEdit] = useState<boolean>(false);
 
   const changeItem = (event: any): any => {
     setItem({ ...item, [event.target.name]: event.target.value });
@@ -28,6 +29,7 @@ export const ModalListItem = (props: ModalListItemProps) => {
   const updateItem = async (): Promise<void> => {
     await props.api.update(item.id, item);
     props.updateItem(item);
+    setEdit(false);
   };
 
   return (
@@ -37,16 +39,28 @@ export const ModalListItem = (props: ModalListItemProps) => {
         value={item.description}
         name={"description"}
         onChange={changeItem}
+        disabled={!edit}
       />
-      <button type="button" onClick={updateItem}>
-        Salvar
-      </button>
-      <button type="button" onClick={deleteItem}>
+      {(edit && (
+        <>
+          <button type="button" onClick={() => setEdit(false)}>
+            Cancelar
+          </button>
+          <button type="button" onClick={updateItem}>
+            Salvar
+          </button>
+        </>
+      )) || (
+        <button type="button" onClick={() => setEdit(true)}>
+          Editar
+        </button>
+      )}
+      <button type="button" className="btn-delete" onClick={deleteItem}>
         x
       </button>
-      <button type="button" onClick={() => props.selectItem(props.item)}>
+      {/* <button type="button" onClick={() => props.selectItem(props.item)}>
         Selecionar
-      </button>
+      </button> */}
     </li>
   );
 };

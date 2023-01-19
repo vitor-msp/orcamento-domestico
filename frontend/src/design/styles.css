@@ -31,8 +31,9 @@ button {
 button:hover {
     background-color: var(--secondary-color-transparent);
 }
-input, input:hover {
+input, input:hover, input:focus {
     background-color: rgba(255, 255, 255, 0.6);
+    color: var(--primary-color);
     border: none;
     border-radius: 3px;
     padding: 5px 10px;
@@ -40,6 +41,7 @@ input, input:hover {
 }
 input[disabled] {
     background-color: rgba(255, 255, 255, 0.3);
+    color: white;
 }
 h4 {
     font-weight: normal;
@@ -84,7 +86,7 @@ button.btn-delete:hover {
     cursor: pointer;
     margin: 0%;
 }
-.dropdown li:hover {
+.dropdown > li:hover {
     background-color: #ddd;
 }
 .dropdown-input {
@@ -132,7 +134,16 @@ div.modal-content {
     flex-direction: column !important;
     flex-wrap: wrap !important;
 }
-div.modal ul {
+div.modal-header {
+    display: flex;
+    flex-direction: row !important;
+    justify-content: center !important;
+    width: 90%;
+}
+div.modal-header button {
+    margin-left: 500px;
+}
+div.modal-list ul {
     list-style-type: none;
     margin: 0px;
     padding: 0px;
@@ -142,22 +153,13 @@ div.modal ul {
     height: 300px;
     max-height: 300px;
 }
-div.modal li {
+div.modal-list li {
     text-decoration: none;
     margin: 0px;
     padding: 0px;
 }
 div.modal input {
     padding: 8px;
-}
-div.modal-header {
-    display: flex;
-    flex-direction: row !important;
-    justify-content: center !important;
-    width: 90%;
-}
-div.modal-header button {
-    margin-left: 500px;
 }
 /************ Modal ************/
 

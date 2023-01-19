@@ -82,7 +82,7 @@ export const Modal = (props: ModalProps) => {
                 {"+"}
               </button>
             </div>
-            <div>
+            <div className="modal-list">
               <ul>
                 {props.items.map((item) => {
                   return (
