@@ -8,6 +8,8 @@ interface ModalListItemProps {
   deleteItem: (itemToDelete: Item) => void;
   updateItem: (itemToUpdate: Item) => void;
   selectItem: (item: Item) => void;
+  activeItem: string;
+  setActiveItem: (item: string) => void;
 }
 
 export const ModalListItem = (props: ModalListItemProps) => {
@@ -33,31 +35,41 @@ export const ModalListItem = (props: ModalListItemProps) => {
   };
 
   return (
-    <li key={props.item.id}>
-      <input
-        type="text"
-        value={item.description}
-        name={"description"}
-        onChange={changeItem}
-        disabled={!edit}
-      />
+    <li
+      key={props.item.id}
+      className={props.activeItem === props.item.id ? "modal-li-active" : ""}
+      onClick={() => props.setActiveItem(props.item.id)}
+    >
+      <div className="modal-li-input">
+        <input
+          type="text"
+          value={item.description}
+          name={"description"}
+          onChange={changeItem}
+          disabled={!edit}
+        />
+      </div>
       {(edit && (
-        <>
+        <div>
           <button type="button" onClick={() => setEdit(false)}>
             Cancelar
           </button>
           <button type="button" onClick={updateItem}>
             Salvar
           </button>
-        </>
+        </div>
       )) || (
-        <button type="button" onClick={() => setEdit(true)}>
-          Editar
-        </button>
+        <div>
+          <button type="button" onClick={() => setEdit(true)}>
+            Editar
+          </button>
+        </div>
       )}
-      <button type="button" className="btn-delete" onClick={deleteItem}>
-        x
-      </button>
+      <div>
+        <button type="button" className="btn-delete" onClick={deleteItem}>
+          x
+        </button>
+      </div>
       {/* <button type="button" onClick={() => props.selectItem(props.item)}>
         Selecionar
       </button> */}

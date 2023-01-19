@@ -15,6 +15,7 @@ export const Modal = (props: ModalProps) => {
   const emptyItem: Item = { id: "", description: "" };
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
   const [newItem, setNewItem] = useState<Item>(emptyItem);
+  const [activeItem, setActiveItem] = useState<string>("");
 
   const closeModal = (): void => {
     setModalIsOpen(false);
@@ -93,6 +94,8 @@ export const Modal = (props: ModalProps) => {
                       deleteItem={deleteItem}
                       updateItem={updateItem}
                       selectItem={selectItem}
+                      activeItem={activeItem}
+                      setActiveItem={setActiveItem}
                     />
                   );
                 })}
