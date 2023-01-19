@@ -56,11 +56,11 @@ export const SearchTransactionArea = (props: SearchTransactionAreaProps) => {
 
   const getTransaction = async (): Promise<void> => {
     const { enterprise, date } = transaction;
-    if (fieldIsValid(enterprise) && fieldIsValid(date)) {
-      const savedTransaction = await api.get(transaction);
-      setTransaction({ ...savedTransaction });
-      props.updateTransactionItems(savedTransaction.transactionItems!);
-    }
+    // if (fieldIsValid(enterprise) && fieldIsValid(date)) {
+    const savedTransaction = await api.get(transaction);
+    setTransaction({ ...savedTransaction });
+    props.updateTransactionItems(savedTransaction.transactionItems!);
+    // }
   };
 
   return (

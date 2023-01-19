@@ -6,6 +6,8 @@
     --primary-color-transparent: rgba(14, 51, 119, 0.8);
     --secondary-color: rgb(139, 139, 139);
     --secondary-color-transparent: rgba(139, 139, 139, 0.5);
+    --tertiary-color: rgb(214, 25, 25);
+    --tertiary-color-transparent: rgba(214, 25, 25, 0.5);
 }
 body {
     background-color: var(--primary-color-transparent);
@@ -85,11 +87,12 @@ h2 {
     display: inline;
 }
 button {
-    padding: 5px 10px;
+    padding: 7px 10px;
+    font-size: 1.0rem;
     margin: 2px;
     cursor: pointer;
     color: white;
-    border: white;
+    border: none;
     border-radius: 3px;
     background-color: var(--secondary-color);
 }
@@ -106,7 +109,6 @@ input, input:hover {
 input[disabled] {
     background-color: rgba(255, 255, 255, 0.3);
 }
-/* transaction-item */
 div.transaction-item {
     border: 2px solid var(--secondary-color);
     border-radius: 5px;
@@ -119,7 +121,6 @@ div.transaction-item div {
     margin: 10px auto;
 }
 div.transaction-item div div {
-    /* border: 1px solid red; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -128,13 +129,10 @@ div.transaction-item div div label {
     margin: 0px 5px;
 }
 div.item-btn {
-    margin-left: auto;
     display: flex;
     justify-content: right;
 }
 div.item-btn button {
-    padding: 10px 15px;
-    font-size: 1.0rem;
     margin-top: 5px;
 }
 h4 {
@@ -150,7 +148,30 @@ div.items li {
     text-decoration: none;
     margin: 5px;
 }
-/* div.item {
-    border: 1px solid red;
+div.transaction-list-item-btn {
     display: flex;
-} */
+    justify-content: right;
+}
+div.transaction-list-item-btn button {
+    margin-top: 5px;
+}
+button.btn-delete {
+    padding: 7px 13px;
+    background-color: var(--tertiary-color-transparent);
+}
+button.btn-delete:hover {
+    background-color: var(--tertiary-color);
+}
+div.transaction-items-list-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+div.transaction-items-total-value {
+    margin-right: 50px;
+    /* border: 1px solid red; */
+}
+div.transaction-items-total-value .value {
+    font-weight: bold;
+}

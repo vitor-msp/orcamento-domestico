@@ -1,5 +1,6 @@
 import { TransactionItem } from "../domain/TransactionItem";
 import { ITransactionItemApi } from "../services/ITransactionItemApi";
+import { TransactionItemsTotalValue } from "./TransactionItemsTotalValue";
 import { TransactionListItem } from "./TransactionListItem";
 
 interface TransactionItemsListProps {
@@ -24,7 +25,10 @@ export const TransactionItemsList = (props: TransactionItemsListProps) => {
 
   return (
     <div className="items">
-      <h4>Itens</h4>
+      <div className="transaction-items-list-header">
+        <h4>Itens</h4>
+        <TransactionItemsTotalValue items={props.items} />
+      </div>
       <ul>
         {props.items.map((item) => {
           return (
