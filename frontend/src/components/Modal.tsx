@@ -101,6 +101,11 @@ export const Modal = (props: ModalProps) => {
                 })}
               </ul>
             </div>
+            <div className="modal-footer">
+              <button type="button" disabled={activeItem === ""}>
+                Selecionar
+              </button>
+            </div>
           </div>
         </div>
       )}
