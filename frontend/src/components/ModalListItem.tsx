@@ -35,14 +35,15 @@ export const ModalListItem = (props: ModalListItemProps) => {
   };
 
   const selectItem = (): void => {
-    if (props.activeItem?.id === props.item.id) props.selectItem(props.item);
     props.setActiveItem(props.item);
   };
 
   return (
     <li
       key={props.item.id}
-      className={props.activeItem?.id === props.item.id ? "modal-li-active" : ""}
+      className={
+        props.activeItem?.id === props.item.id ? "modal-li-active" : ""
+      }
       onClick={selectItem}
     >
       <div className="modal-li-input">
