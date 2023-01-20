@@ -1,45 +1,65 @@
+import { AxiosInstance } from "axios";
 import { Transaction } from "../domain/Transaction";
 import { ITransactionApi } from "./ITransactionApi";
 
 export class TransactionApi implements ITransactionApi {
-  async create(entity: Transaction): Promise<Transaction> {
-    entity.id = "1";
-    console.log(entity);
-    return entity;
+  constructor(
+    private readonly api: AxiosInstance,
+    private readonly uri: string
+  ) {}
+
+  async create(entity: Transaction): Promise<Transaction | null> {
+    try {
+      const res = await this.api.post<Transaction>(`${this.uri}`, entity);
+      entity.id = res.data.id;
+      console.log(entity);
+      return entity;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
   }
 
-  async update(id: string, entity: Transaction): Promise<Transaction> {
-    console.log(entity);
-    return entity;
+  async update(entity: Transaction): Promise<Transaction | null> {
+    try {
+      const res = await this.api.put<Transaction>(
+        `${this.uri}/${entity.id}`,
+        entity
+      );
+      entity.id = res.data.id;
+      console.log(entity);
+      return entity;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
   }
 
-  async delete(id: string): Promise<void> {}
+  async delete(entity: Transaction): Promise<void | null> {
+    try {
+      const res = await this.api.delete<Transaction>(
+        `${this.uri}/${entity.id}`
+      );
+      entity.id = res.data.id;
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  }
 
-  async get(entity: Transaction): Promise<Transaction> {
-    return {
-      id: "1",
-      enterprise: "1",
-      date: "",
-      transactionItems: [
-        {
-          id: "1",
-          brand: { id: "1", description: "ipe" },
-          category: { id: "1", description: "limpeza" },
-          item: { id: "1", description: "detergente" },
-          totalValue: 5,
-          quantity: 1,
-          unitOfMeasurement: "300mL",
-        },
-        {
-          id: "2",
-          brand: { id: "2", description: "minuano" },
-          category: { id: "1", description: "limpeza" },
-          item: { id: "1", description: "detergente" },
-          totalValue: 6.5,
-          quantity: 2,
-          unitOfMeasurement: "350mL",
-        },
-      ],
-    };
+  async get(entity: Transaction): Promise<Transaction | null> {
+    try {
+      console.log(entity);
+      const res = await this.api.get<Transaction>(`${this.uri}`, {
+        data: entity,
+      });
+      entity = res.data;
+      console.log(entity);
+      return entity;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
   }
 }

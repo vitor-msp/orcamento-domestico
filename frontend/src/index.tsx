@@ -4,6 +4,8 @@ import ReactDOM from "react-dom/client";
 import { App } from "./components/App";
 import { IItemApi } from "./services/IItemApi";
 import { ItemApi } from "./services/ItemApi";
+import { ITransactionApi } from "./services/ITransactionApi";
+import { TransactionApi } from "./services/TransactionApi";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -17,6 +19,10 @@ export const enterpriseApi: IItemApi = new ItemApi(axiosApi, API_URI, `enterpris
 export const itemApi: IItemApi = new ItemApi(axiosApi, API_URI,`items`);
 export const brandApi: IItemApi = new ItemApi(axiosApi, API_URI,`brands`);
 export const categoryApi: IItemApi = new ItemApi(axiosApi, API_URI,`categories`);
+export const transactionApi: ITransactionApi = new TransactionApi(
+  axiosApi,
+  `${API_URI}/transactions`
+);
 
 root.render(
   <React.StrictMode>
