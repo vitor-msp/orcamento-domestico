@@ -42,9 +42,13 @@ export const Modal = (props: ModalProps) => {
   };
 
   const createItem = async (): Promise<void> => {
-    const id = await props.api.create(newItem);
-    newItem.id = id;
-    props.items.push(newItem);
+    const savedItem = await props.api.create(newItem);
+    if (savedItem === null) {
+      alert("Erro ao criar o item!");
+      return;
+    }
+    // newItem.id = savedItem.id;
+    props.items.push(savedItem);
     setNewItem(emptyItem);
     props.updateItems(props.items);
   };

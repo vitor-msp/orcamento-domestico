@@ -22,15 +22,22 @@ export const ModalListItem = (props: ModalListItemProps) => {
 
   const deleteItem = async (): Promise<void> => {
     // eslint-disable-next-line no-restricted-globals
-    if (confirm("Delete item?")) {
-      await props.api.delete(item.id);
-      props.deleteItem(item);
+    if (!confirm("Delete item?")) return;
+    const nullWhenError = await props.api.delete(item);
+    if (nullWhenError === null) {
+      alert("Erro ao deletar o item!");
+      return;
     }
+    props.deleteItem(item);
   };
 
   const updateItem = async (): Promise<void> => {
-    await props.api.update(item.id, item);
-    props.updateItem(item);
+    const updatedItem = await props.api.update(item);
+    if (updatedItem === null) {
+      alert("Erro ao salvar o item!");
+      return;
+    }
+    props.updateItem(updatedItem);
     setEdit(false);
   };
 

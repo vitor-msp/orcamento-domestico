@@ -22,7 +22,12 @@ export const SelectItemArea = (props: SelectItemAreaProps) => {
 
   useEffect(() => {
     (async () => {
+      if (defaultItems.length !== 0) return;
       const items = await props.api.getAll();
+      if (items === null) {
+        alert("Erro ao carregar os itens!");
+        return;
+      }
       setDefaultItems(items);
     })();
   }, []);

@@ -1,27 +1,57 @@
+import { AxiosInstance } from "axios";
 import { Item } from "../domain/Item";
 import { IItemApi } from "./IItemApi";
 
 export class ItemApi implements IItemApi {
-  async create(entity: Item): Promise<string> {
-    alert(`created in backend: ${entity.description}`);
-    const id = Math.floor(Math.random() * 1000).toString();
-    return id;
+  constructor(
+    private readonly api: AxiosInstance,
+    private readonly uri: string
+  ) {}
+
+  async create(entity: Item): Promise<Item | null> {
+    try {
+      const res = await this.api.post(`${this.uri}`, entity);
+      entity = res.data;
+      console.log(entity);
+      return entity;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
   }
 
-  async update(id: string, entity: Item): Promise<void> {
-    alert(`updated in backend: ${id} ${entity.description}`);
+  async update(entity: Item): Promise<Item | null> {
+    try {
+      const res = await this.api.post(`${this.uri}/${entity.id}`, entity);
+      entity = res.data;
+      console.log(entity);
+      return entity;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
   }
 
-  async delete(id: string): Promise<void> {
-    alert(`deleted in backend: ${id}`);
+  async delete(entity: Item): Promise<void | null> {
+    try {
+      const res = await this.api.delete(`${this.uri}/${entity.id}`);
+      entity = res.data;
+      console.log(entity);
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
   }
 
-  async getAll(): Promise<Item[]> {
-    return [
-      { id: "1", description: "Citopharma" },
-      { id: "2", description: "Autentica" },
-      { id: "3", description: "Cemig" },
-      { id: "4", description: "Tim" },
-    ];
+  async getAll(): Promise<Item[] | null> {
+    try {
+      const res = await this.api.get(`${this.uri}`);
+      const entities: Item[] = res.data;
+      console.log(entities);
+      return entities;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
   }
 }

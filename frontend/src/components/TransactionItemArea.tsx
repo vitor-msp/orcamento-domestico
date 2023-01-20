@@ -3,6 +3,7 @@ import { Item } from "../domain/Item";
 import { TransactionItem } from "../domain/TransactionItem";
 import { ItemApi } from "../services/ItemApi";
 import { SelectItemArea } from "./SelectItemArea";
+import { itemApi, brandApi, categoryApi } from "..";
 
 interface TransactionItemAreaProps {
   updateTransactionItem: (transactionItem: TransactionItem) => void;
@@ -42,7 +43,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
         <div>
           <label htmlFor="transaction-item-item">item</label>
           <SelectItemArea
-            api={new ItemApi()}
+            api={itemApi}
             itemName="Item"
             returnSelectedItem={(item) => {
               getSelectedItem(item, "item");
@@ -54,7 +55,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
         <div>
           <label htmlFor="transaction-item-brand">marca</label>
           <SelectItemArea
-            api={new ItemApi()}
+            api={brandApi}
             itemName="Brand"
             returnSelectedItem={(item) => {
               getSelectedItem(item, "brand");
@@ -66,7 +67,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
         <div>
           <label htmlFor="transaction-item-category">categoria</label>
           <SelectItemArea
-            api={new ItemApi()}
+            api={categoryApi}
             itemName="Category"
             returnSelectedItem={(item) => {
               getSelectedItem(item, "category");

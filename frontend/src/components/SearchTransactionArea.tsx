@@ -2,12 +2,12 @@ import { useState } from "react";
 import { Item } from "../domain/Item";
 import { Transaction } from "../domain/Transaction";
 import { TransactionItem } from "../domain/TransactionItem";
-import { ItemApi } from "../services/ItemApi";
 import { ITransactionApi } from "../services/ITransactionApi";
 import { TransactionApi } from "../services/TransactionApi";
 import { FormUtils } from "../utils/FormUtils";
 import { SelectItemArea } from "./SelectItemArea";
 import "../design/styles.css";
+import { enterpriseApi } from "..";
 
 interface SearchTransactionAreaProps {
   updateTransactionItems: (transactionItems: TransactionItem[]) => void;
@@ -56,11 +56,11 @@ export const SearchTransactionArea = (props: SearchTransactionAreaProps) => {
 
   const getTransaction = async (): Promise<void> => {
     const { enterprise, date } = transaction;
-    // if (fieldIsValid(enterprise) && fieldIsValid(date)) {
-    const savedTransaction = await api.get(transaction);
-    setTransaction({ ...savedTransaction });
-    props.updateTransactionItems(savedTransaction.transactionItems!);
-    // }
+    if (fieldIsValid(enterprise) && fieldIsValid(date)) {
+      const savedTransaction = await api.get(transaction);
+      setTransaction({ ...savedTransaction });
+      props.updateTransactionItems(savedTransaction.transactionItems!);
+    }
   };
 
   return (
@@ -71,7 +71,7 @@ export const SearchTransactionArea = (props: SearchTransactionAreaProps) => {
           <label htmlFor="select-item-area-input">empresa</label>
           <SelectItemArea
             itemName="enterprise"
-            api={new ItemApi()}
+            api={enterpriseApi}
             returnSelectedItem={getSelectedItem}
             canEdit={true}
           />
