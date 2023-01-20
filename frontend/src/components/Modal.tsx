@@ -15,7 +15,7 @@ export const Modal = (props: ModalProps) => {
   const emptyItem: Item = { id: "", description: "" };
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
   const [newItem, setNewItem] = useState<Item>(emptyItem);
-  const [activeItem, setActiveItem] = useState<string>("");
+  const [activeItem, setActiveItem] = useState<Item | null>(null);
 
   const closeModal = (): void => {
     setModalIsOpen(false);
@@ -52,6 +52,10 @@ export const Modal = (props: ModalProps) => {
   const selectItem = (item: Item): void => {
     props.selectItem(item);
     closeModal();
+  };
+
+  const selectActiveItem = (): void => {
+    if (activeItem) selectItem(activeItem);
   };
 
   return (
@@ -102,7 +106,11 @@ export const Modal = (props: ModalProps) => {
               </ul>
             </div>
             <div className="modal-footer">
-              <button type="button" disabled={activeItem === ""}>
+              <button
+                type="button"
+                disabled={!activeItem}
+                onClick={selectActiveItem}
+              >
                 Selecionar
               </button>
             </div>
