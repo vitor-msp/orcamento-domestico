@@ -67,37 +67,39 @@ export const SelectItemArea = (props: SelectItemAreaProps) => {
   };
 
   return (
-    <div className="dropdown-root">
-      <div className="dropdown">
-        <div className="dropdown-content">
-          <label htmlFor="select-item-area-input">{props.itemName}</label>
-          <input
-            type="text"
-            placeholder={`Digite o(a) ${props.itemName}...`}
-            className="dropdown-input"
-            onChange={captureCurrentText}
-            onFocus={() => setShowDropdown(true)}
-            onBlur={currentTextFocusOut}
-            value={currentText}
-            disabled={!canEdit}
-            id="select-item-area-input"
-          />
-
-          <Modal
+    <div className="dropdown">
+      <div className="dropdown-search">
+        <label htmlFor="select-item-area-input">{props.itemName}</label>
+        <input
+          type="text"
+          placeholder={`Digite o(a) ${props.itemName}...`}
+          className="dropdown-input"
+          onChange={captureCurrentText}
+          onFocus={() => setShowDropdown(true)}
+          onBlur={currentTextFocusOut}
+          value={currentText}
+          disabled={!canEdit}
+          id="select-item-area-input"
+        />
+      </div>
+      <div
+        className="dropdown-content"
+        style={showDropdown ? { display: "block" } : { display: "none" }}
+      >
+        {/* <Modal
             items={defaultItems}
             api={props.api}
             updateItems={setDefaultItems}
             selectItem={selectItem}
-          />
+          /> */}
 
-          <ul style={showDropdown ? { display: "block" } : { display: "none" }}>
-            {currentItems.map((item) => (
-              <li key={item.id} onClick={() => selectItem(item)}>
-                {item.description}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ul>
+          {currentItems.map((item) => (
+            <li key={item.id} onClick={() => selectItem(item)}>
+              {item.description}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );

@@ -59,10 +59,12 @@ export const Modal = (props: ModalProps) => {
   };
 
   return (
-    <div className="modal-btn">
-      <button type="button" onClick={openModal}>
-        +
-      </button>
+    <>
+      <div className="modal-btn">
+        <button type="button" onClick={openModal}>
+          +
+        </button>
+      </div>
       {modalIsOpen && (
         <div className="modal">
           <div className="modal-content">
@@ -117,6 +119,6 @@ export const Modal = (props: ModalProps) => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
