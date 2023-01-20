@@ -69,7 +69,7 @@ export const SelectItemArea = (props: SelectItemAreaProps) => {
   return (
     <div className="dropdown">
       <div>
-        <label htmlFor="select-item-area-input">{props.itemName}</label>
+        {/* <label htmlFor="select-item-area-input">{props.itemName}</label> */}
         <input
           type="text"
           placeholder={`Digite o(a) ${props.itemName}...`}

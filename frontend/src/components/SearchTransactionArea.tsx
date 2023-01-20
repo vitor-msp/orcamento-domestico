@@ -68,6 +68,7 @@ export const SearchTransactionArea = (props: SearchTransactionAreaProps) => {
       <h4>Lançamento</h4>
       <div>
         <div>
+          <label htmlFor="select-item-area-input">empresa</label>
           <SelectItemArea
             itemName="enterprise"
             api={new ItemApi()}

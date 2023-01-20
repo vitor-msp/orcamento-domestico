@@ -52,7 +52,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
           />
         </div>
         <div>
-          <label htmlFor="transaction-item-brand">Brand</label>
+          <label htmlFor="transaction-item-brand">marca</label>
           <SelectItemArea
             api={new ItemApi()}
             itemName="Brand"
@@ -64,7 +64,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
           />
         </div>
         <div>
-          <label htmlFor="transaction-item-category">Category</label>
+          <label htmlFor="transaction-item-category">categoria</label>
           <SelectItemArea
             api={new ItemApi()}
             itemName="Category"
@@ -78,7 +78,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
       </div>
       <div>
         <div>
-          <label htmlFor="transaction-item-quantity">Quantity</label>
+          <label htmlFor="transaction-item-quantity">quantidade</label>
           <input
             type="number"
             name="quantity"
@@ -89,7 +89,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
           />
         </div>
         <div>
-          <label htmlFor="transaction-item-um">Unit of Measurement</label>
+          <label htmlFor="transaction-item-um">unidade de medida</label>
           <input
             type="text"
             name="unitOfMeasurement"
@@ -100,7 +100,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
           />
         </div>
         <div>
-          <label htmlFor="transaction-item-total-value">Total Value</label>
+          <label htmlFor="transaction-item-total-value">valor total</label>
           <input
             type="number"
             step={0.1}
