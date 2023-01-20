@@ -68,7 +68,7 @@ export const SelectItemArea = (props: SelectItemAreaProps) => {
 
   return (
     <div className="dropdown">
-      <div className="dropdown-search">
+      <div>
         <label htmlFor="select-item-area-input">{props.itemName}</label>
         <input
           type="text"
@@ -81,18 +81,17 @@ export const SelectItemArea = (props: SelectItemAreaProps) => {
           disabled={!canEdit}
           id="select-item-area-input"
         />
+        <Modal
+          items={defaultItems}
+          api={props.api}
+          updateItems={setDefaultItems}
+          selectItem={selectItem}
+        />
       </div>
       <div
         className="dropdown-content"
         style={showDropdown ? { display: "block" } : { display: "none" }}
       >
-        {/* <Modal
-            items={defaultItems}
-            api={props.api}
-            updateItems={setDefaultItems}
-            selectItem={selectItem}
-          /> */}
-
         <ul>
           {currentItems.map((item) => (
             <li key={item.id} onClick={() => selectItem(item)}>
