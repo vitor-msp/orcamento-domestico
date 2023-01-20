@@ -47,10 +47,9 @@ export const Modal = (props: ModalProps) => {
       alert("Erro ao criar o item!");
       return;
     }
-    // newItem.id = savedItem.id;
     props.items.push(savedItem);
-    setNewItem(emptyItem);
     props.updateItems(props.items);
+    setNewItem(emptyItem);
   };
 
   const selectItem = (item: Item): void => {

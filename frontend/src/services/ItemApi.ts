@@ -3,16 +3,20 @@ import { Item } from "../domain/Item";
 import { IItemApi } from "./IItemApi";
 
 export class ItemApi implements IItemApi {
-  constructor(
-    private readonly api: AxiosInstance,
-    private readonly uri: string
-  ) {}
+  private readonly api: AxiosInstance;
+  private readonly uri: string;
+  private readonly entityName: string;
+
+  constructor(api: AxiosInstance, uri: string, entityName: string) {
+    this.api = api;
+    this.uri = `${uri}/${entityName}`;
+    this.entityName = entityName;
+  }
 
   async create(entity: Item): Promise<Item | null> {
     try {
-      const res = await this.api.post(`${this.uri}`, entity);
-      entity = res.data;
-      console.log(entity);
+      const res = await this.api.post<Item>(`${this.uri}`, entity);
+      entity.id = res.data.id;
       return entity;
     } catch (error) {
       console.log(error);
@@ -22,9 +26,8 @@ export class ItemApi implements IItemApi {
 
   async update(entity: Item): Promise<Item | null> {
     try {
-      const res = await this.api.post(`${this.uri}/${entity.id}`, entity);
-      entity = res.data;
-      console.log(entity);
+      const res = await this.api.put<Item>(`${this.uri}/${entity.id}`, entity);
+      entity.id = res.data.id;
       return entity;
     } catch (error) {
       console.log(error);
@@ -34,9 +37,8 @@ export class ItemApi implements IItemApi {
 
   async delete(entity: Item): Promise<void | null> {
     try {
-      const res = await this.api.delete(`${this.uri}/${entity.id}`);
-      entity = res.data;
-      console.log(entity);
+      const res = await this.api.delete<Item>(`${this.uri}/${entity.id}`);
+      entity.id = res.data.id;
     } catch (error) {
       console.log(error);
       return null;
@@ -46,8 +48,7 @@ export class ItemApi implements IItemApi {
   async getAll(): Promise<Item[] | null> {
     try {
       const res = await this.api.get(`${this.uri}`);
-      const entities: Item[] = res.data;
-      console.log(entities);
+      const entities: Item[] = res.data[this.entityName];
       return entities;
     } catch (error) {
       console.log(error);

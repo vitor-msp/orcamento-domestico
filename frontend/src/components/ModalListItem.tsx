@@ -23,8 +23,8 @@ export const ModalListItem = (props: ModalListItemProps) => {
   const deleteItem = async (): Promise<void> => {
     // eslint-disable-next-line no-restricted-globals
     if (!confirm("Delete item?")) return;
-    const nullWhenError = await props.api.delete(item);
-    if (nullWhenError === null) {
+    const nullOnError = await props.api.delete(item);
+    if (nullOnError === null) {
       alert("Erro ao deletar o item!");
       return;
     }
