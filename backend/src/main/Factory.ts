@@ -52,7 +52,8 @@ import { DeleteTransaction } from "../use-cases/transaction/DeleteTransaction";
 import { GetTransaction } from "../use-cases/transaction/GetTransaction";
 import { UpdateTransaction } from "../use-cases/transaction/UpdateTransaction";
 import { TransactionItemValidator } from "../validators/TransactionItemValidator";
-import { TransactionValidator } from "../validators/TransactionValidator";
+import { TransactionValidatorBody } from "../validators/TransactionValidatorBody";
+import { TransactionValidatorQuery } from "../validators/TransactionValidatorQuery";
 
 let createItemController: CreateItemController;
 let updateItemController: UpdateItemController;
@@ -147,10 +148,10 @@ let deleteTransactionItemController: DeleteTransactionItemController;
     transactionRepository,
     enterpriseRepository
   );
-  const transactionValidator = new TransactionValidator();
+  const transactionValidatorBody = new TransactionValidatorBody();
   createTransactionController = new CreateTransactionController(
     createTransactionUseCase,
-    transactionValidator
+    transactionValidatorBody
   );
   const updateTransactionUseCase = new UpdateTransaction(
     transactionRepository,
@@ -158,7 +159,7 @@ let deleteTransactionItemController: DeleteTransactionItemController;
   );
   updateTransactionController = new UpdateTransactionController(
     updateTransactionUseCase,
-    transactionValidator
+    transactionValidatorBody
   );
 
   const transactionItemRepository = new TransactionItemRepository(dbClient);
@@ -198,13 +199,14 @@ let deleteTransactionItemController: DeleteTransactionItemController;
   deleteTransactionController = new DeleteTransactionController(
     deleteTransactionUseCase
   );
+  const transactionValidatorQuery = new TransactionValidatorQuery();
   const getTransactionUseCase = new GetTransaction(
     transactionRepository,
     transactionItemRepository
   );
   getTransactionController = new GetTransactionController(
     getTransactionUseCase,
-    transactionValidator
+    transactionValidatorQuery
   );
 })();
 

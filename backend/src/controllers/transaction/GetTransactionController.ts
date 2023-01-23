@@ -18,8 +18,8 @@ export class GetTransactionController implements IController {
       this.validator.validateEnterprise(req);
       this.validator.validateDate(req);
       const input: getTransactionInput = {
-        enterprise: req.body.enterprise,
-        date: new Date(req.body.date),
+        enterprise: req.query.enterprise!.toString(),
+        date: new Date(req.query.date!.toString()),
       };
       const transaction: getTransactionOutput = await this.useCase.execute(
         input
