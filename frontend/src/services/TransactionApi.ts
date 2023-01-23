@@ -12,7 +12,6 @@ export class TransactionApi implements ITransactionApi {
     try {
       const res = await this.api.post<Transaction>(`${this.uri}`, entity);
       entity.id = res.data.id;
-      console.log(entity);
       return entity;
     } catch (error) {
       console.log(error);
@@ -27,7 +26,6 @@ export class TransactionApi implements ITransactionApi {
         entity
       );
       entity.id = res.data.id;
-      console.log(entity);
       return entity;
     } catch (error) {
       console.log(error);
@@ -41,7 +39,6 @@ export class TransactionApi implements ITransactionApi {
         `${this.uri}/${entity.id}`
       );
       entity.id = res.data.id;
-      console.log(res.data);
     } catch (error) {
       console.log(error);
       return null;
@@ -50,12 +47,10 @@ export class TransactionApi implements ITransactionApi {
 
   async get(entity: Transaction): Promise<Transaction | null> {
     try {
-      console.log(entity);
-      const res = await this.api.get<Transaction>(`${this.uri}`, {
-        data: entity,
-      });
+      const res = await this.api.get<Transaction>(
+        `${this.uri}?enterprise=${entity.enterprise}&date=${entity.date}`
+      );
       entity = res.data;
-      console.log(entity);
       return entity;
     } catch (error) {
       console.log(error);

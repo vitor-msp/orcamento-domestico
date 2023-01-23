@@ -13,12 +13,13 @@ interface SearchTransactionAreaProps {
 }
 
 export const SearchTransactionArea = (props: SearchTransactionAreaProps) => {
-  const api: ITransactionApi = transactionApi;
-  const [transaction, setTransaction] = useState<Transaction>({
+  const emptyTransaction: Transaction = {
     id: "",
     enterprise: "",
     date: "",
-  });
+  };
+  const api: ITransactionApi = transactionApi;
+  const [transaction, setTransaction] = useState<Transaction>(emptyTransaction);
 
   const getSelectedItem = (item: Item): void => {
     setTransaction({ ...transaction, enterprise: item.id });
@@ -42,7 +43,6 @@ export const SearchTransactionArea = (props: SearchTransactionAreaProps) => {
         return;
       }
       setTransaction(createdTransaction);
-      getTransaction();
     }
   };
 
@@ -54,6 +54,7 @@ export const SearchTransactionArea = (props: SearchTransactionAreaProps) => {
         alert("Erro ao atualizar lançamento!");
         return;
       }
+      setTransaction(updatedTransaction);
     }
   };
 
@@ -64,6 +65,8 @@ export const SearchTransactionArea = (props: SearchTransactionAreaProps) => {
         alert("Erro ao deletar lançamento!");
         return;
       }
+      setTransaction(emptyTransaction);
+      props.updateTransactionItems([]);
     }
   };
 
