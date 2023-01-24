@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { Item } from "../domain/Item";
 import { Transaction } from "../domain/Transaction";
-import { TransactionItem } from "../domain/TransactionItem";
 import { ITransactionApi } from "../services/ITransactionApi";
 import { FormUtils } from "../utils/FormUtils";
 import { SelectItemArea } from "./SelectItemArea";
 import "../design/styles.css";
 import { enterpriseApi, transactionApi } from "..";
+import { FieldsValidator } from "../utils/FieldsValidator";
 
 interface SearchTransactionAreaProps {
-  updateTransactionItems: (transactionItems: TransactionItem[]) => void;
+  updateTransaction: (transaction: Transaction) => void;
 }
 
 export const SearchTransactionArea = (props: SearchTransactionAreaProps) => {
@@ -47,15 +47,13 @@ export const SearchTransactionArea = (props: SearchTransactionAreaProps) => {
   };
 
   const updateTransaction = async (): Promise<void> => {
-    const { id, enterprise, date } = transaction;
-    if (fieldIsValid(id) && fieldIsValid(enterprise) && fieldIsValid(date)) {
-      const updatedTransaction = await api.update(transaction);
-      if (updatedTransaction === null) {
-        alert("Erro ao atualizar lançamento!");
-        return;
-      }
-      setTransaction(updatedTransaction);
+    if (!FieldsValidator.fieldsAreValid(Array.of(transaction))) return;
+    const updatedTransaction = await api.update(transaction);
+    if (updatedTransaction === null) {
+      alert("Erro ao atualizar lançamento!");
+      return;
     }
+    setTransaction(updatedTransaction);
   };
 
   const deleteTransaction = async (): Promise<void> => {
@@ -66,20 +64,19 @@ export const SearchTransactionArea = (props: SearchTransactionAreaProps) => {
         return;
       }
       setTransaction(emptyTransaction);
-      props.updateTransactionItems([]);
+      props.updateTransaction({});
     }
   };
 
   const getTransaction = async (): Promise<void> => {
-    const { enterprise, date } = transaction;
-    if (!fieldIsValid(enterprise) || !fieldIsValid(date)) return;
+    if (!FieldsValidator.fieldsAreValid(Array.of(transaction))) return;
     const savedTransaction = await api.get(transaction);
     if (savedTransaction === null) {
       alert("Erro ao buscar lançamento!");
       return;
     }
     setTransaction({ ...savedTransaction });
-    props.updateTransactionItems(savedTransaction.transactionItems ?? []);
+    props.updateTransaction(savedTransaction);
   };
 
   return (

@@ -5,7 +5,9 @@ import { App } from "./components/App";
 import { IItemApi } from "./services/IItemApi";
 import { ItemApi } from "./services/ItemApi";
 import { ITransactionApi } from "./services/ITransactionApi";
+import { ITransactionItemApi } from "./services/ITransactionItemApi";
 import { TransactionApi } from "./services/TransactionApi";
+import { TransactionItemApi } from "./services/TransactionItemApi";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -22,6 +24,10 @@ export const categoryApi: IItemApi = new ItemApi(axiosApi, API_URI,`categories`)
 export const transactionApi: ITransactionApi = new TransactionApi(
   axiosApi,
   `${API_URI}/transactions`
+);
+export const transactionItemApi: ITransactionItemApi = new TransactionItemApi(
+  axiosApi,
+  `${API_URI}/transaction-items`
 );
 
 root.render(

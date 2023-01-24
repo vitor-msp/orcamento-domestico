@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { TransactionItem } from "../domain/TransactionItem";
 import { ITransactionItemApi } from "../services/ITransactionItemApi";
+import { FieldsValidator } from "../utils/FieldsValidator";
 import { TransactionItemArea } from "./TransactionItemArea";
 
 interface TransactionListItemProps {
@@ -17,17 +18,26 @@ export const TransactionListItem = (props: TransactionListItemProps) => {
   const [canEdit, setCanEdit] = useState<boolean>(false);
 
   const editItem = async (): Promise<void> => {
-    await props.api.update(transactionItem.id!, transactionItem);
-    props.updateTransactionItem(transactionItem);
+    if (!FieldsValidator.fieldsAreValid(Array.of(transactionItem))) return;
+    const updatedItem = await props.api.update(transactionItem);
+    if (updatedItem === null) {
+      alert("Erro ao editar o item!");
+      return;
+    }
+    props.updateTransactionItem(updatedItem);
     setCanEdit(false);
   };
 
   const deleteItem = async (): Promise<void> => {
     // eslint-disable-next-line no-restricted-globals
-    if (confirm("Delete item?")) {
-      await props.api.delete(transactionItem.id!);
-      props.deleteTransactionItem(transactionItem);
+    if (!confirm("Delete item?")) return;
+    if (!FieldsValidator.fieldsAreValid(Array.of(transactionItem))) return;
+    const deletedItem = await props.api.delete(transactionItem);
+    if (deletedItem === null) {
+      alert("Erro ao deletar o item!");
+      return;
     }
+    props.deleteTransactionItem(transactionItem);
   };
 
   return (

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Item } from "../domain/Item";
 import { TransactionItem } from "../domain/TransactionItem";
-import { ItemApi } from "../services/ItemApi";
 import { SelectItemArea } from "./SelectItemArea";
 import { itemApi, brandApi, categoryApi } from "..";
 

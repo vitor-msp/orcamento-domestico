@@ -1,32 +1,52 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Transaction } from "../domain/Transaction";
 import { TransactionItem } from "../domain/TransactionItem";
 import { ITransactionItemApi } from "../services/ITransactionItemApi";
+import { FieldsValidator } from "../utils/FieldsValidator";
 import { FormUtils } from "../utils/FormUtils";
 import { TransactionItemArea } from "./TransactionItemArea";
 
 interface AddTransactionItemAreaProps {
   api: ITransactionItemApi;
-  items: TransactionItem[];
-  updateTransactionItems: (transactionItems: TransactionItem[]) => void;
+  transaction: Transaction;
+  updateTransaction: (transaction: Transaction) => void;
 }
 
 export const AddTransactionItemArea = (props: AddTransactionItemAreaProps) => {
-  const emptyTransactionItem: TransactionItem = {};
-
+  const emptyTransactionItem: TransactionItem = {
+    id: "",
+    transaction: props.transaction.id,
+    item: undefined,
+    brand: undefined,
+    category: undefined,
+    quantity: 0,
+    unitOfMeasurement: "",
+    totalValue: 0,
+  };
   const [transactionItem, setTransactionItem] =
     useState<TransactionItem>(emptyTransactionItem);
 
-  const updateTransactionItem = async (
-    transactionItem: TransactionItem
-  ): Promise<void> => {
-    setTransactionItem(transactionItem);
+  const addTransactionItem = async (): Promise<void> => {
+    if (!FieldsValidator.fieldsAreValid(Array.of(transactionItem))) return;
+    const savedItem = await props.api.create(transactionItem);
+    if (savedItem === null) {
+      alert("Erro ao criar item!");
+      return;
+    }
+    const newTransactionItems: TransactionItem[] =
+      props.transaction.transactionItems ?? [];
+    newTransactionItems.push(savedItem);
+    props.updateTransaction({
+      ...props.transaction,
+      transactionItems: newTransactionItems,
+    });
   };
 
-  const addTransactionItem = async (): Promise<void> => {
-    const savedItem = await props.api.create(transactionItem);
-    const newItems = Object.assign([], props.items);
-    newItems.push(savedItem);
-    props.updateTransactionItems(newItems);
+  const updateTransactionItem = (transactionItem: TransactionItem): void => {
+    setTransactionItem({
+      ...transactionItem,
+      transaction: props.transaction.id,
+    });
   };
 
   return (
