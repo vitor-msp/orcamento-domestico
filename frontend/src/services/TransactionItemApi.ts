@@ -39,13 +39,11 @@ export class TransactionItemApi implements ITransactionItemApi {
         brand: entity.brand!.id,
         category: entity.category!.id,
       };
-      console.log(req);
       const res = await this.api.put<TransactionItemApiType>(
-        `${this.uri}`,
+        `${this.uri}/${entity.id}`,
         req
       );
       entity.id = res.data.id;
-      console.log(entity);
       return entity;
     } catch (error) {
       console.log(error);
