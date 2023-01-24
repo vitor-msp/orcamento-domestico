@@ -51,5 +51,15 @@ export class TransactionItemApi implements ITransactionItemApi {
     }
   }
 
-  async delete(entity: TransactionItem): Promise<void | null> {}
+  async delete(entity: TransactionItem): Promise<void | null> {
+    try {
+      const res = await this.api.delete<TransactionItemApiType>(
+        `${this.uri}/${entity.id}`
+      );
+      entity.id = res.data.id;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  }
 }
