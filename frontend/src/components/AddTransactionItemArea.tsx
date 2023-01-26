@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Transaction } from "../domain/Transaction";
 import { TransactionItem } from "../domain/TransactionItem";
-import { ITransactionItemApi } from "../services/ITransactionItemApi";
+import { ITransactionItemApi } from "../services/api/ITransactionItemApi";
 import { FieldsValidator } from "../utils/FieldsValidator";
 import { FormUtils } from "../utils/FormUtils";
 import { TransactionItemArea } from "./TransactionItemArea";

@@ -1,6 +1,6 @@
 import { Transaction } from "../domain/Transaction";
 import { TransactionItem } from "../domain/TransactionItem";
-import { ITransactionItemApi } from "../services/ITransactionItemApi";
+import { ITransactionItemApi } from "../services/api/ITransactionItemApi";
 import { TransactionItemsTotalValue } from "./TransactionItemsTotalValue";
 import { TransactionListItem } from "./TransactionListItem";
 

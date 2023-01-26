@@ -2,7 +2,7 @@ import { AxiosInstance } from "axios";
 import {
   TransactionItem,
   TransactionItemApiType,
-} from "../domain/TransactionItem";
+} from "../../domain/TransactionItem";
 import { ITransactionItemApi } from "./ITransactionItemApi";
 
 export class TransactionItemApi implements ITransactionItemApi {

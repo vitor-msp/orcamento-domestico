@@ -1,5 +1,5 @@
 import { AxiosInstance } from "axios";
-import { Item } from "../domain/Item";
+import { Item } from "../../domain/Item";
 import { IItemApi } from "./IItemApi";
 
 export class ItemApi implements IItemApi {

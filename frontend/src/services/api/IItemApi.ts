@@ -1,4 +1,4 @@
-import { Item } from "../domain/Item";
+import { Item } from "../../domain/Item";
 
 export interface IItemApi {
   create(entity: Item): Promise<Item | null>;

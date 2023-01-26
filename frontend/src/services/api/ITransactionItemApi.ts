@@ -1,4 +1,4 @@
-import { TransactionItem } from "../domain/TransactionItem";
+import { TransactionItem } from "../../domain/TransactionItem";
 
 export interface ITransactionItemApi {
   create(entity: TransactionItem): Promise<TransactionItem | null>;

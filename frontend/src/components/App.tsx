@@ -1,7 +1,7 @@
 import { SearchTransactionArea } from "./SearchTransactionArea";
 import { AddTransactionItemArea } from "./AddTransactionItemArea";
 import { TransactionItemsList } from "./TransactionItemsList";
-import { ITransactionItemApi } from "../services/ITransactionItemApi";
+import { ITransactionItemApi } from "../services/api/ITransactionItemApi";
 import { useState } from "react";
 import { transactionItemApi } from "..";
 import { Transaction } from "../domain/Transaction";

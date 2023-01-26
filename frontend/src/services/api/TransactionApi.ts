@@ -1,5 +1,5 @@
 import { AxiosInstance } from "axios";
-import { Transaction, TransactionApiType } from "../domain/Transaction";
+import { Transaction, TransactionApiType } from "../../domain/Transaction";
 import { ITransactionApi } from "./ITransactionApi";
 
 export class TransactionApi implements ITransactionApi {

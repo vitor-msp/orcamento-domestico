@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Item } from "../domain/Item";
-import { IItemApi } from "../services/IItemApi";
+import { IItemApi } from "../services/api/IItemApi";
 import { Modal } from "./Modal";
 import "../design/styles.css";
+import { repository } from "..";
 
 export type SelectItemAreaProps = {
   itemName: string;
@@ -23,11 +24,7 @@ export const SelectItemArea = (props: SelectItemAreaProps) => {
   useEffect(() => {
     (async () => {
       if (defaultItems.length !== 0) return;
-      const items = await props.api.getAll();
-      if (items === null) {
-        alert("Erro ao carregar os itens!");
-        return;
-      }
+      const items = await repository.get(props.itemName.toLowerCase());
       setDefaultItems(items);
     })();
   }, []);

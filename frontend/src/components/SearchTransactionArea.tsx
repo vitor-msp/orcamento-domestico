@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Item } from "../domain/Item";
 import { Transaction } from "../domain/Transaction";
-import { ITransactionApi } from "../services/ITransactionApi";
+import { ITransactionApi } from "../services/api/ITransactionApi";
 import { FormUtils } from "../utils/FormUtils";
 import { SelectItemArea } from "./SelectItemArea";
 import "../design/styles.css";

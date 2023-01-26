@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Item } from "../domain/Item";
-import { IItemApi } from "../services/IItemApi";
+import { IItemApi } from "../services/api/IItemApi";
 import { ModalListItem } from "./ModalListItem";
 import "../design/styles.css";
 
