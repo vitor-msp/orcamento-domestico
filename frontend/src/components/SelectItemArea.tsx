@@ -26,6 +26,7 @@ export const SelectItemArea = (props: SelectItemAreaProps) => {
       if (defaultItems.length !== 0) return;
       const items = await repository.getAsync(props.itemName.toLowerCase());
       setDefaultItems(items);
+      setCurrentItems(items);
     })();
   }, []);
 
@@ -43,6 +44,7 @@ export const SelectItemArea = (props: SelectItemAreaProps) => {
   };
 
   const captureCurrentText = (event: any): void => {
+    console.log(event.target.value);
     setCurrentText(event.target.value);
   };
 
