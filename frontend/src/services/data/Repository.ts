@@ -29,39 +29,54 @@ export class Repository {
     this.categories = [];
   }
 
-  public async get(property: string): Promise<Item[]> {
-    switch (property) {
+  public async getAsync(itemName: string): Promise<Item[]> {
+    switch (itemName) {
       case "enterprise":
-        return await this.getEnterprises();
+        return await this.getEnterprisesAsync();
       case "item":
-        return await this.getItems();
+        return await this.getItemsAsync();
       case "brand":
-        return await this.getBrands();
+        return await this.getBrandsAsync();
       case "category":
-        return await this.getCategories();
+        return await this.getCategoriesAsync();
       default:
         return [];
     }
   }
 
-  private async getEnterprises(): Promise<Item[]> {
+  private async getEnterprisesAsync(): Promise<Item[]> {
     if (this.enterprises.length === 0) await this.loadEnterprises();
     return this.enterprises;
   }
 
-  private async getItems(): Promise<Item[]> {
+  private async getItemsAsync(): Promise<Item[]> {
     if (this.items.length === 0) await this.loadItems();
     return this.items;
   }
 
-  private async getBrands(): Promise<Item[]> {
+  private async getBrandsAsync(): Promise<Item[]> {
     if (this.brands.length === 0) await this.loadBrands();
     return this.brands;
   }
 
-  private async getCategories(): Promise<Item[]> {
+  private async getCategoriesAsync(): Promise<Item[]> {
     if (this.categories.length === 0) await this.loadCategories();
     return this.categories;
+  }
+
+  public get(itemName: string): Item[] {
+    switch (itemName) {
+      case "enterprise":
+        return this.enterprises;
+      case "item":
+        return this.items;
+      case "brand":
+        return this.brands;
+      case "category":
+        return this.categories;
+      default:
+        return [];
+    }
   }
 
   private async loadEnterprises(): Promise<void> {

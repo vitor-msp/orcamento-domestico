@@ -24,7 +24,7 @@ export const SelectItemArea = (props: SelectItemAreaProps) => {
   useEffect(() => {
     (async () => {
       if (defaultItems.length !== 0) return;
-      const items = await repository.get(props.itemName.toLowerCase());
+      const items = await repository.getAsync(props.itemName.toLowerCase());
       setDefaultItems(items);
     })();
   }, []);

@@ -1,4 +1,5 @@
 import { Transaction, TransactionApiType } from "../domain/Transaction";
+import { FindDescription } from "./FindDescription";
 
 export abstract class TransactionUtils {
   public static getPropertiesDescriptions(
@@ -15,10 +16,20 @@ export abstract class TransactionUtils {
         quantity: item.quantity,
         unitOfMeasurement: item.unitofmeasurement,
         totalValue: item.totalvalue,
-        item: { id: item.item!, description: "" },
-        brand: { id: item.brand!, description: "" },
-        category: { id: item.category!, description: "" },
+        item: {
+          id: item.item!,
+          description: FindDescription.of("item", item.item!),
+        },
+        brand: {
+          id: item.brand!,
+          description: FindDescription.of("brand", item.brand!),
+        },
+        category: {
+          id: item.category!,
+          description: FindDescription.of("category", item.category!),
+        },
       };
+      
     });
     return transaction;
   }
