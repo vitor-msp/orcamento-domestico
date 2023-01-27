@@ -57,6 +57,8 @@ export const SearchTransactionArea = (props: SearchTransactionAreaProps) => {
   };
 
   const deleteTransaction = async (): Promise<void> => {
+    // eslint-disable-next-line no-restricted-globals
+    if (!confirm("Deletar lançamento com todos os seus itens?")) return;
     if (fieldIsValid(transaction.id)) {
       const deletedTransaction = await api.delete(transaction);
       if (deletedTransaction === null) {
