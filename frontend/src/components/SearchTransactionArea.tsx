@@ -100,6 +100,7 @@ export const SearchTransactionArea = (props: SearchTransactionAreaProps) => {
               name="date"
               value={transaction.date}
               onChange={changeField}
+              autoComplete={"off"}
             />
           </div>
         </div>

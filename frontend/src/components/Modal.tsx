@@ -115,6 +115,7 @@ export const Modal = (props: ModalProps) => {
                 onChange={changeNewItem}
                 onFocus={setEventListener}
                 onBlur={unsetEventListener}
+                autoComplete={"off"}
               />
               <button type="button" onClick={() => createItem()}>
                 {"+"}

@@ -60,6 +60,7 @@ export const ModalListItem = (props: ModalListItemProps) => {
           name={"description"}
           onChange={changeItem}
           disabled={!edit}
+          autoComplete={"off"}
         />
       </div>
       {(edit && (

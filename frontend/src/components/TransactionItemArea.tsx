@@ -86,6 +86,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
             onChange={changeField}
             disabled={!canEdit}
             id="transaction-item-quantity"
+            autoComplete={"off"}
           />
         </div>
         <div>
@@ -97,6 +98,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
             onChange={changeField}
             disabled={!canEdit}
             id="transaction-item-um"
+            autoComplete={"off"}
           />
         </div>
         <div>
@@ -109,6 +111,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
             onChange={changeField}
             disabled={!canEdit}
             id="transaction-item-total-value"
+            autoComplete={"off"}
           />
         </div>
       </div>

@@ -83,6 +83,7 @@ export const SelectItemArea = (props: SelectItemAreaProps) => {
           value={currentText}
           disabled={!canEdit}
           id="select-item-area-input"
+          autoComplete={"off"}
         />
         <Modal
           items={defaultItems}
