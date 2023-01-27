@@ -7,7 +7,7 @@ export abstract class TransactionUtils {
     newData: TransactionApiType
   ): Transaction {
     transaction.id = newData.id;
-    transaction.date = newData.date;
+    transaction.date = newData.date.substring(0, 10);
     transaction.enterprise = newData.enterprise;
     transaction.transactionItems = newData.items.map((item) => {
       return {
