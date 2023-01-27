@@ -51,7 +51,7 @@ export class TransactionApi implements ITransactionApi {
       const res = await this.api.get<TransactionApiType>(
         `${this.uri}?enterprise=${entity.enterprise}&date=${entity.date}`
       );
-      return TransactionUtils.getPropertiesDescriptions(entity, res.data);
+      return TransactionUtils.prepareData(entity, res.data);
     } catch (error) {
       console.log(error);
       return null;

@@ -19,5 +19,5 @@ export type TransactionItemApiType = {
   category?: string;
   quantity?: number;
   unitofmeasurement?: string;
-  totalvalue?: number;
+  totalvalue?: string;
 };

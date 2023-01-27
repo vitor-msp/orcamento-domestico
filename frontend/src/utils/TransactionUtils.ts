@@ -2,7 +2,7 @@ import { Transaction, TransactionApiType } from "../domain/Transaction";
 import { FindDescription } from "./FindDescription";
 
 export abstract class TransactionUtils {
-  public static getPropertiesDescriptions(
+  public static prepareData(
     transaction: Transaction,
     newData: TransactionApiType
   ): Transaction {
@@ -15,7 +15,7 @@ export abstract class TransactionUtils {
         transaction: item.transaction,
         quantity: item.quantity,
         unitOfMeasurement: item.unitofmeasurement,
-        totalValue: item.totalvalue,
+        totalValue: +item.totalvalue!.substring(1).replaceAll(",", ""),
         item: {
           id: item.item!,
           description: FindDescription.of("item", item.item!),
@@ -29,7 +29,6 @@ export abstract class TransactionUtils {
           description: FindDescription.of("category", item.category!),
         },
       };
-      
     });
     return transaction;
   }
