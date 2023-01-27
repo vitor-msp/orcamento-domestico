@@ -18,6 +18,6 @@ export type TransactionItemApiType = {
   brand?: string;
   category?: string;
   quantity?: number;
-  unitOfMeasurement?: string;
-  totalValue?: number;
+  unitofmeasurement?: string;
+  totalvalue?: number;
 };

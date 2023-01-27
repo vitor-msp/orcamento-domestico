@@ -8,8 +8,8 @@ export type Transaction = {
 };
 
 export type TransactionApiType = {
-  id?: string;
-  enterprise?: string;
-  date?: string;
-  items?: TransactionItemApiType[];
+  id: string;
+  enterprise: string;
+  date: string;
+  items: TransactionItemApiType[];
 };

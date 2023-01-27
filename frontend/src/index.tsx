@@ -39,11 +39,12 @@ export const transactionItemApi: ITransactionItemApi = new TransactionItemApi(
   `${API_URI}/transaction-items`
 );
 
-export let repository: Repository = new Repository(
+export let repository: Repository = new Repository({
+  enterpriseApi,
   itemApi,
   brandApi,
-  categoryApi
-);
+  categoryApi,
+});
 
 root.render(
   <React.StrictMode>

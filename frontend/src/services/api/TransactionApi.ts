@@ -1,5 +1,6 @@
 import { AxiosInstance } from "axios";
 import { Transaction, TransactionApiType } from "../../domain/Transaction";
+import { TransactionUtils } from "../../utils/TransactionUtils";
 import { ITransactionApi } from "./ITransactionApi";
 
 export class TransactionApi implements ITransactionApi {
@@ -50,24 +51,7 @@ export class TransactionApi implements ITransactionApi {
       const res = await this.api.get<TransactionApiType>(
         `${this.uri}?enterprise=${entity.enterprise}&date=${entity.date}`
       );
-      entity.id = res.data.id;
-      entity.date = res.data.date;
-      entity.enterprise = res.data.enterprise;
-      entity.transactionItems = res.data.items!.map(
-        (item) => {
-          return {
-            id: item.id,
-            transaction: item.transaction,
-            quantity: item.quantity,
-            unitOfMeasurement: item.unitOfMeasurement,
-            totalValue: item.totalValue,
-            item: { id: item.item!, description: "" },
-            brand: { id: item.brand!, description: "" },
-            category: { id: item.category!, description: "" },
-          };
-        }
-      );
-      return entity;
+      return TransactionUtils.getPropertiesDescriptions(entity, res.data);
     } catch (error) {
       console.log(error);
       return null;
