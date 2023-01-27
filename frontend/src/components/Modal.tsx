@@ -17,6 +17,16 @@ export const Modal = (props: ModalProps) => {
   const [newItem, setNewItem] = useState<Item>(emptyItem);
   const [activeItem, setActiveItem] = useState<Item | null>(null);
 
+  useEffect(() => {
+    if (modalIsOpen) document.addEventListener("keyup", processKeyCloseModal);
+  }, [modalIsOpen]);
+
+  const processKeyCloseModal = (event: KeyboardEvent): void => {
+    if (event.key !== "Escape") return;
+    setModalIsOpen(false);
+    document.removeEventListener("keyup", processKeyCloseModal);
+  };
+
   const closeModal = (): void => {
     setModalIsOpen(false);
   };
@@ -64,14 +74,14 @@ export const Modal = (props: ModalProps) => {
   };
 
   const setEventListener = (): void => {
-    document.addEventListener("keyup", processKey);
+    document.addEventListener("keyup", processKeyCreateItem);
   };
 
   const unsetEventListener = (): void => {
-    document.removeEventListener("keyup", processKey);
+    document.removeEventListener("keyup", processKeyCreateItem);
   };
 
-  const processKey = async (event: KeyboardEvent): Promise<void> => {
+  const processKeyCreateItem = async (event: KeyboardEvent): Promise<void> => {
     if (event.key !== "Enter") return;
     //@ts-ignore
     await createItem({ id: "", description: event.target.value });
