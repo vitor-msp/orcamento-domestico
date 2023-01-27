@@ -44,7 +44,6 @@ export const SelectItemArea = (props: SelectItemAreaProps) => {
   };
 
   const captureCurrentText = (event: any): void => {
-    console.log(event.target.value);
     setCurrentText(event.target.value);
   };
 

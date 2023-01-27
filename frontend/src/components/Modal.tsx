@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Item } from "../domain/Item";
 import { IItemApi } from "../services/api/IItemApi";
 import { ModalListItem } from "./ModalListItem";
@@ -41,8 +41,10 @@ export const Modal = (props: ModalProps) => {
     props.updateItems(newItems);
   };
 
-  const createItem = async (): Promise<void> => {
-    const savedItem = await props.api.create(newItem);
+  const createItem = async (itemFromEnter?: Item): Promise<void> => {
+    let itemToCreate = Object.assign({}, newItem);
+    if (itemFromEnter) itemToCreate = Object.assign({}, itemFromEnter);
+    const savedItem = await props.api.create(itemToCreate);
     if (savedItem === null) {
       alert("Erro ao criar o item!");
       return;
@@ -59,6 +61,20 @@ export const Modal = (props: ModalProps) => {
 
   const selectActiveItem = (): void => {
     if (activeItem) selectItem(activeItem);
+  };
+
+  const setEventListener = (): void => {
+    document.addEventListener("keyup", processKey);
+  };
+
+  const unsetEventListener = (): void => {
+    document.removeEventListener("keyup", processKey);
+  };
+
+  const processKey = async (event: KeyboardEvent): Promise<void> => {
+    if (event.key !== "Enter") return;
+    //@ts-ignore
+    await createItem({ id: "", description: event.target.value });
   };
 
   return (
@@ -87,8 +103,10 @@ export const Modal = (props: ModalProps) => {
                 value={newItem.description}
                 name={"description"}
                 onChange={changeNewItem}
+                onFocus={setEventListener}
+                onBlur={unsetEventListener}
               />
-              <button type="button" onClick={createItem}>
+              <button type="button" onClick={() => createItem()}>
                 {"+"}
               </button>
             </div>
