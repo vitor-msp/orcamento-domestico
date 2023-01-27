@@ -100,10 +100,10 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
           />
         </div>
         <div>
-          <label htmlFor="transaction-item-total-value">valor total</label>
+          <label htmlFor="transaction-item-total-value">valor total (R$)</label>
           <input
             type="number"
-            step={0.1}
+            step={0.05}
             name="totalValue"
             value={transactionItem.totalValue}
             onChange={changeField}
