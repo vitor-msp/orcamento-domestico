@@ -37,14 +37,14 @@ export abstract class DB {
     };
   }
 
-  private static async runMigrations(client: Client): Promise<void> {
-    try {
-      await migrate({ client }, "migrations/");
-      console.log(`Migrations executed in database.`)
-    } catch (error) {
-      throw new Error(`Error to execute migrations in database - ${error}`);
-    }
-  }
+  // private static async runMigrations(client: Client): Promise<void> {
+  //   try {
+  //     await migrate({ client }, "migrations/");
+  //     console.log(`Migrations executed in database.`)
+  //   } catch (error) {
+  //     throw new Error(`Error to execute migrations in database - ${error}`);
+  //   }
+  // }
 
   public static async connect(): Promise<Client> {
     const environmentVars = this.getEnvironmentVars();
@@ -61,7 +61,7 @@ export abstract class DB {
     } catch (error) {
       throw new Error(`Error in PG connection - ${error}`);
     }
-    this.runMigrations(client);
+    // this.runMigrations(client);
     return client;
   }
 }
