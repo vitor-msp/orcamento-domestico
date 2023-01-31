@@ -15,10 +15,7 @@ export abstract class TransactionUtils {
         transaction: item.transaction,
         quantity: item.quantity,
         unitOfMeasurement: item.unitofmeasurement,
-        totalValue: +item
-          .totalvalue!.substring(3)
-          .replaceAll(".", "")
-          .replaceAll(",", "."),
+        totalValue: +item.totalvalue!,
         item: {
           id: item.item!,
           description: FindDescription.of("item", item.item!),
