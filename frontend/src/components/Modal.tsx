@@ -9,6 +9,7 @@ interface ModalProps {
   api: IItemApi;
   updateItems: (items: Item[]) => void;
   selectItem: (item: Item) => void;
+  itemName: string;
 }
 
 export const Modal = (props: ModalProps) => {
@@ -74,17 +75,17 @@ export const Modal = (props: ModalProps) => {
   };
 
   const setEventListener = (): void => {
-    document.addEventListener("keyup", processKeyCreateItem);
+    // document.addEventListener("keyup", processKeyCreateItem);
   };
 
   const unsetEventListener = (): void => {
-    document.removeEventListener("keyup", processKeyCreateItem);
+    // document.removeEventListener("keyup", processKeyCreateItem);
   };
 
   const processKeyCreateItem = async (event: KeyboardEvent): Promise<void> => {
-    if (event.key !== "Enter") return;
-    //@ts-ignore
-    await createItem({ id: "", description: event.target.value });
+    // if (event.key !== "Enter") return;
+    // //@ts-ignore
+    // await createItem({ id: "", description: event.target.value });
   };
 
   return (

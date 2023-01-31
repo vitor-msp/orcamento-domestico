@@ -86,6 +86,8 @@ export const SelectItemArea = (props: SelectItemAreaProps) => {
           autoComplete={"off"}
         />
         <Modal
+          key={props.itemName}
+          itemName={props.itemName}
           items={defaultItems}
           api={props.api}
           updateItems={setDefaultItems}

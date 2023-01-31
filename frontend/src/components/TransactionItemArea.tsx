@@ -42,6 +42,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
         <div>
           <label htmlFor="transaction-item-item">item</label>
           <SelectItemArea
+            key={"item"}
             api={itemApi}
             itemName="Item"
             returnSelectedItem={(item) => {
@@ -54,6 +55,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
         <div>
           <label htmlFor="transaction-item-brand">marca</label>
           <SelectItemArea
+            key={"brand"}
             api={brandApi}
             itemName="Brand"
             returnSelectedItem={(item) => {
@@ -66,6 +68,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
         <div>
           <label htmlFor="transaction-item-category">categoria</label>
           <SelectItemArea
+            key={"category"}
             api={categoryApi}
             itemName="Category"
             returnSelectedItem={(item) => {
