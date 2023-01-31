@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS transaction_item (
     category VARCHAR(255) NOT NULL,
     quantity INTEGER NOT NULL,
     unitOfMeasurement VARCHAR(5) NOT NULL,
-    totalValue MONEY NOT NULL,
+    totalValue NUMERIC(11, 2) NOT NULL,
     CONSTRAINT transaction_item_pk PRIMARY KEY (id),
     CONSTRAINT transaction_item_fk_transaction FOREIGN KEY (transaction) REFERENCES transaction(id),
     CONSTRAINT transaction_item_fk_item FOREIGN KEY (item) REFERENCES item(id),
