@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  api:
+    container_name: orcamento_domestico_backend
+    image: vitormsp/orcamento_domestico_backend
+    network_mode: "host"
+  app:
+    container_name: orcamento_domestico_frontend
+    image: vitormsp/orcamento_domestico_frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
