@@ -8,6 +8,7 @@ interface TransactionItemAreaProps {
   updateTransactionItem: (transactionItem: TransactionItem) => void;
   savedTransactionItem?: TransactionItem | null | undefined;
   canEditFields: boolean;
+  enterPressed?: () => void;
 }
 
 export const TransactionItemArea = (props: TransactionItemAreaProps) => {
@@ -35,6 +36,12 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
   useEffect(() => {
     props.updateTransactionItem(transactionItem);
   }, [transactionItem]);
+
+  const processKeyUp = (event: any) => {
+    if (!(event.key === "Enter")) return;
+    //@ts-ignore
+    props.enterPressed();
+  };
 
   return (
     <div className="transaction-item">
@@ -90,6 +97,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
             disabled={!canEdit}
             id="transaction-item-quantity"
             autoComplete={"off"}
+            onKeyUp={processKeyUp}
           />
         </div>
         <div>
@@ -102,6 +110,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
             disabled={!canEdit}
             id="transaction-item-um"
             autoComplete={"off"}
+            onKeyUp={processKeyUp}
           />
         </div>
         <div>
@@ -115,6 +124,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
             disabled={!canEdit}
             id="transaction-item-total-value"
             autoComplete={"off"}
+            onKeyUp={processKeyUp}
           />
         </div>
       </div>

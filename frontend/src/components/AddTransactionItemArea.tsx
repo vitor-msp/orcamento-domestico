@@ -57,6 +57,7 @@ export const AddTransactionItemArea = (props: AddTransactionItemAreaProps) => {
           updateTransactionItem={updateTransactionItem}
           savedTransactionItem={null}
           canEditFields={true}
+          enterPressed={addTransactionItem}
         />
         <div className="add-transaction-item-area-btn">
           <button type="button" onClick={addTransactionItem}>
