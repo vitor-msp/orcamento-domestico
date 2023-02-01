@@ -30,6 +30,7 @@ export const Modal = (props: ModalProps) => {
 
   const closeModal = (): void => {
     setModalIsOpen(false);
+    document.removeEventListener("keyup", processKeyCloseModal);
   };
 
   const openModal = (): void => {
@@ -74,18 +75,9 @@ export const Modal = (props: ModalProps) => {
     if (activeItem) selectItem(activeItem);
   };
 
-  const setEventListener = (): void => {
-    // document.addEventListener("keyup", processKeyCreateItem);
-  };
-
-  const unsetEventListener = (): void => {
-    // document.removeEventListener("keyup", processKeyCreateItem);
-  };
-
-  const processKeyCreateItem = async (event: KeyboardEvent): Promise<void> => {
-    // if (event.key !== "Enter") return;
-    // //@ts-ignore
-    // await createItem({ id: "", description: event.target.value });
+  const processKeyCreateItem = async (event: any): Promise<void> => {
+    if (event.key !== "Enter") return;
+    await createItem({ id: "", description: event.target.value });
   };
 
   return (
@@ -114,8 +106,7 @@ export const Modal = (props: ModalProps) => {
                 value={newItem.description}
                 name={"description"}
                 onChange={changeNewItem}
-                onFocus={setEventListener}
-                onBlur={unsetEventListener}
+                onKeyUp={processKeyCreateItem}
                 autoComplete={"off"}
               />
               <button type="button" onClick={() => createItem()}>
