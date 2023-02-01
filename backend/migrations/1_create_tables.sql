@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS transaction_item (
     brand VARCHAR(255) NOT NULL,
     category VARCHAR(255) NOT NULL,
     quantity INTEGER NOT NULL,
-    unitOfMeasurement VARCHAR(5) NOT NULL,
+    unitOfMeasurement VARCHAR(10) NOT NULL,
     totalValue NUMERIC(11, 2) NOT NULL,
     CONSTRAINT transaction_item_pk PRIMARY KEY (id),
     CONSTRAINT transaction_item_fk_transaction FOREIGN KEY (transaction) REFERENCES transaction(id),
