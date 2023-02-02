@@ -41,8 +41,9 @@ export const TransactionItemsList = (props: TransactionItemsListProps) => {
         {props.transaction.transactionItems?.map((item) => {
           item.transaction = props.transaction.id;
           return (
-            <li key={item.id}>
+            <li>
               <TransactionListItem
+                key={item.id}
                 transactionItem={item}
                 api={props.api}
                 updateTransactionItem={updateTransactionItem}
