@@ -9,10 +9,21 @@ interface TransactionItemAreaProps {
   savedTransactionItem?: TransactionItem | null | undefined;
   canEditFields: boolean;
   enterPressed?: () => void;
+  clearInputs?: boolean;
+  setClearInputs?: (value: boolean)=> void;
 }
 
 export const TransactionItemArea = (props: TransactionItemAreaProps) => {
-  const emptyTransactionItem: TransactionItem = {};
+  const emptyTransactionItem: TransactionItem = {
+    id: "",
+    transaction: "",
+    item: { id: "", description: "" },
+    brand: { id: "", description: "" },
+    category: { id: "", description: "" },
+    quantity: 0,
+    totalValue: 0,
+    unitOfMeasurement: "",
+  };
   const [transactionItem, setTransactionItem] = useState<TransactionItem>(
     props.savedTransactionItem ?? emptyTransactionItem
   );
@@ -21,6 +32,13 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
   useEffect(() => {
     setCanEdit(props.canEditFields);
   }, [props.canEditFields]);
+
+  useEffect(() => {
+    if (!props.clearInputs) return;
+    setTransactionItem(emptyTransactionItem);
+    //@ts-ignore
+    props.setClearInputs(false)
+  }, [props.clearInputs]);
 
   const getSelectedItem = (item: Item, field: string): void => {
     setTransactionItem({ ...transactionItem, [field.toLowerCase()]: item });

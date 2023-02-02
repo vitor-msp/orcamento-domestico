@@ -25,6 +25,7 @@ export const AddTransactionItemArea = (props: AddTransactionItemAreaProps) => {
   };
   const [transactionItem, setTransactionItem] =
     useState<TransactionItem>(emptyTransactionItem);
+  const [clearInputs, setClearInputs] = useState<boolean>(false);
 
   const addTransactionItem = async (): Promise<void> => {
     if (!FieldsValidator.fieldsAreValid(Array.of(transactionItem))) return;
@@ -40,6 +41,7 @@ export const AddTransactionItemArea = (props: AddTransactionItemAreaProps) => {
       ...props.transaction,
       transactionItems: newTransactionItems,
     });
+    setClearInputs(true);
   };
 
   const updateTransactionItem = (transactionItem: TransactionItem): void => {
@@ -58,6 +60,8 @@ export const AddTransactionItemArea = (props: AddTransactionItemAreaProps) => {
           savedTransactionItem={null}
           canEditFields={true}
           enterPressed={addTransactionItem}
+          clearInputs={clearInputs}
+          setClearInputs={setClearInputs}
         />
         <div className="add-transaction-item-area-btn">
           <button type="button" onClick={addTransactionItem}>
