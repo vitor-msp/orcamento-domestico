@@ -45,6 +45,7 @@ export const AddTransactionItemArea = (props: AddTransactionItemAreaProps) => {
       });
     }
     setClearInputs(true);
+    setCounter(1);
   };
 
   const updateTransactionItem = (transactionItem: TransactionItem): void => {
