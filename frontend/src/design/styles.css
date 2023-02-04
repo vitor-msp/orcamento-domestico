@@ -232,6 +232,10 @@ div.add-transaction-item-area-btn {
     display: flex;
     justify-content: right;
 }
+div.add-transaction-item-area-btn input {
+    width: 70px;
+    margin-right: 10px;
+}
 div.add-transaction-item-area-btn button {
     margin-top: 5px;
 }
