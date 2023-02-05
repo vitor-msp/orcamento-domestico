@@ -115,7 +115,9 @@ export const Modal = (props: ModalProps) => {
             </div>
             <div className="modal-list">
               <ul>
-                {props.items.map((item) => {
+                {props.items.sort((a: Item, b: Item) => {
+                  return a.description.localeCompare(b.description);
+                }).map((item) => {
                   return (
                     <ModalListItem
                       key={item.id}

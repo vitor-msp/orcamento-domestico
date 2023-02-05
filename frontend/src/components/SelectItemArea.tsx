@@ -99,11 +99,15 @@ export const SelectItemArea = (props: SelectItemAreaProps) => {
         style={showDropdown ? { display: "block" } : { display: "none" }}
       >
         <ul>
-          {currentItems.map((item) => (
-            <li key={item.id} onClick={() => selectItem(item)}>
-              {item.description}
-            </li>
-          ))}
+          {currentItems
+            .sort((a: Item, b: Item) => {
+              return a.description.localeCompare(b.description);
+            })
+            .map((item) => (
+              <li key={item.id} onClick={() => selectItem(item)}>
+                {item.description}
+              </li>
+            ))}
         </ul>
       </div>
     </div>
