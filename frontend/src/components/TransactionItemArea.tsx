@@ -10,7 +10,7 @@ interface TransactionItemAreaProps {
   canEditFields: boolean;
   enterPressed?: () => void;
   clearInputs?: boolean;
-  setClearInputs?: (value: boolean)=> void;
+  setClearInputs?: (value: boolean) => void;
 }
 
 export const TransactionItemArea = (props: TransactionItemAreaProps) => {
@@ -18,11 +18,11 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
     id: "",
     transaction: "",
     item: { id: "", description: "" },
-    brand: { id: "", description: "" },
+    brand: { id: "48566deb-4224-4173-b74d-6d5cd0fa5ef0", description: "-" },
     category: { id: "", description: "" },
-    quantity: 0,
+    quantity: 1,
     totalValue: 0,
-    unitOfMeasurement: "",
+    unitOfMeasurement: "-",
   };
   const [transactionItem, setTransactionItem] = useState<TransactionItem>(
     props.savedTransactionItem ?? emptyTransactionItem
@@ -37,7 +37,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
     if (!props.clearInputs) return;
     setTransactionItem(emptyTransactionItem);
     //@ts-ignore
-    props.setClearInputs(false)
+    props.setClearInputs(false);
   }, [props.clearInputs]);
 
   const getSelectedItem = (item: Item, field: string): void => {
@@ -75,6 +75,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
             }}
             canEdit={canEdit}
             defaultItem={transactionItem.item}
+            tabIndex={2}
           />
         </div>
         <div>
@@ -86,8 +87,9 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
             returnSelectedItem={(item) => {
               getSelectedItem(item, "brand");
             }}
-            canEdit={canEdit}
+            canEdit={false}
             defaultItem={transactionItem.brand}
+            tabIndex={10}
           />
         </div>
         <div>
@@ -101,6 +103,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
             }}
             canEdit={canEdit}
             defaultItem={transactionItem.category}
+            tabIndex={3}
           />
         </div>
       </div>
@@ -112,7 +115,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
             name="quantity"
             value={transactionItem.quantity}
             onChange={changeField}
-            disabled={!canEdit}
+            disabled={true}
             id="transaction-item-quantity"
             autoComplete={"off"}
             onKeyUp={processKeyUp}
@@ -125,7 +128,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
             name="unitOfMeasurement"
             value={transactionItem.unitOfMeasurement}
             onChange={changeField}
-            disabled={!canEdit}
+            disabled={true}
             id="transaction-item-um"
             autoComplete={"off"}
             onKeyUp={processKeyUp}
@@ -143,6 +146,7 @@ export const TransactionItemArea = (props: TransactionItemAreaProps) => {
             id="transaction-item-total-value"
             autoComplete={"off"}
             onKeyUp={processKeyUp}
+            tabIndex={4}
           />
         </div>
       </div>

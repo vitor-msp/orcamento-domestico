@@ -11,6 +11,7 @@ export type SelectItemAreaProps = {
   returnSelectedItem: (item: Item) => void;
   canEdit: boolean;
   defaultItem?: Item;
+  tabIndex: number;
 };
 
 export const SelectItemArea = (props: SelectItemAreaProps) => {
@@ -84,6 +85,7 @@ export const SelectItemArea = (props: SelectItemAreaProps) => {
           disabled={!canEdit}
           id="select-item-area-input"
           autoComplete={"off"}
+          tabIndex={props.tabIndex}
         />
         <Modal
           key={props.itemName}

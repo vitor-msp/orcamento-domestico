@@ -92,6 +92,7 @@ export const SearchTransactionArea = (props: SearchTransactionAreaProps) => {
             api={enterpriseApi}
             returnSelectedItem={getSelectedItem}
             canEdit={true}
+            tabIndex={0}
           />
           <div>
             <label htmlFor="">date</label>
@@ -101,6 +102,7 @@ export const SearchTransactionArea = (props: SearchTransactionAreaProps) => {
               value={transaction.date}
               onChange={changeField}
               autoComplete={"off"}
+              tabIndex={1}
             />
           </div>
         </div>
